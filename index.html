@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parchmatte · paper for your screen</title>
+  <meta name="description" content="Parchmatte lays a fine paper grain and an optional warm desk-lamp tint over your Mac's screen. Free and open source, or $2.99 on the Mac App Store.">
+  <link rel="icon" href="/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+  <meta property="og:title" content="Parchmatte">
+  <meta property="og:description" content="A fine paper grain and a warm desk lamp for your Mac's screen.">
+  <meta property="og:image" content="https://parchmatte.com/icon.png">
+</head>
+<body>
+  <header class="hero wrap">
+    <img src="/icon.png" alt="" width="112" height="112">
+    <h1>Parchmatte</h1>
+    <p class="lede">A fine paper grain and an optional warm desk lamp for your Mac's screen, so a glossy display feels a little more like a page.</p>
+  </header>
+
+  <main class="wrap">
+    <div class="choices">
+      <div class="choice">
+        <h2>Build it free</h2>
+        <p>All of it is open source under the MIT license. Five minutes with Apple's free developer tools and it's yours. No catch.</p>
+        <a class="button secondary" href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">Build instructions</a>
+      </div>
+      <div class="choice">
+        <h2>Or chip in $2.99</h2>
+        <p>The Mac App Store version is a tip jar that also gets you a signed build and automatic updates. It keeps the AI coding tools paid and the next free app coming.</p>
+        <a class="button primary" aria-disabled="true" href="#">Mac App Store: coming soon</a>
+      </div>
+    </div>
+
+    <section>
+      <h2>What it does</h2>
+      <ul class="features">
+        <li><strong>Paper over everything,</strong> or just one window. Covers follow windows as they move, resize, switch tabs and go full screen.</li>
+        <li><strong>Seven textures:</strong> Parchmatte, Matte, Chalkboard, Linen, Press, Vellum and Felt, with a softness control.</li>
+        <li><strong>Desk Lamp tints</strong> from Candlelight to Aurora, with adjustable glow.</li>
+        <li><strong>Schedules:</strong> sunset to sunrise, sunrise to sunset, or your own hours. Snooze, per-display control, excluded apps, pause on battery.</li>
+        <li><strong>Never in the way:</strong> clicks, scrolling and typing pass straight through. It's hidden from screenshots and screen sharing by default.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Hotkeys</h2>
+      <table>
+        <tr><th>Keys</th><th>Action</th></tr>
+        <tr><td><kbd>⌃⌥O</kbd></td><td>Paper the whole screen</td></tr>
+        <tr><td><kbd>⌃⌥P</kbd></td><td>Paper the front window (again to remove)</td></tr>
+        <tr><td><kbd>⌃⌥=</kbd> / <kbd>⌃⌥-</kbd></td><td>Stronger or softer on the front window</td></tr>
+        <tr><td><kbd>⌃⌥T</kbd></td><td>Next texture</td></tr>
+        <tr><td><kbd>⌃⌥L</kbd></td><td>Next desk lamp</td></tr>
+        <tr><td><kbd>⌃⌥S</kbd></td><td>Snooze for 15 minutes, or resume</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Private by design</h2>
+      <p>Parchmatte can't see what's on your screen and doesn't read your typing. It has no network code at all and collects nothing. It runs in Apple's App Sandbox with no special permissions. <a href="/privacy/">Privacy policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>Build it yourself</h2>
+      <pre><code>xcode-select --install
+git clone https://github.com/Galactic-Luddite/parchmatte.git
+cd parchmatte
+./scripts/build.sh
+open dist/Parchmatte.app</code></pre>
+      <p class="muted">Needs macOS 13 or later. Full instructions are in the <a href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">README</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    Made by Galactic Luddite · <a href="/privacy/">Privacy</a> · <a href="mailto:support@parchmatte.com">support@parchmatte.com</a>
+  </footer>
+</body>
+</html>
