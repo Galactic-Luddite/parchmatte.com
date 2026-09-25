@@ -1,0 +1,57 @@
+name: Check
+
+# Static site: parse every page, check each local link and image exists,
+# and refuse <script> tags other than inert JSON-LD (the site promises no
+# JavaScript).
+on:
+  push:
+  pull_request:
+
+jobs:
+  html:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Links, images and the no-JavaScript rule
+        run: |
+          python3 - <<'PY'
+          import os, re, sys
+          from html.parser import HTMLParser
+
+          problems = []
+
+          class Images(HTMLParser):
+              def __init__(self, page):
+                  super().__init__()
+                  self.page = page
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if tag == "img" and "alt" not in a:
+                      problems.append(f"{self.page}: <img src={a.get('src')}> has no alt attribute")
+                  if tag == "script" and a.get("type") != "application/ld+json":
+                      problems.append(f"{self.page}: <script> is not allowed (only application/ld+json)")
+
+          for page in ("index.html", "privacy/index.html", "404.html"):
+              if not os.path.exists(page):
+                  problems.append(f"missing {page}")
+                  continue
+              text = open(page, encoding="utf-8").read()
+              Images(page).feed(text)
+              for m in re.findall(r'(?:src|href|srcset)="([^"]+)"', text):
+                  for part in m.split(","):
+                      u = part.strip().split(" ")[0]
+                      if u.startswith("/"):
+                          p = "." + u.rstrip("/")
+                          if not (os.path.exists(p) or os.path.exists(p + "/index.html")):
+                              problems.append(f"{page}: broken local link {u}")
+
+          for f in ("robots.txt", "sitemap.xml", "CNAME"):
+              if not os.path.exists(f):
+                  problems.append(f"missing {f}")
+
+          for p in problems:
+              print("::error::" + p)
+          print(f"checked; problems: {len(problems)}")
+          sys.exit(1 if problems else 0)
+          PY

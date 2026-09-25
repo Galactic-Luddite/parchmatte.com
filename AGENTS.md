@@ -10,7 +10,10 @@ from `main` at `parchmatte.com` (see `CNAME`). `CLAUDE.md` imports this file.
 1. **No JavaScript and no third-party requests.** No analytics, fonts,
    embeds or CDNs. "Collects nothing" is the product's pitch and the site
    keeps the same promise. If that ever changes it is an owner decision, not
-   a PR.
+   a PR. The one `<script>` allowed is `type="application/ld+json"` on the
+   home page: structured data for search engines, never executed. The
+   check workflow refuses any other script tag. The meta Content-Security-Policy
+   on each page (`default-src 'self'`) documents the same promise.
 2. **Accuracy over copy.** Every claim about the app must be true of the
    current release: hotkeys, texture and lamp names, the macOS floor,
    permissions, what the privacy policy says it reads. The source of truth
@@ -72,7 +75,9 @@ HTML locally by opening the file.
 
 ## Pending from the 2026-09-25 audit
 
-See `docs/audit/release-audit-2026-09-25.md` in the app repo, items W1–W3
-and R1–R2: replace the "coming soon" button with the store link once it
-exists, add the missing privacy field, add canonical/OG/JSON-LD/robots/
-sitemap, and convert the heavy assets to WebP.
+See `docs/audit/release-audit-2026-09-25.md` in the app repo. Done on the
+audit branch: the privacy field (R2), canonical, OG, JSON-LD, theme-color,
+touch icon, robots, sitemap, 404 and the meta CSP (W1, W3), and this check
+workflow. Still open: replace the "coming soon" button with the store link
+once it exists (R1), and convert `grain.png` and the gallery JPEGs to WebP
+with `<picture>` fallbacks (W2), which needs an image tool on a Mac.
