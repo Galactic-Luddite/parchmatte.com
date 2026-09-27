@@ -1,0 +1,47 @@
+{
+  "build": {
+    "build_number": "6",
+    "capture_system": "macOS 27.0",
+    "distribution": "TestFlight",
+    "gui_audit_run": "parchmatte-20260927T231417Z-store",
+    "installed_binary_sha256": "0a1f84df25e9724b18eee6435f86ef62e3cdb81f3fd7de6525cbc6ed411b380b",
+    "marketing_version": "1.0.0",
+    "product": "Parchmatte",
+    "source_commit": "ce6e0c6ff13e9b7c3d14aab6e4bdf57b2799471d"
+  },
+  "derivation": "Six native screen captures -> scripts/render_release_shots.py -> six 2880x1800 store PNGs and responsive site JPEGs; og.jpg from the same capture set.",
+  "files": {
+    "raw": {
+      "01-hero.png": "b27557fce5d74083c21a97288bba9af8a76c3eab0fdbb271437e0aa735db8a5e",
+      "02-menu.png": "f22c6720c4855604754b8f3bb9ca53d77c529c9f17a9b9ea889ed266753a0fd2",
+      "03-texture.png": "e6ea8452b10e3cc7e8a1e2bd8c52546c92fd8333aefe5cf2728191eb6e8770af",
+      "04-page-light.png": "7c9bc1343a3ee71728297fc5362573f414226a8bbedb29b00baa1168b6397389",
+      "05-per-window.png": "a88ae4fd0b5346351f398918aa6c07475cddf0de687a6eb6859354afa189ecc0",
+      "06-schedule.png": "066108521153cd46dc175cce503ab6b0ac3712d2fdb5abaf9194ea4a40a86e7a"
+    },
+    "site": {
+      "images/og.jpg": "651560e185836ae7f389a2335c91d7b96770f3dee746ae0eb327e5c42191b4ab",
+      "images/shots/01-hero-1600.jpg": "c428273a83d0bbbd8dd4231012134463cd17861562513ffe26769da9065142ec",
+      "images/shots/01-hero-800.jpg": "6c5cf3ed153bf0546c211dc307e7cf676ee1ecd5549170b8cc95fad5c75aa19a",
+      "images/shots/02-menu-1600.jpg": "505f67e00e53ada43d49b3b52abaea2b90bfd9b5407f664face44128ddaa446e",
+      "images/shots/02-menu-800.jpg": "2d86bd9bb0d5295d899573670896a4919571caf8ad29626c76f127bf65be936a",
+      "images/shots/03-texture-1600.jpg": "2d9372d4528920eda932c4938e7312337645e8733b781e9bd2a0a49db30f5af1",
+      "images/shots/03-texture-800.jpg": "7e1d30a764480ca6958752d2d415a55ce940e7774ad522e91101df95e7251548",
+      "images/shots/04-page-light-1600.jpg": "449f3d8a5250dedef3a26657a0eae52223c511e0a64e98f8ae246b2f63311bc9",
+      "images/shots/04-page-light-800.jpg": "ff5acd75cb858223466238af02aa584e7f0a09def251420fc32beba27ae32861",
+      "images/shots/05-per-window-1600.jpg": "aff9166b9ba5d84fd18ad60a36a8f884c0b250e5bcad089682fa52bcc746376a",
+      "images/shots/05-per-window-800.jpg": "0a6498477e8c0e20cd127e1c3d70a47a4ddb1f6f4a8f1dc689180f58e81d5e16",
+      "images/shots/06-schedule-1600.jpg": "4f8c090bd54f2b182da6d690a376e4a9596e0d7830a293a345af403a80279fb2",
+      "images/shots/06-schedule-800.jpg": "80c27e46afe554917bfe50fa467fe09c140bc4ed0963116a8515aa700e134da2"
+    },
+    "store": {
+      "01-hero.png": "923cdc1d1c76c11b9f3c22164dac2988f439db9c8586a7beec276cacd1808192",
+      "02-menu.png": "acd1cf1e25a23b0171fe474f1925740e31a68ab0763d93bb5a16d4b3e41c52ab",
+      "03-texture.png": "b96a4065a00797fc858f43e0cfb825004a4ba39ea99ed055edba94732500d131",
+      "04-page-light.png": "849b57f04303acd689b7160f85645439f8ebef2d5b5e8b296497e3b18391cd9a",
+      "05-per-window.png": "daa2db83fb10e7978b8ad4fa9771855bd991664516ac8bb2c3d526d2c034687e",
+      "06-schedule.png": "2ff769ce29995d3aca8708e0ea147eae58181b3513f08e75cc60c9fc75c245ff"
+    }
+  },
+  "schema": 1
+}

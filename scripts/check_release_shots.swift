@@ -18,7 +18,7 @@ let stems = [
 let required: [String: [String]] = [
     "02-menu": ["Page Light", "Strength", "Softness"],
     "03-texture": [
-        "Fine Grain", "Chalkboard", "Woven", "Imprint", "Soft Leaf", "Felt",
+        "Parchmatte", "Fine Grain", "Chalkboard", "Woven", "Imprint", "Soft Leaf", "Felt",
     ],
     "04-page-light": ["Page Light", "Candlelight", "Glow"],
     "05-per-window": ["Remove Paper from TextEdit Window", "Page Light"],
