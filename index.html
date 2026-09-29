@@ -3,23 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parchmatte · paper for your screen</title>
+  <title>Parchmatte: Paper Texture &amp; Warm Screen Tint for Mac</title>
   <meta name="description" content="Parchmatte lays a fine paper grain and an optional warm Page Light tint over your Mac's screen. Free and open source, or $2.99 on the Mac App Store.">
+  <link rel="canonical" href="https://parchmatte.com/">
   <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/style.css">
-  <meta property="og:title" content="Parchmatte">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://parchmatte.com/">
+  <meta property="og:site_name" content="Parchmatte">
+  <meta property="og:title" content="Parchmatte: paper for your Mac's screen">
   <meta property="og:description" content="A fine paper grain and warm Page Light for your Mac's screen.">
   <meta property="og:image" content="https://parchmatte.com/images/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Parchmatte">
   <meta name="twitter:description" content="A fine paper grain and warm Page Light for your Mac's screen.">
   <meta name="twitter:image" content="https://parchmatte.com/images/og.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Parchmatte",
+    "url": "https://parchmatte.com/",
+    "description": "A fine paper grain and optional warm Page Light tint over your Mac's screen.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "macOS 13 or later",
+    "image": "https://parchmatte.com/images/og.jpg",
+    "screenshot": "https://parchmatte.com/images/shots/01-hero-1600.jpg",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/Galactic-Luddite/parchmatte",
+    "author": {"@type": "Organization", "name": "Galactic Luddite"},
+    "offers": [
+      {"@type": "Offer", "name": "Build from source", "price": "0", "priceCurrency": "USD"},
+      {"@type": "Offer", "name": "Mac App Store", "price": "2.99", "priceCurrency": "USD"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Parchmatte an alternative to Night Shift or f.lux?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one."}},
+      {"@type": "Question", "name": "Does it slow my Mac down or get in the way?",
+       "acceptedAnswer": {"@type": "Answer", "text": "No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery."}},
+      {"@type": "Question", "name": "Can I paper just one window?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press Control-Option-P to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen."}},
+      {"@type": "Question", "name": "Does it show up in screenshots?",
+       "acceptedAnswer": {"@type": "Answer", "text": "By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it."}},
+      {"@type": "Question", "name": "Is it really free?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you."}}
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="hero wrap">
     <img src="/icon.png" alt="" width="112" height="112">
-    <h1>Parchmatte</h1>
-    <p class="lede">Parchmatte gives your Mac's display the look and feel of real paper: a fine grain and optional warm Page Light.</p>
+    <h1>Parchmatte <span class="h1-sub">Paper texture for your Mac's screen</span></h1>
+    <p class="lede">A fine paper grain that takes the glassy glare off your Mac's display, and an optional warm Page Light tint for the evening. Free and open source.</p>
   </header>
 
   <main class="wrap">
@@ -89,6 +131,32 @@
     <section>
       <h2>Private by design</h2>
       <p>Parchmatte can't see what's on your screen and doesn't read your typing. It has no network code at all and collects nothing. It runs in Apple's App Sandbox with no special permissions. <a href="/privacy/">Privacy policy</a>.</p>
+    </section>
+
+    <section>
+      <h2>Questions</h2>
+      <div class="faq">
+        <details>
+          <summary><h3>Is Parchmatte an alternative to Night Shift or f.lux?</h3></summary>
+          <p>Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one.</p>
+        </details>
+        <details>
+          <summary><h3>Does it slow my Mac down or get in the way?</h3></summary>
+          <p>No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery.</p>
+        </details>
+        <details>
+          <summary><h3>Can I paper just one window?</h3></summary>
+          <p>Yes. Press <kbd>⌃⌥P</kbd> to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen.</p>
+        </details>
+        <details>
+          <summary><h3>Does it show up in screenshots?</h3></summary>
+          <p>By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it.</p>
+        </details>
+        <details>
+          <summary><h3>Is it really free?</h3></summary>
+          <p>Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you.</p>
+        </details>
+      </div>
     </section>
 
     <section>
