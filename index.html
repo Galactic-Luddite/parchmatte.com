@@ -38,12 +38,30 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Parchmatte an alternative to Night Shift or f.lux?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one."}},
+      {"@type": "Question", "name": "Does it slow my Mac down or get in the way?",
+       "acceptedAnswer": {"@type": "Answer", "text": "No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery."}},
+      {"@type": "Question", "name": "Can I paper just one window?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press Control-Option-P to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen."}},
+      {"@type": "Question", "name": "Does it show up in screenshots?",
+       "acceptedAnswer": {"@type": "Answer", "text": "By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it."}},
+      {"@type": "Question", "name": "Is it really free?",
+       "acceptedAnswer": {"@type": "Answer", "text": "Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you."}}
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="hero wrap">
     <img src="/icon.png" alt="" width="112" height="112">
-    <h1>Parchmatte</h1>
-    <p class="lede">Parchmatte gives your Mac's display the look and feel of real paper: a fine grain and optional warm Page Light.</p>
+    <h1>Parchmatte <span class="h1-sub">Paper texture for your Mac's screen</span></h1>
+    <p class="lede">A fine paper grain that takes the glassy glare off your Mac's display, and an optional warm Page Light tint for the evening. Free and open source.</p>
   </header>
 
   <main class="wrap">
@@ -117,14 +135,28 @@
 
     <section>
       <h2>Questions</h2>
-      <h3>How is this different from Night Shift or f.lux?</h3>
-      <p>Night Shift and f.lux only change your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its Page Light tint is optional. You can run it alongside either one.</p>
-      <h3>Does it slow my Mac down or get in the way?</h3>
-      <p>No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery.</p>
-      <h3>Can I use it on just one window?</h3>
-      <p>Yes. Press <kbd>⌃⌥P</kbd> to paper the front window. The cover follows it as it moves, resizes and goes full screen.</p>
-      <h3>Is it really free?</h3>
-      <p>Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you.</p>
+      <div class="faq">
+        <details>
+          <summary><h3>Is Parchmatte an alternative to Night Shift or f.lux?</h3></summary>
+          <p>Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one.</p>
+        </details>
+        <details>
+          <summary><h3>Does it slow my Mac down or get in the way?</h3></summary>
+          <p>No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery.</p>
+        </details>
+        <details>
+          <summary><h3>Can I paper just one window?</h3></summary>
+          <p>Yes. Press <kbd>⌃⌥P</kbd> to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen.</p>
+        </details>
+        <details>
+          <summary><h3>Does it show up in screenshots?</h3></summary>
+          <p>By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it.</p>
+        </details>
+        <details>
+          <summary><h3>Is it really free?</h3></summary>
+          <p>Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you.</p>
+        </details>
+      </div>
     </section>
 
     <section>

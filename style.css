@@ -49,7 +49,7 @@ main, header, footer { position: relative; z-index: 1; }
 header.hero { padding: 72px 0 40px; text-align: center; }
 .hero img { width: 112px; height: 112px; }
 .hero h1 { font-size: 3rem; line-height: 1.1; margin: 16px 0 8px; letter-spacing: -0.01em; }
-.hero p.lede { font-size: 1.3rem; color: var(--ink-soft); max-width: 36em; margin: 0 auto; }
+.hero p.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 36em; margin: 12px auto 0; }
 
 .shot {
   display: block;
@@ -136,11 +136,46 @@ article.policy h2 { font-size: 1.25rem; margin: 28px 0 6px; }
   header.hero { padding-top: 48px; }
   .hero h1 { font-size: 2.3rem; }
   .hero p.lede { font-size: 1.1rem; }
-  th:nth-child(2), td:nth-child(2) { white-space: nowrap; }
+  th:first-child, td:first-child { white-space: nowrap; }
 }
 
-section h3 {
-  font-size: 1.05rem;
-  margin: 1.4em 0 0.25em;
+.hero h1 .h1-sub {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-top: 8px;
 }
-section h3 + p { margin-top: 0; }
+
+.faq { display: grid; gap: 10px; margin-top: 16px; }
+.faq details {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 0 18px;
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary h3 { margin: 0; font-size: 1.08rem; font-weight: 600; flex: 1; }
+.faq summary::after {
+  content: "+";
+  color: var(--accent);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+.faq details p { margin: 0 0 16px; }
+@media (prefers-reduced-motion: reduce) {
+  .faq summary::after { transition: none; }
+}
