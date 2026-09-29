@@ -200,6 +200,17 @@ table.compare th:first-child { white-space: nowrap; width: 8.5em; }
 table.compare tbody th { color: var(--ink); }
 table.compare td:last-child, table.compare thead th:last-child { background: var(--paper-deep); }
 table.compare td { font-size: 0.95rem; }
+table.compare td .yes, table.compare td .no, table.compare td .part {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+table.compare td .yes { color: var(--accent); }
+table.compare td .part { color: var(--accent); opacity: 0.55; }
+table.compare td .no { color: var(--ink-soft); opacity: 0.6; }
+table.compare td small { display: block; color: var(--ink-soft); font-size: 0.8rem; line-height: 1.35; margin-top: 2px; }
 p.pick { color: var(--ink-soft); border-left: 3px solid var(--accent); padding-left: 14px; }
 .small { font-size: 0.9rem; }
 .closing { text-align: center; }
