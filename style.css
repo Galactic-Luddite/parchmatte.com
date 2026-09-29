@@ -180,9 +180,22 @@ article.policy h2 { font-size: 1.25rem; margin: 28px 0 6px; }
   .faq summary::after { transition: none; }
 }
 
+/* Site nav */
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 0 0 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+.site-nav a { color: var(--ink-soft); text-decoration: none; padding: 4px 0; border-bottom: 1.5px solid transparent; }
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+main > .site-nav { margin-top: 32px; }
+
 /* Compare page */
-.crumb { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
-.crumb a { color: inherit; text-decoration: none; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0 0; }
 .glance-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 8px; }
 .glance-card {
