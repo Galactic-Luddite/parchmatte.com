@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Parchmatte: Paper Texture &amp; Warm Screen Tint for Mac</title>
-  <meta name="description" content="Parchmatte lays a fine paper grain and an optional warm Page Light tint over your Mac's screen. Free and open source, or $2.99 on the Mac App Store.">
+  <meta name="description" content="Parchmatte lays a fine paper grain and an optional warm Page Light tint over your Mac's screen. Free to build from source. Mac App Store version coming soon.">
   <link rel="canonical" href="https://parchmatte.com/">
   <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/style.css">
@@ -19,109 +19,128 @@
   <meta name="twitter:description" content="A fine paper grain and warm Page Light for your Mac's screen.">
   <meta name="twitter:image" content="https://parchmatte.com/images/og.jpg">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Parchmatte",
-    "url": "https://parchmatte.com/",
-    "description": "A fine paper grain and optional warm Page Light tint over your Mac's screen.",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "macOS 13 or later",
-    "image": "https://parchmatte.com/images/og.jpg",
-    "screenshot": "https://parchmatte.com/images/shots/01-hero-1600.jpg",
-    "license": "https://opensource.org/licenses/MIT",
-    "codeRepository": "https://github.com/Galactic-Luddite/parchmatte",
-    "author": {"@type": "Organization", "name": "Galactic Luddite"},
-    "offers": [
-      {"@type": "Offer", "name": "Build from source", "price": "0", "priceCurrency": "USD"},
-      {"@type": "Offer", "name": "Mac App Store", "price": "2.99", "priceCurrency": "USD"}
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Parchmatte",
+  "url": "https://parchmatte.com/",
+  "description": "A fine paper grain and optional warm Page Light tint over your Mac's screen.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "macOS 13 or later",
+  "image": "https://parchmatte.com/images/og.jpg",
+  "screenshot": "https://parchmatte.com/images/shots/01-hero-1600.jpg",
+  "license": "https://opensource.org/licenses/MIT",
+  "codeRepository": "https://github.com/Galactic-Luddite/parchmatte",
+  "author": {
+    "@type": "Organization",
+    "name": "Galactic Luddite"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Build from source",
+      "price": "0",
+      "priceCurrency": "USD",
+      "url": "https://github.com/Galactic-Luddite/parchmatte#build-it-yourself"
+    }
+  ]
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "Is Parchmatte an alternative to Night Shift or f.lux?",
-       "acceptedAnswer": {"@type": "Answer", "text": "Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one."}},
-      {"@type": "Question", "name": "Does it slow my Mac down or get in the way?",
-       "acceptedAnswer": {"@type": "Answer", "text": "No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery."}},
-      {"@type": "Question", "name": "Can I paper just one window?",
-       "acceptedAnswer": {"@type": "Answer", "text": "Yes. Press Control-Option-P to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen."}},
-      {"@type": "Question", "name": "Does it show up in screenshots?",
-       "acceptedAnswer": {"@type": "Answer", "text": "By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it."}},
-      {"@type": "Question", "name": "Is it really free?",
-       "acceptedAnswer": {"@type": "Answer", "text": "Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you."}}
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it get in the way?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clicks, scrolling and typing pass through the overlay. You can exclude apps, snooze Parchmatte, or pause it on battery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it appear in screenshots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By default, Parchmatte asks macOS to leave the overlay out of screenshots. Some capture tools may still include it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can Parchmatte see?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Parchmatte reads window positions and sizes to place its overlays. It does not read window contents or your typing, collect personal data, or make network connections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The source code is free under the MIT license. You can build it with Apple's developer tools. A $2.99 Mac App Store version with automatic updates is coming soon."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
-  <header class="hero wrap">
-    <nav class="site-nav" aria-label="Site"><a href="/" aria-current="page">Parchmatte</a><a href="/compare/">Compare</a><a href="/privacy/">Privacy</a></nav>
-    <img src="/icon.png" alt="" width="112" height="112">
-    <h1>Parchmatte <span class="h1-sub">Paper texture for your Mac's screen</span></h1>
-    <p class="lede">A fine paper grain that takes the glassy glare off your Mac's display, and an optional warm Page Light tint for the evening. Free and open source.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <nav class="site-nav" aria-label="Site"><a href="/" aria-current="page"><img src="/icon.png" alt="" width="28" height="28">Parchmatte</a><a href="/compare/">Compare</a><a href="/privacy/">Privacy</a></nav>
   </header>
-
-  <main class="wrap">
-    <img class="shot hero-shot" src="/images/shots/01-hero-1600.jpg" srcset="/images/shots/01-hero-800.jpg 800w, /images/shots/01-hero-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 800px" width="1600" height="1000" alt="Your screen, with the feel of real paper">
-
-    <div class="choices">
-      <div class="choice">
-        <h2>Build it free</h2>
-        <p>All of it is open source under the MIT license. Five minutes with Apple's free developer tools and it's yours. No catch.</p>
-        <a class="button secondary" href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">Build instructions</a>
-      </div>
-      <div class="choice">
-        <h2>Or chip in $2.99</h2>
-        <p>The Mac App Store version is a tip jar that also gets you a signed build and automatic updates. It keeps the AI coding tools paid and the next free app coming.</p>
-        <a class="button primary" aria-disabled="true" href="#">Mac App Store: coming soon</a>
+  <main id="main" class="wrap">
+    <div class="intro">
+      <h1>Paper texture for<br>your Mac’s screen.</h1>
+      <p class="lede">Add a fine paper grain to your display, or just one window. Adjust the texture and add an optional Page Light tint.</p>
+      <div class="download">
+        <a class="button" href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">Build from source</a>
+        <p>Free and open source · macOS 13 or later<br><span class="muted">Mac App Store · $2.99 · Coming soon</span></p>
       </div>
     </div>
+    <figure class="hero-shot">
+      <img class="shot" src="/images/shots/01-hero-1600.jpg" srcset="/images/shots/01-hero-800.jpg 800w, /images/shots/01-hero-1600.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 40px), 920px" width="1600" height="1000" fetchpriority="high" alt="A Mac document window with Parchmatte’s paper texture applied">
+    </figure>
 
-    <section>
-      <h2>What it does</h2>
-      <ul class="features">
-        <li><strong>Paper over everything,</strong> or just one window. Covers follow windows as they move, resize, switch tabs and go full screen.</li>
-        <li><strong>Seven textures:</strong> Parchmatte, Fine Grain, Chalkboard, Woven, Imprint, Soft Leaf and Felt, with a softness control.</li>
-        <li><strong>Page Light tints</strong> from Candlelight to Aurora, with adjustable glow.</li>
-        <li><strong>Schedules:</strong> sunset to sunrise, sunrise to sunset, or your own hours. Snooze, per-display control, excluded apps, pause on battery.</li>
-        <li><strong>Never in the way:</strong> clicks, scrolling and typing pass straight through. By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>How it compares</h2>
-      <p>Night Shift and f.lux warm the colour. Paperman adds the grain. Parchmatte does both, on the whole screen, one app, or a single window, and it's the only one you can build yourself. <a href="/compare/">See how they stack up</a>, row by row.</p>
-    </section>
-
-    <section>
-      <h2>See it</h2>
-      <div class="gallery">
-        <figure>
-          <img class="shot" src="/images/shots/02-menu-1600.jpg" srcset="/images/shots/02-menu-800.jpg 800w, /images/shots/02-menu-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1000" loading="lazy" alt="Strength and softness, right in the menu bar">
-        </figure>
-        <figure>
-          <img class="shot" src="/images/shots/03-texture-1600.jpg" srcset="/images/shots/03-texture-800.jpg 800w, /images/shots/03-texture-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1000" loading="lazy" alt="Seven real-paper textures">
-        </figure>
-        <figure>
-          <img class="shot" src="/images/shots/04-page-light-1600.jpg" srcset="/images/shots/04-page-light-800.jpg 800w, /images/shots/04-page-light-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1000" loading="lazy" alt="Page Light adds a warm tint for evening work">
-        </figure>
-        <figure>
-          <img class="shot" src="/images/shots/05-per-window-1600.jpg" srcset="/images/shots/05-per-window-800.jpg 800w, /images/shots/05-per-window-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1000" loading="lazy" alt="Give each window its own paper">
-        </figure>
-        <figure>
-          <img class="shot" src="/images/shots/06-schedule-1600.jpg" srcset="/images/shots/06-schedule-800.jpg 800w, /images/shots/06-schedule-1600.jpg 1600w" sizes="(max-width: 700px) 100vw, 50vw" width="1600" height="1000" loading="lazy" alt="Turns on at sunset, off at sunrise">
-        </figure>
+    <section class="product-section" aria-labelledby="texture-title">
+      <div class="section-intro">
+        <h2 id="texture-title">Make it your paper.</h2>
+        <p>Choose from seven textures, from Fine Grain to Felt. Set the strength and softness from the menu bar. Page Light adds a separate tint, with its own glow control.</p>
       </div>
+      <figure><img class="shot" src="/images/shots/02-menu-1600.jpg" srcset="/images/shots/02-menu-800.jpg 800w, /images/shots/02-menu-1600.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 40px), 920px" width="1600" height="1000" loading="lazy" alt="Parchmatte menu bar controls for texture strength and softness"></figure>
     </section>
 
-    <section>
-      <h2>Hotkeys</h2>
-      <table>
-        <tr><th>Keys</th><th>Action</th></tr>
+    <section class="product-section" aria-labelledby="window-title">
+      <div class="section-intro">
+        <h2 id="window-title">Just the window you want.</h2>
+        <p>Press <kbd>⌃⌥P</kbd> to add paper to the front window. It follows as you move, resize, or go full screen. You can also cover the whole display.</p>
+      </div>
+      <figure><img class="shot" src="/images/shots/05-per-window-1600.jpg" srcset="/images/shots/05-per-window-800.jpg 800w, /images/shots/05-per-window-1600.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 40px), 920px" width="1600" height="1000" loading="lazy" alt="A single Mac window with its own Parchmatte paper overlay"></figure>
+      <dl class="feature-notes">
+        <div><dt>On your schedule</dt><dd>Use sunrise and sunset, or set your own hours. Snooze for a break or pause on battery.</dd></div>
+        <div><dt>Across your workspace</dt><dd>Choose which displays to cover and which apps to exclude. Clicks and typing pass through.</dd></div>
+      </dl>
+    </section>
+
+    <section class="comparison-link">
+      <h2>Already using Night Shift or f.lux?</h2>
+      <p>You can keep either running and use Parchmatte for the texture. <a href="/compare/">Compare Parchmatte, Night Shift, f.lux and Paperman</a>.</p>
+    </section>
+
+    <section aria-labelledby="questions-title">
+      <h2 id="questions-title">A few practical details</h2>
+      <div class="faq">
+        <details><summary>Does it get in the way?</summary><p>Clicks, scrolling and typing pass through the overlay. You can exclude apps, snooze Parchmatte, or pause it on battery.</p></details>
+        <details><summary>Does it appear in screenshots?</summary><p>By default, Parchmatte asks macOS to leave the overlay out of screenshots. Some capture tools may still include it.</p></details>
+        <details><summary>What can Parchmatte see?</summary><p>Parchmatte reads window positions and sizes to place its overlays. It does not read window contents or your typing, collect personal data, or make network connections.</p></details>
+        <details><summary>Is it free?</summary><p>The source code is free under the MIT license. You can build it with Apple's developer tools. A $2.99 Mac App Store version with automatic updates is coming soon.</p></details>
+        <details>
+          <summary>What are the keyboard shortcuts?</summary>
+          <table>
+        <tr><th scope="col">Keys</th><th scope="col">Action</th></tr>
         <tr><td><kbd>⌃⌥O</kbd></td><td>Paper the whole screen</td></tr>
         <tr><td><kbd>⌃⌥P</kbd></td><td>Paper the front window (again to remove)</td></tr>
         <tr><td><kbd>⌃⌥↑</kbd> / <kbd>⌃⌥↓</kbd></td><td>Stronger or lighter</td></tr>
@@ -131,53 +150,15 @@
         <tr><td><kbd>⌃⌥G</kbd></td><td>Next lamp glow</td></tr>
         <tr><td><kbd>⌃⌥S</kbd></td><td>Snooze for 15 minutes, or resume</td></tr>
       </table>
-      <p>When the front window has its own paper, the arrow, texture, lamp and glow keys change just that window. Otherwise they change the whole screen and new windows.</p>
-    </section>
-
-    <section>
-      <h2>Private by design</h2>
-      <p>Parchmatte can't see what's on your screen and doesn't read your typing. It has no network code at all and collects nothing. It runs in Apple's App Sandbox with no special permissions. <a href="/privacy/">Privacy policy</a>.</p>
-    </section>
-
-    <section>
-      <h2>Questions</h2>
-      <div class="faq">
-        <details>
-          <summary><h3>Is Parchmatte an alternative to Night Shift or f.lux?</h3></summary>
-          <p>Partly. Night Shift and f.lux only warm your screen's colour. Parchmatte adds a paper grain that takes the glassy edge off, and its warm Page Light tint is optional, so you can use it as a warm tint on its own or run it alongside either one. <a href="/compare/">See the full comparison</a>, including Paperman.</p>
-        </details>
-        <details>
-          <summary><h3>Does it slow my Mac down or get in the way?</h3></summary>
-          <p>No. It's a lightweight overlay: clicks, scrolling and typing pass straight through, and you can exclude apps or pause it on battery.</p>
-        </details>
-        <details>
-          <summary><h3>Can I paper just one window?</h3></summary>
-          <p>Yes. Press <kbd>⌃⌥P</kbd> to paper the front window. The cover follows it as it moves, resizes, switches tabs and goes full screen.</p>
-        </details>
-        <details>
-          <summary><h3>Does it show up in screenshots?</h3></summary>
-          <p>By default it asks macOS to leave it out of screenshots, though some newer capture tools may still show it.</p>
-        </details>
-        <details>
-          <summary><h3>Is it really free?</h3></summary>
-          <p>Yes. The source is MIT licensed and builds with Apple's free tools. The $2.99 App Store version is the same app, signed and updated for you.</p>
+          <p>When the front window has its own paper, the arrow, texture, Page Light and glow keys adjust that window. Otherwise, they adjust the whole screen and new windows.</p>
         </details>
       </div>
-    </section>
-
-    <section>
-      <h2>Build it yourself</h2>
-      <pre><code>xcode-select --install
-git clone https://github.com/Galactic-Luddite/parchmatte.git
-cd parchmatte
-./scripts/build.sh
-open dist/Parchmatte.app</code></pre>
-      <p class="muted">Needs macOS 13 or later. Full instructions are in the <a href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">README</a>.</p>
+      <p class="small muted">More about <a href="/privacy/">privacy</a> and <a href="https://github.com/Galactic-Luddite/parchmatte#build-it-yourself">building Parchmatte</a>.</p>
     </section>
   </main>
-
-  <footer class="wrap">
-    Made by Galactic Luddite · <a href="/compare/">Compare</a> · <a href="/privacy/">Privacy</a> · <a href="mailto:support@parchmatte.com">support@parchmatte.com</a>
+  <footer class="site-footer wrap">
+    <span>Made by Galactic Luddite</span>
+    <nav aria-label="Footer"><a href="/compare/">Compare</a><a href="/privacy/">Privacy</a><a href="https://github.com/Galactic-Luddite/parchmatte">Source</a><a href="mailto:support@parchmatte.com">Contact</a></nav>
   </footer>
 </body>
 </html>
