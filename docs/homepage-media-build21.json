@@ -1,0 +1,65 @@
+{
+  "build": "1.0.0 (21)",
+  "method": "Direct desktop-compositor captures. Only PNG ancillary metadata was removed; IHDR and IDAT bytes are preserved. Terminal examples are browser-rendered synthetic demos with the actual app overlay.",
+  "images": {
+    "01-overview-build21.png": {
+      "blob_sha256": "8ff323412db2565228541cfeac7e7e1d3c38305f2a8850986fcb09089af00528",
+      "color_type": 6,
+      "height": 1800,
+      "pixels_sha256": "5bfe826bd91c67e930c34c5f2dba89df773be9f5f13f1e6ce36be61921436d5e",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 2880
+    },
+    "02-menu-build21.png": {
+      "blob_sha256": "b11d752bb7290e41e5f9aa52cec58a16fe66b0c221765c8e413c23e48939ad66",
+      "color_type": 6,
+      "height": 1800,
+      "pixels_sha256": "299f1b7f2741f9d28a058b820b27d05ed6a4d157d14b4e9f5b792ae966ce96b1",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 2880
+    },
+    "07-woven-terminal.png": {
+      "blob_sha256": "70bac4134632865cd03f753ae26af48e2194c298201c834844747b4d84e03895",
+      "color_type": 6,
+      "height": 650,
+      "pixels_sha256": "39c2df0c961f0e176fe547241a7a9fcd60f9bfd3cee640f90badec20a1047b92",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 700
+    },
+    "08-denim-terminal.png": {
+      "blob_sha256": "4f99840bfdec478593fbfaf1c1c49a992d84c545d6e9817e7f6e2f7d7258f5ef",
+      "color_type": 6,
+      "height": 650,
+      "pixels_sha256": "c3be15f4331df80754a758afdbe60410831a7594df166e9cdf64d0278a2c7bf9",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 700
+    }
+  },
+  "terminal_demo_settings": {
+    "opacity": 0.15,
+    "softness": 0.35,
+    "lamp": "off",
+    "wholeScreen": true,
+    "hideFromScreenshots": false
+  }
+}

@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Dark terminal demo — Parchmatte</title><style>html,body{margin:0;background:#22262e;color:#cfd6df;font:16px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;overflow:hidden}main{box-sizing:border-box;min-height:100vh;padding:24px 80px}h1{font-size:13px;letter-spacing:.07em;text-transform:uppercase;font-weight:500;color:#8795a8;margin:0 0 18px}pre{font:inherit;white-space:pre-wrap;margin:0}.prompt{color:#98c9ad}.blue{color:#a3bfed}.muted{color:#8893a3}.gold{color:#d7c398}</style><main><h1>Dark terminal demo · synthetic sample text</h1><pre><span class="prompt">studio %</span> cat morning.py
+<span class="blue">from</span> pathlib <span class="blue">import</span> Path
+
+<span class="blue">def</span> quiet_morning():
+    notes = Path(<span class="gold">"ideas.txt"</span>).read_text()
+    <span class="blue">for</span> line <span class="blue">in</span> notes.splitlines():
+        print(line)
+
+quiet_morning()
+
+<span class="prompt">studio %</span> python morning.py
+A little room to think.
+One small thing, made with care.
+
+<span class="prompt">studio %</span> ▌</pre></main></html>

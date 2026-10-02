@@ -6,7 +6,22 @@ the home page, the comparison at `/compare/`, and the privacy policy at
 
 Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
-## Release screenshots
+## Website screenshots
+
+The homepage uses current screenshots of Build 21:
+
+- `images/shots/01-overview-build21.png` — Denim on a writing page
+- `images/shots/02-menu-build21.png` — current menu and eight-texture list
+- `images/shots/07-woven-terminal.png` — Woven on a dark terminal demo
+- `images/shots/08-denim-terminal.png` — Denim on a dark terminal demo
+
+These PNGs show the current app but are not part of the Build 6 App Store media
+audit or its hash receipt. Their dimensions and pixel and file hashes are in
+`docs/homepage-media-build21.json`, with a readable summary in
+`docs/homepage-media-build21.md`. The synthetic terminal page used in the two
+texture examples is retained at `scripts/fixtures/terminal-demo.html`.
+
+## Historical Build 6 release media
 
 The 12 release image files and `images/og.jpg` are rendered from six unmodified
 screen captures of TestFlight build 1.0.0 (6), whose installed binary passed
@@ -41,8 +56,10 @@ the check only covers text it can recognize.
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
-The homepage uses three release screenshots: the overview, menu controls, and
-per-window view. All release image files remain covered by the media receipt.
+The homepage uses the current Build 21 screenshots listed above. The older
+responsive JPEGs in `images/shots/` remain historical Build 6 release media
+covered by `docs/release-media-build6.json`; the homepage no longer presents
+them as current app screenshots.
 
 When the app is live, update the availability text on the home and comparison
 pages, add the App Store link, and update the homepage offer and FAQ structured
