@@ -53,6 +53,13 @@ the check only covers text it can recognize.
 
 ## Publishing
 
+Before publishing, run `python3 scripts/verify_site.py` and
+`python3 -m unittest discover -s scripts/tests -v`. The first command checks
+the current screenshot file hashes and PNG dimensions plus local references on
+the three live pages. GitHub Actions runs these checks and the historical
+Build 6 site-image receipt check on pull requests and pushes to `main` or
+`task/**` branches. External links and visual appearance still need review.
+
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
