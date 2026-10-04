@@ -24,12 +24,46 @@ class Shot:
 
 SHOTS = (
     Shot("01-hero", "Your screen, with the feel of real paper"),
-    Shot("02-menu", "Strength and softness, right in the menu bar", (2660, 70, 3250, 1200)),
-    Shot("03-texture", "Seven real-paper textures", (2660, 70, 3550, 1220)),
-    Shot("04-page-light", "Page Light for evening work", (2660, 70, 3550, 1220)),
-    Shot("05-per-window", "Give each window its own paper", (2660, 70, 3340, 1580)),
-    Shot("06-schedule", "Turns on at sunset, off at sunrise", (2660, 70, 3730, 1230)),
+    Shot("02-menu", "Strength and softness, right in the menu bar"),
+    Shot("03-texture", "Eight real-paper textures"),
+    Shot("04-page-light", "Page Light for evening work"),
+    Shot("05-per-window", "Give each window its own paper"),
+    Shot("06-schedule", "Turns on at sunset, off at sunrise"),
 )
+
+# Physical capture sizes this layout has been checked with, and the part of
+# each that is kept (a little wallpaper is trimmed from the right and bottom).
+CAPTURES = {
+    (4112, 2658): (4070, 2450),
+    (3456, 2234): (3456, 2080),
+}
+
+
+def menu_crops(raw_dir: Path, scale: int = 2, pad: int = 12) -> dict[str, tuple[int, int, int, int]]:
+    """Read RAW_DIR/rects.txt: "<stem> x0 y0 x1 y1 [x0 y0 x1 y1]" in points.
+
+    The rectangles are the open menu and, when present, its submenu, as the
+    accessibility API reported them at capture time. Their union, padded, is
+    the crop that is enlarged beside the capture.
+    """
+    crops = {}
+    rects = raw_dir / "rects.txt"
+    if not rects.exists():
+        return crops
+    for line in rects.read_text().splitlines():
+        stem, *numbers = line.split()
+        values = [int(n) for n in numbers]
+        if len(values) < 4:
+            continue
+        boxes = [values[i:i + 4] for i in range(0, len(values) - 3, 4)]
+        crops[stem] = (
+            (min(b[0] for b in boxes) - pad) * scale,
+            (min(b[1] for b in boxes) - pad) * scale,
+            (max(b[2] for b in boxes) + pad) * scale,
+            (max(b[3] for b in boxes) + pad) * scale,
+        )
+    return crops
+
 
 CANVAS = (2880, 1800)
 PAPER = "#f0e9dd"
@@ -61,8 +95,9 @@ def place_with_shadow(
 def render(shot: Shot, raw_dir: Path, store_dir: Path, site_dir: Path) -> None:
     source = raw_dir / f"{shot.stem}.png"
     capture = Image.open(source).convert("RGB")
-    if capture.size != (4112, 2658):
-        raise ValueError(f"{source}: expected 4112x2658 physical capture, got {capture.size}")
+    if capture.size not in CAPTURES:
+        raise ValueError(f"{source}: unexpected capture size {capture.size}")
+    crop = menu_crops(raw_dir).get(shot.stem, shot.menu_crop)
 
     canvas = Image.new("RGBA", CANVAS, PAPER)
     title_font = ImageFont.truetype(FONT, 79)
@@ -77,12 +112,12 @@ def render(shot: Shot, raw_dir: Path, store_dir: Path, site_dir: Path) -> None:
 
     # Remove a small right-edge wallpaper strip and empty screen bottom. The
     # captured UI and overlay remain untouched.
-    desktop = capture.crop((0, 0, 4070, 2450))
+    desktop = capture.crop((0, 0, *CAPTURES[capture.size]))
     desktop = desktop.resize((2530, 1523), Image.Resampling.LANCZOS)
     place_with_shadow(canvas, desktop, (175, 225), 32)
 
-    if shot.menu_crop:
-        menu = capture.crop(shot.menu_crop)
+    if crop:
+        menu = capture.crop(crop)
         ratio = min(1040 / menu.width, 1400 / menu.height)
         menu = menu.resize(
             (round(menu.width * ratio), round(menu.height * ratio)),
@@ -108,7 +143,7 @@ def render_social_preview(raw_dir: Path, site_dir: Path) -> None:
     draw = ImageDraw.Draw(canvas)
     box = draw.textbbox((0, 0), title, font=font)
     draw.text(((1200 - (box[2] - box[0])) // 2, 30), title, font=font, fill=INK)
-    desktop = capture.crop((0, 0, 4070, 1885))
+    desktop = capture.crop((0, 0, CAPTURES[capture.size][0], CAPTURES[capture.size][0] * 491 // 1060))
     desktop = desktop.resize((1060, 491), Image.Resampling.LANCZOS)
     place_with_shadow(canvas, desktop, (70, 105), 20)
     canvas.convert("RGB").save(
