@@ -35,6 +35,12 @@ through review; they are not served by this website.
 Keep the raw captures and store PNGs locally through review. To regenerate,
 install Pillow and run:
 
+`RAW_DIR` holds the six full-screen captures (`01-hero.png` to
+`06-schedule.png`) and, for captures with the menu open, `rects.txt`: one line
+per capture, `<stem> x0 y0 x1 y1 [x0 y0 x1 y1]`, the menu's and its submenu's
+rectangles in points as the accessibility API reported them. The enlarged
+panel is cropped from that union, so nothing is positioned by hand.
+
 ```sh
 python3 scripts/render_release_shots.py RAW_DIR STORE_DIR images/shots
 swift scripts/check_release_shots.swift STORE_DIR images/shots
