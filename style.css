@@ -80,6 +80,9 @@ figure { margin: 0; }
 .download p { margin: 0; font: 0.85rem/1.75 var(--sans); }
 .button { display: inline-block; padding: 12px 20px; border-radius: 5px; background: var(--accent); color: var(--accent-ink); font: 500 0.9rem/1.4 var(--sans); text-decoration: none; }
 .button:hover { text-decoration: underline; }
+.store-badge { display: inline-block; margin: 4px 0; line-height: 0; }
+.store-badge img { display: block; width: 195px; height: 50px; }
+.store-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
 .shot { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
 .hero-shot { margin-bottom: 56px; }
 section { padding-block: 40px; border-top: 1px solid var(--rule); }

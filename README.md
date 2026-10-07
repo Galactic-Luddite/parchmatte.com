@@ -74,10 +74,12 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-When the app is live, update the availability text on the home and comparison
-pages, add the App Store link, and update the homepage offer and FAQ structured
-data to match the visible content. Until then, only the free source build is
-listed as an offer.
+Parchmatte 1.0 went on sale on the Mac App Store on 2026-10-07. The home and
+comparison pages link to the listing with Apple's "Download on the Mac App
+Store" badge (`images/badges/`, black for light mode and white for dark mode,
+served unmodified per Apple's marketing guidelines), and the homepage offer
+and FAQ structured data describe the $2.99 listing. Keep the structured data
+in step with the visible text whenever either changes.
 
 The three pages share `style.css`, header navigation, and footer links. Check
 all three in light and dark mode at phone and desktop widths after changing
