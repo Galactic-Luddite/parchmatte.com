@@ -83,6 +83,10 @@ figure { margin: 0; }
 .store-badge { display: inline-block; margin: 4px 0; line-height: 0; }
 .store-badge img { display: block; width: 195px; height: 50px; }
 .store-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
+.gh-button { display: inline-flex; align-items: center; gap: 8px; height: 50px; white-space: nowrap; padding: 0 18px; margin: 4px 0; box-sizing: border-box; border: 1px solid var(--ink); border-radius: 8px; color: var(--ink); background: transparent; font: 500 0.95rem/1 var(--sans); text-decoration: none; }
+.gh-button:hover { background: var(--ink); color: var(--paper, #fff); }
+.gh-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.gh-mark { flex: none; }
 .shot { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
 .hero-shot { margin-bottom: 56px; }
 section { padding-block: 40px; border-top: 1px solid var(--rule); }
