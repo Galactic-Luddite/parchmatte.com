@@ -1,12 +1,12 @@
 {
   "build": "1.0.0 (21)",
-  "method": "Direct desktop-compositor captures. Only PNG ancillary metadata was removed; IHDR and IDAT bytes are preserved. Terminal examples are browser-rendered synthetic demos with the actual app overlay.",
+  "method": "Direct desktop-compositor captures of build 1.0.0 (21). The two full-width screenshots, 01-overview-build21.png and 02-menu-build21.png, were cropped on 2026-10-10 to remove the 66-pixel menu-bar strip at the top (2880x1800 became 2880x1734) with a lossless ffmpeg crop to RGBA, then re-encoded and stripped of ancillary PNG metadata, so their IDAT bytes differ from the original captures. The terminal examples are browser-rendered synthetic demos with the actual app overlay. pixels_sha256 for those two images is the SHA-256 of the unfiltered RGBA scanlines of the cropped result.",
   "images": {
     "01-overview-build21.png": {
-      "blob_sha256": "8ff323412db2565228541cfeac7e7e1d3c38305f2a8850986fcb09089af00528",
+      "blob_sha256": "4a107cb31e3ae5adbaba43184aca313aca992516098dcaff97de5d5b6f00fb0d",
       "color_type": 6,
-      "height": 1800,
-      "pixels_sha256": "5bfe826bd91c67e930c34c5f2dba89df773be9f5f13f1e6ce36be61921436d5e",
+      "height": 1734,
+      "pixels_sha256": "4ae3303e983d2fe201ce36aea069771bad582b59aa0950b3056bfb1d4457a8e9",
       "policy": {
         "max_blob_bytes": 16777216,
         "max_decompressed_bytes": 33554432,
@@ -16,10 +16,10 @@
       "width": 2880
     },
     "02-menu-build21.png": {
-      "blob_sha256": "b11d752bb7290e41e5f9aa52cec58a16fe66b0c221765c8e413c23e48939ad66",
+      "blob_sha256": "b8ca74f8d6e272eb11bd780524d28ec148675956d383d8b379083f86a04a9d54",
       "color_type": 6,
-      "height": 1800,
-      "pixels_sha256": "299f1b7f2741f9d28a058b820b27d05ed6a4d157d14b4e9f5b792ae966ce96b1",
+      "height": 1734,
+      "pixels_sha256": "5653a250c97ebfd161c09ad0a82bc824ff4272c4c0eb9756f2927a9ca97a7967",
       "policy": {
         "max_blob_bytes": 16777216,
         "max_decompressed_bytes": 33554432,
