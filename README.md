@@ -11,8 +11,8 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 The homepage uses current screenshots of Build 21:
 
-- `images/shots/01-overview-build21.png` — Denim on a writing page
-- `images/shots/02-menu-build21.png` — current menu and eight-texture list
+- `images/shots/01-overview-build21.png` — Denim on a writing page (2880x1734, cropped to remove the menu bar)
+- `images/shots/02-menu-build21.png` — current menu and eight-texture list (2880x1734, cropped to remove the menu bar)
 - `images/shots/07-woven-terminal.png` — Woven on a dark terminal demo
 - `images/shots/08-denim-terminal.png` — Denim on a dark terminal demo
 

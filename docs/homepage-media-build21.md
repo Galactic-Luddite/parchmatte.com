@@ -1,7 +1,10 @@
 # Homepage media — Build 21
 
-The homepage's four PNG screenshots are direct desktop-compositor captures of
-Parchmatte Build 21. They show Denim on a writing page, the current menu, and two
+The homepage's four PNG screenshots are desktop-compositor captures of
+Parchmatte Build 21. The two full-width images, `01-overview-build21.png` and
+`02-menu-build21.png`, were cropped on 2026-10-10 to remove the 66-pixel
+menu-bar strip at the top (2880x1800 became 2880x1734), then re-encoded and
+stripped of metadata. They show Denim on a writing page, the current menu, and two
 texture examples over a browser-rendered dark terminal demo. The demo contains
 synthetic sample text. Both dark examples use strength 0.15, softness 0.35 and
 Page Light off; only the texture changes.
@@ -21,6 +24,8 @@ content can be reproduced.
 Use `python3 scripts/strip_png_metadata.py INPUT.png OUTPUT.png` to remove
 ancillary capture metadata before publication. This preserves the image header
 and compressed pixel chunks byte for byte; it does not add or simulate texture.
+The crop itself re-encodes the pixels, so those two images' compressed bytes
+differ from the original captures.
 
 These files are current homepage captures, separate from the historical Build 6
 App Store media documented in `release-media-build6.json`. They are not covered
