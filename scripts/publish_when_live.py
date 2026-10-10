@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
-"""Merge a held website pull request once the version it describes is live.
+"""Merge an armed website pull request once the version it describes is live.
 
-A pull request is held by making the FIRST line of its description exactly:
+Arming comes only from `release/held.json` on `main`:
 
-    Hold: do not merge until Parchmatte X.Y is live on the Mac App Store.
+    {"held": [{"pr": 24, "version": "1.1", "head_sha": "<40 hex>"}]}
 
-This script reads the version on the Mac App Store from Apple's public lookup
-and squash-merges a held pull request only when every condition in
-`evaluate` holds. It uses the standard library only. Run with `--dry-run` to
-print what it would do without changing anything.
+Nothing else can cause a merge: not a comment, not a pull request description, not
+a label. A pull request is merged only at exactly the listed head sha, and only when
+every condition in `decide` holds. Run from a checkout of `main`; pull request files
+are read through the API as data and no pull request code is ever run.
 
-All data from the lookup and from GitHub is treated as untrusted text: it is
-parsed with regular expressions and JSON, never passed to a shell.
+Exit status is non-zero for anything that needs a person to notice: a malformed
+arming file, a store version newer than the held one, a failed merge, a failed
+Pages build request, or a live site that does not show the new version in time.
+A store outage or a store version older than the held one is simply "not yet".
+Never reverts anything. Standard library only.
 """
 
 import argparse
-import hashlib
+import base64
 import json
 import os
+from pathlib import Path
 import re
 import sys
 import time
@@ -25,145 +29,124 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-APP_ID = 6815385110
-LOOKUP_URL = f"https://itunes.apple.com/lookup?id={APP_ID}&country=us&entity=macSoftware"
-SITE_URL = "https://parchmatte.com/"
-API = "https://api.github.com"
-TRUSTED_ASSOCIATIONS = frozenset({"OWNER", "MEMBER", "COLLABORATOR"})
+import storefront_parity as parity
 
-HOLD_RE = re.compile(r"^Hold: do not merge until Parchmatte (\d+\.\d+) is live on the Mac App Store\.$")
-VERSION_RE = re.compile(r"^\d+(\.\d+){0,3}$")
-VERDICT_RE = re.compile(r"^(?:verdict:\s*)?(READY TO MERGE|CHANGES REQUESTED|BLOCKED|HUMAN ESCALATION REQUIRED)\b", re.IGNORECASE)
-HEAD_RE = re.compile(r"^reviewed head:\s*([0-9a-f]{40})\b", re.IGNORECASE)
-MARKDOWN_PREFIX_RE = re.compile(r"^[\s#>*_`-]+")
+API = "https://api.github.com"
+SITE_URL = "https://parchmatte.com/"
+ROOT = Path(__file__).resolve().parents[1]
+HOLD_RE = re.compile(r"^Hold: do not merge until Parchmatte ([0-9]{1,4}\.[0-9]{1,4}) is live on the Mac App Store\.$")
+SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+GATE_PREFIXES = (".github/", "release/")
+GATE_FILES = ("scripts/publish_when_live.py", "scripts/storefront_parity.py")
+DECLARATION_FILE = "release/site-version.json"
+PARITY_CHECK = "storefront-parity"
+VALIDATE_CHECK = "validate-site"
+NOT_YET, DONE, ERROR = "not-yet", "done", "error"
+
+
+def parse_held(text):
+    """Return (entries, error) from the text of release/held.json."""
+    try:
+        data = json.loads(text)
+    except (TypeError, ValueError):
+        return [], "release/held.json is not valid JSON"
+    held = data.get("held") if isinstance(data, dict) and set(data) == {"held"} else None
+    if not isinstance(held, list):
+        return [], 'release/held.json must be {"held": [...]}'
+    entries, seen = [], set()
+    for item in held:
+        if not isinstance(item, dict) or set(item) != {"pr", "version", "head_sha"}:
+            return [], "each held entry needs exactly pr, version and head_sha"
+        number, version, sha = item["pr"], item["version"], item["head_sha"]
+        if type(number) is not int or number < 1 or number in seen:
+            return [], "held entry has a bad or duplicate pr number"
+        if not isinstance(version, str) or not re.match(r"^[0-9]{1,4}\.[0-9]{1,4}$", version):
+            return [], "held entry version must look like X.Y"
+        if not isinstance(sha, str) or not SHA_RE.match(sha):
+            return [], "held entry head_sha must be 40 lowercase hex characters"
+        seen.add(number)
+        entries.append({"pr": number, "version": version, "head_sha": sha})
+    return entries, None
 
 
 def parse_hold_line(body):
     """Return X.Y from a description whose first line is the hold line, else None."""
     if not isinstance(body, str):
         return None
-    first = body.replace("\r\n", "\n").split("\n", 1)[0].rstrip()
-    match = HOLD_RE.match(first)
+    match = HOLD_RE.match(body.replace("\r\n", "\n").split("\n", 1)[0].rstrip())
     return match.group(1) if match else None
 
 
-def _numbers(version):
-    return [int(part) for part in version.split(".")]
+def touches_gate(paths):
+    """Return the changed paths a held pull request may not touch.
 
-
-def version_matches(held, live):
-    """True when two dotted versions are equal after zero padding (1.1 == 1.1.0)."""
-    if not isinstance(held, str) or not isinstance(live, str):
-        return False
-    if not VERSION_RE.match(held) or not VERSION_RE.match(live):
-        return False
-    a, b = _numbers(held), _numbers(live)
-    size = max(len(a), len(b))
-    return a + [0] * (size - len(a)) == b + [0] * (size - len(b))
-
-
-def parse_live_version(text):
-    """Return the store version from a lookup response, or None when unusable."""
-    try:
-        data = json.loads(text)
-    except (TypeError, ValueError):
-        return None
-    if not isinstance(data, dict):
-        return None
-    results = data.get("results")
-    if not isinstance(results, list) or len(results) != 1 or not isinstance(results[0], dict):
-        return None
-    entry = results[0]
-    if entry.get("trackId") != APP_ID or entry.get("kind") != "mac-software":
-        return None
-    version = entry.get("version")
-    if not isinstance(version, str) or not VERSION_RE.match(version):
-        return None
-    return version
-
-
-def parse_verdict(body):
-    """Return (verdict, reviewed_head) from a review comment body.
-
-    The verdict is READY TO MERGE only when at least one verdict line exists and
-    every verdict line says so. reviewed_head is None unless exactly one distinct
-    full 40-character sha is stated.
+    The publisher, its parity check, the workflows and the arming file define the
+    gate; a pull request cannot change them on its way to being merged. The one
+    allowed file under release/ is the site's own version declaration.
     """
-    if not isinstance(body, str):
-        return None, None
-    verdicts, heads = [], set()
-    for raw in body.replace("\r\n", "\n").split("\n"):
-        line = MARKDOWN_PREFIX_RE.sub("", raw).strip()
-        found = VERDICT_RE.match(line)
-        if found:
-            verdicts.append(found.group(1).upper())
-        head = HEAD_RE.match(line)
-        if head:
-            heads.add(head.group(1).lower())
-    if not verdicts:
-        return None, None
-    verdict = "READY TO MERGE" if all(v == "READY TO MERGE" for v in verdicts) else "NOT READY"
-    return verdict, (next(iter(heads)) if len(heads) == 1 else None)
-
-
-def latest_review(comments):
-    """Return (verdict, head) of the newest trusted comment that states a reviewed head."""
-    chosen = None
-    for comment in comments:
-        if not isinstance(comment, dict) or comment.get("author_association") not in TRUSTED_ASSOCIATIONS:
+    blocked = []
+    for path in paths:
+        if path == DECLARATION_FILE:
             continue
-        body = comment.get("body")
-        if not isinstance(body, str) or not any(HEAD_RE.match(MARKDOWN_PREFIX_RE.sub("", l).strip()) for l in body.splitlines()):
-            continue
-        if chosen is None or comment.get("created_at", "") >= chosen.get("created_at", ""):
-            chosen = comment
-    if chosen is None:
-        return None, None
-    return parse_verdict(chosen["body"])
+        if path.startswith(GATE_PREFIXES) or path in GATE_FILES:
+            blocked.append(path)
+    return blocked
 
 
-def checks_succeeded(check_runs, statuses):
-    """True when at least one check run exists, every one completed successfully,
-    and every legacy commit status (if any) is a success."""
-    if not check_runs:
-        return False
-    if any(run.get("status") != "completed" or run.get("conclusion") != "success" for run in check_runs):
-        return False
-    return all(item.get("state") == "success" for item in statuses)
+def check_summary(check_runs, complete):
+    """Return (state, detail) for the non-parity checks: 'ok', 'pending' or 'failed'."""
+    runs = [run for run in check_runs if run.get("name") != PARITY_CHECK]
+    if not complete or not any(run.get("name") == VALIDATE_CHECK for run in runs):
+        return "failed", f"no complete set of checks including {VALIDATE_CHECK} on the head commit"
+    if any(run.get("status") != "completed" for run in runs):
+        return "pending", "checks are still running"
+    if any(run.get("conclusion") != "success" for run in runs):
+        return "failed", "a check on the head commit did not succeed"
+    return "ok", ""
 
 
-def evaluate(pr, repo, live, check_runs, statuses, comments):
-    """Return the list of unmet conditions for a held pull request (empty means merge)."""
-    unmet = []
-    held = parse_hold_line(pr.get("body"))
-    if held is None:
-        return ["description does not start with the hold line"]
-    if pr.get("author_association") not in TRUSTED_ASSOCIATIONS:
-        unmet.append("author is not an owner, member or collaborator")
-    if pr.get("draft"):
-        unmet.append("pull request is a draft")
-    base = pr.get("base") or {}
-    if base.get("ref") != "main" or (base.get("repo") or {}).get("full_name") != repo:
-        unmet.append("base is not main of this repository")
+def decide(entry, pr, files, declared, problems, live, checks):
+    """Return (action, reasons) for one armed entry.
+
+    action is 'merge', NOT_YET (wait quietly), DONE (nothing to do) or ERROR (needs a
+    person). `checks` is the (state, detail) pair from check_summary.
+    """
+    if pr.get("merged") or pr.get("state") != "open":
+        return DONE, ["pull request is no longer open"]
+    reasons = []
     head = pr.get("head") or {}
+    base = pr.get("base") or {}
     head_repo = head.get("repo") or {}
-    if head_repo.get("full_name") != repo or head_repo.get("fork"):
-        unmet.append("head branch is not in this repository")
-    if live is None:
-        unmet.append("live version is unknown")
-    elif not version_matches(held, live):
-        unmet.append(f"live version is {live}, held for {held}")
-    if pr.get("mergeable") is not True or pr.get("mergeable_state") != "clean":
-        unmet.append(f"not mergeable and clean (mergeable={pr.get('mergeable')}, state={pr.get('mergeable_state')})")
-    if not checks_succeeded(check_runs, statuses):
-        unmet.append("checks on the head commit have not all succeeded")
-    verdict, reviewed = latest_review(comments)
-    head_sha = head.get("sha")
-    if verdict != "READY TO MERGE":
-        unmet.append("latest trusted review does not say READY TO MERGE")
-    elif reviewed != head_sha:
-        unmet.append("latest trusted review is for a different head than the current one")
-    return unmet
+    if head.get("sha") != entry["head_sha"]:
+        reasons.append("pull request head is not the armed sha")
+    if pr.get("draft"):
+        reasons.append("pull request is a draft")
+    if base.get("ref") != "main" or (base.get("repo") or {}).get("full_name") != entry["repo"]:
+        reasons.append("base is not main of this repository")
+    if head_repo.get("full_name") != entry["repo"] or head_repo.get("fork"):
+        reasons.append("head branch is not in this repository")
+    if parse_hold_line(pr.get("body")) != entry["version"]:
+        reasons.append("description does not start with the matching hold line")
+    blocked = touches_gate(files)
+    if blocked:
+        reasons.append("pull request changes the publishing gate: " + ", ".join(sorted(blocked)[:5]))
+    if declared is None or problems:
+        reasons.extend(problems or ["site version declaration is unreadable"])
+    elif parity.major_minor(declared) != parity.major_minor(entry["version"]):
+        reasons.append(f"pull request declares {declared}, armed for {entry['version']}")
+    if pr.get("mergeable") is not True or pr.get("mergeable_state") == "dirty":
+        reasons.append(f"not mergeable (mergeable={pr.get('mergeable')}, state={pr.get('mergeable_state')})")
+    relation = parity.compare_live(entry["version"], live)
+    if relation == "ahead":
+        return ERROR, [f"the store has {live}, newer than the held {entry['version']}; update or disarm the entry"]
+    if relation != "match":
+        reasons.append(f"live version is {live if live else 'unknown'}, held for {entry['version']}")
+    if reasons:
+        return NOT_YET, reasons
+    state, detail = checks
+    if state != "ok":
+        return NOT_YET, [detail]
+    return "merge", []
 
 
 class GitHub:
@@ -200,94 +183,159 @@ class GitHub:
                 return items
             page += 1
 
+    def file_text(self, path, ref):
+        quoted = urllib.parse.quote(path, safe="/")
+        try:
+            info = self.request("GET", f"/contents/{quoted}?ref={ref}")
+        except urllib.error.HTTPError as error:
+            if error.code == 404:
+                return None
+            raise
+        if not isinstance(info, dict) or info.get("encoding") != "base64":
+            raise ValueError("unexpected file response")
+        return base64.b64decode(info["content"]).decode("utf-8")
 
-def fetch_live_version():
+
+def live_site_version():
+    """Return softwareVersion from the live home page, or None."""
     try:
-        with urllib.request.urlopen(LOOKUP_URL, timeout=30) as response:
-            return parse_live_version(response.read(1_000_000).decode("utf-8", "replace"))
-    except (OSError, ValueError):
-        return None
-
-
-def home_page_digest():
-    try:
-        url = f"{SITE_URL}?nocache={int(time.time())}"
-        with urllib.request.urlopen(url, timeout=30) as response:
-            return hashlib.sha256(response.read(5_000_000)).hexdigest()
+        with urllib.request.urlopen(f"{SITE_URL}?nocache={int(time.time())}", timeout=30) as response:
+            return parity.parse_ld_version(response.read(5_000_000).decode("utf-8", "replace"))
     except OSError:
         return None
 
 
-def report_publication(gh, before):
-    """Request a Pages build and watch the home page for a change. Never fatal."""
+def confirm_publication(gh, version, attempts=20, pause=30):
+    """Request a Pages build and wait for the live site to declare `version`."""
     try:
         gh.request("POST", "/pages/builds")
         print("Requested a GitHub Pages build.")
     except (OSError, ValueError) as error:
-        print(f"Could not request a Pages build ({error}); the push itself normally triggers one.")
-    for _ in range(8):
-        time.sleep(30)
-        after = home_page_digest()
-        if before and after and after != before:
-            print("Live home page changed.")
-            return
-    print("Live home page has not visibly changed yet; Pages or caching may still be catching up.")
+        print(f"ERROR: could not request a Pages build ({error}). Pushes made with the workflow token do not start a branch-based Pages build.")
+        return False
+    for _ in range(attempts):
+        time.sleep(pause)
+        seen = live_site_version()
+        if parity.major_minor(seen) == parity.major_minor(version):
+            print(f"Live site now declares {seen}.")
+            return True
+    print(f"ERROR: the live site did not show version {version} within {attempts * pause} seconds. Check the Pages build.")
+    return False
 
 
-def run(repo, token, dry_run, live_version=None):
-    gh = GitHub(token, repo)
-    live = live_version if live_version is not None else fetch_live_version()
-    print(f"Live version on the Mac App Store: {live if live else 'unknown'}")
-    try:
-        pulls = gh.paged("/pulls?state=open&base=main")
-    except (OSError, ValueError) as error:
-        print(f"Could not list pull requests: {error}")
+def rerun_parity(gh, runs):
+    """Re-run stale failed storefront-parity checks; return True if one was started."""
+    started = False
+    for run in runs:
+        if run.get("name") == PARITY_CHECK and run.get("status") == "completed" and run.get("conclusion") != "success":
+            match = re.search(r"/actions/runs/([0-9]+)(?:/|$)", run.get("details_url") or "")
+            if match:
+                gh.request("POST", f"/actions/runs/{match.group(1)}/rerun-failed-jobs")
+                started = True
+    return started
+
+
+def parity_state(runs):
+    """Return 'ok', 'pending' or 'failed' for the storefront-parity check runs."""
+    own = [run for run in runs if run.get("name") == PARITY_CHECK]
+    if not own:
+        return "missing"
+    if any(run.get("status") != "completed" for run in own):
+        return "pending"
+    return "ok" if all(run.get("conclusion") == "success" for run in own) else "failed"
+
+
+def process(gh, repo, entry, live, dry_run):
+    """Handle one armed entry. Returns an exit status (0 fine, 1 needs attention)."""
+    number = entry["pr"]
+    entry = dict(entry, repo=repo)
+    pr = gh.request("GET", f"/pulls/{number}")
+    sha = (pr.get("head") or {}).get("sha", "")
+    files = [item.get("filename", "") for item in gh.paged(f"/pulls/{number}/files")]
+    declared = problems = None
+    if sha == entry["head_sha"]:
+        site_text = gh.file_text(DECLARATION_FILE, sha)
+        _version, receipt = parity.parse_site_version(site_text)
+        if receipt is None:
+            declared, problems = None, ["release/site-version.json is missing or malformed on the head"]
+        else:
+            index_text, receipt_text = gh.file_text("index.html", sha), gh.file_text(receipt, sha)
+            if index_text is None or receipt_text is None:
+                declared, problems = None, ["the home page or the media receipt named by the declaration is missing on the head"]
+            else:
+                declared, problems = parity.declared_problems(site_text, index_text, receipt_text)
+    page = gh.request("GET", f"/commits/{sha}/check-runs?per_page=100")
+    runs = page.get("check_runs", [])
+    complete = page.get("total_count", len(runs)) == len(runs)
+    action, reasons = decide(entry, pr, files, declared, problems, live, check_summary(runs, complete))
+    if action == DONE:
+        print(f"#{number}: {reasons[0]}; the entry can be removed from release/held.json")
+        return 0
+    if action == ERROR:
+        print(f"#{number}: ERROR: {reasons[0]}")
         return 1
-    status = 0
-    for summary in pulls:
-        number = summary.get("number")
-        held = parse_hold_line(summary.get("body"))
-        if held is None:
-            print(f"#{number}: skip, no hold line")
-            continue
-        try:
-            pr = gh.request("GET", f"/pulls/{number}")
-            sha = (pr.get("head") or {}).get("sha", "")
-            runs = gh.request("GET", f"/commits/{sha}/check-runs?per_page=100").get("check_runs", [])
-            statuses = gh.request("GET", f"/commits/{sha}/status").get("statuses", [])
-            comments = gh.paged(f"/issues/{number}/comments")
-        except (OSError, ValueError, AttributeError) as error:
-            print(f"#{number}: held for {held}, could not read state ({error}); doing nothing")
-            continue
-        unmet = evaluate(pr, repo, live, runs, statuses, comments)
-        if unmet:
-            print(f"#{number}: held for {held}, not merging:")
-            for item in unmet:
-                print(f"  - {item}")
-            continue
-        title = f"{pr.get('title', '')} (#{number})"
+    if action == NOT_YET:
+        print(f"#{number}: armed for {entry['version']}, not merging:")
+        for reason in reasons:
+            print(f"  - {reason}")
+        return 0
+    state = parity_state(runs)
+    if state != "ok":
         if dry_run:
-            print(f"#{number}: dry run, would squash-merge head {sha} as {title!r} and delete branch {pr['head']['ref']}")
-            continue
-        before = home_page_digest()
+            print(f"#{number}: dry run, all conditions met but the {PARITY_CHECK} check is {state}; would re-run it")
+            return 0
+        if state == "failed" and rerun_parity(gh, runs):
+            print(f"#{number}: re-ran the {PARITY_CHECK} check; merging on a later run")
+        else:
+            print(f"#{number}: waiting for the {PARITY_CHECK} check ({state})")
+        return 0
+    title = f"{pr.get('title', '')} (#{number})"
+    if dry_run:
+        print(f"#{number}: dry run, would squash-merge head {sha} as {title!r} and delete branch {pr['head']['ref']}")
+        return 0
+    fresh = gh.request("GET", f"/pulls/{number}")
+    if fresh["head"]["sha"] != entry["head_sha"] or parse_hold_line(fresh.get("body")) != entry["version"]:
+        print(f"#{number}: changed while checking, doing nothing")
+        return 0
+    try:
+        gh.request("PUT", f"/pulls/{number}/merge", {"merge_method": "squash", "sha": entry["head_sha"], "commit_title": title, "commit_message": ""})
+    except (OSError, ValueError) as error:
+        print(f"#{number}: ERROR: merge failed: {error}")
+        return 1
+    print(f"#{number}: merged head {sha} as {title!r}")
+    try:
+        ref = urllib.parse.quote(pr["head"]["ref"], safe="/")
+        gh.request("DELETE", f"/git/refs/heads/{ref}")
+        print(f"#{number}: deleted branch {pr['head']['ref']}")
+    except (OSError, ValueError) as error:
+        print(f"#{number}: could not delete branch ({error})")
+    return 0 if confirm_publication(gh, entry["version"]) else 1
+
+
+def run(repo, token, dry_run, held_path=None, live_version=None, fetch_live=True):
+    held_path = held_path or ROOT / "release/held.json"
+    try:
+        text = held_path.read_text(encoding="utf-8")
+    except OSError as error:
+        print(f"ERROR: cannot read the arming file: {error}")
+        return 1
+    entries, error = parse_held(text)
+    if error:
+        print(f"ERROR: {error}")
+        return 1
+    if not entries:
+        print("Nothing is armed in release/held.json.")
+        return 0
+    live = live_version if live_version is not None else (parity.fetch_live_version() if fetch_live else None)
+    print(f"Live version on the Mac App Store: {live if live else 'unknown'}")
+    gh = GitHub(token, repo)
+    status = 0
+    for entry in entries:
         try:
-            fresh = gh.request("GET", f"/pulls/{number}")
-            if parse_hold_line(fresh.get("body")) is None or fresh["head"]["sha"] != sha:
-                print(f"#{number}: changed while checking, doing nothing")
-                continue
-            gh.request("PUT", f"/pulls/{number}/merge", {"merge_method": "squash", "sha": sha, "commit_title": title, "commit_message": ""})
-            print(f"#{number}: merged head {sha} as {title!r}")
-        except (OSError, ValueError, KeyError) as error:
-            print(f"#{number}: merge failed: {error}")
+            status |= process(gh, repo, entry, live, dry_run)
+        except (OSError, ValueError, KeyError, TypeError, AttributeError) as error:
+            print(f"#{entry['pr']}: ERROR: could not complete ({error})")
             status = 1
-            continue
-        try:
-            ref = urllib.parse.quote(pr["head"]["ref"], safe="/")
-            gh.request("DELETE", f"/git/refs/heads/{ref}")
-            print(f"#{number}: deleted branch {pr['head']['ref']}")
-        except (OSError, ValueError) as error:
-            print(f"#{number}: could not delete branch ({error})")
-        report_publication(gh, before)
     return status
 
 
