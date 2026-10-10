@@ -1,7 +1,7 @@
 # Homepage media
 
 The homepage's four PNG screenshots were captured on 2026-10-10 from the
-installed App Store build of Parchmatte 1.1.0 (26). They show Denim on a writing
+pre-release build of Parchmatte 1.1.0 (26). They show Denim on a writing
 page, the menu with the Page Light submenu open, and two texture examples over
 a browser-rendered dark terminal demo. The demo contains synthetic sample text.
 Both dark examples use strength 0.15, softness 0.35 and Page Light off; only

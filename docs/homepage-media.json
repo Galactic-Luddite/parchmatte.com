@@ -61,7 +61,7 @@
     "softness": 0.35,
     "strength": 0.4
   },
-  "method": "Captured 2026-10-10 from the installed App Store build 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines.",
+  "method": "Captured 2026-10-10 from a pre-release build of 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines.",
   "overview_settings": {
     "page": "TextEdit sample prose",
     "strength": 0.4,

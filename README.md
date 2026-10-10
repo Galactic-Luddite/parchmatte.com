@@ -10,7 +10,7 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 ## Website screenshots
 
 The homepage uses screenshots of Parchmatte 1.1.0 (26), captured on
-2026-10-10 from the installed App Store build:
+2026-10-10 from a pre-release build:
 
 - `images/shots/01-overview.png` — Denim on a writing page
 - `images/shots/02-menu.png` — menu with the Page Light submenu, Glow levels and Light Strength
