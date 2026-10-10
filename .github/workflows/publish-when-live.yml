@@ -48,7 +48,7 @@ jobs:
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
-            python3 scripts/publish_when_live.py --dry-run
+            python3 -I scripts/publish_when_live.py --dry-run
           else
-            python3 scripts/publish_when_live.py
+            python3 -I scripts/publish_when_live.py
           fi

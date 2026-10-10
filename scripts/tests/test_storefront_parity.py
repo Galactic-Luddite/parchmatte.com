@@ -27,12 +27,16 @@ class Versions(unittest.TestCase):
         self.assertEqual(P.major_minor("1.1.0"), (1, 1))
         self.assertEqual(P.major_minor("1.1.1"), (1, 1))
         self.assertEqual(P.major_minor("1.10"), (1, 10))
-        for bad in (None, "", "1", "1.1 beta", "1.1;x", "9" * 5000 + ".1", "١.١", "1.1.1.1.1", 1.1):
+        self.assertEqual(P.triple("1.1"), (1, 1, 0))
+        self.assertEqual(P.triple("1.1.2"), (1, 1, 2))
+        for bad in (None, "", "1", "1.1 beta", "1.1;x", "9" * 5000 + ".1", "١.١", "1.1.1.1.1", "1.01", "01.1", "1.1\n", 1.1):
             self.assertIsNone(P.major_minor(bad), bad)
 
     def test_compare_live(self):
         self.assertEqual(P.compare_live("1.1", "1.1.0"), "match")
-        self.assertEqual(P.compare_live("1.1", "1.1.1"), "match")
+        self.assertEqual(P.compare_live("1.1", "1.1.1"), "ahead")
+        self.assertEqual(P.compare_live("1.1.1", "1.1.1"), "match")
+        self.assertEqual(P.compare_live("1.1.1", "1.1"), "behind")
         self.assertEqual(P.compare_live("1.1", "1.0"), "behind")
         self.assertEqual(P.compare_live("1.1", "1.2"), "ahead")
         self.assertEqual(P.compare_live("1.1", "1.10"), "ahead")

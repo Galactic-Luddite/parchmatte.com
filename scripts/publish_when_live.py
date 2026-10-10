@@ -29,13 +29,17 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-import storefront_parity as parity
+if str(Path(__file__).resolve().parent) not in sys.path:
+    sys.path.append(str(Path(__file__).resolve().parent))  # after the standard library, so nothing in scripts/ can shadow it
+import storefront_parity as parity  # noqa: E402
 
 API = "https://api.github.com"
 SITE_URL = "https://parchmatte.com/"
 ROOT = Path(__file__).resolve().parents[1]
-HOLD_RE = re.compile(r"^Hold: do not merge until Parchmatte ([0-9]{1,4}\.[0-9]{1,4}) is live on the Mac App Store\.$")
-SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+NUM = r"(?:0|[1-9][0-9]{0,3})"
+HOLD_RE = re.compile(rf"Hold: do not merge until Parchmatte ({NUM}\.{NUM}) is live on the Mac App Store\.")
+SHA_RE = re.compile(r"[0-9a-f]{40}")
+VERSION_ARMED_RE = re.compile(rf"{NUM}\.{NUM}")
 GATE_PREFIXES = (".github/", "release/")
 GATE_FILES = ("scripts/publish_when_live.py", "scripts/storefront_parity.py")
 DECLARATION_FILE = "release/site-version.json"
@@ -60,9 +64,9 @@ def parse_held(text):
         number, version, sha = item["pr"], item["version"], item["head_sha"]
         if type(number) is not int or number < 1 or number in seen:
             return [], "held entry has a bad or duplicate pr number"
-        if not isinstance(version, str) or not re.match(r"^[0-9]{1,4}\.[0-9]{1,4}$", version):
+        if not isinstance(version, str) or not VERSION_ARMED_RE.fullmatch(version):
             return [], "held entry version must look like X.Y"
-        if not isinstance(sha, str) or not SHA_RE.match(sha):
+        if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
             return [], "held entry head_sha must be 40 lowercase hex characters"
         seen.add(number)
         entries.append({"pr": number, "version": version, "head_sha": sha})
@@ -73,7 +77,7 @@ def parse_hold_line(body):
     """Return X.Y from a description whose first line is the hold line, else None."""
     if not isinstance(body, str):
         return None
-    match = HOLD_RE.match(body.replace("\r\n", "\n").split("\n", 1)[0].rstrip())
+    match = HOLD_RE.fullmatch(body.replace("\r\n", "\n").split("\n", 1)[0].rstrip())
     return match.group(1) if match else None
 
 
@@ -93,9 +97,14 @@ def touches_gate(paths):
     return blocked
 
 
+def from_actions(run):
+    """True for a check run created by GitHub Actions, not by another integration."""
+    return (run.get("app") or {}).get("slug") == "github-actions"
+
+
 def check_summary(check_runs, complete):
     """Return (state, detail) for the non-parity checks: 'ok', 'pending' or 'failed'."""
-    runs = [run for run in check_runs if run.get("name") != PARITY_CHECK]
+    runs = [run for run in check_runs if run.get("name") != PARITY_CHECK and from_actions(run)]
     if not complete or not any(run.get("name") == VALIDATE_CHECK for run in runs):
         return "failed", f"no complete set of checks including {VALIDATE_CHECK} on the head commit"
     if any(run.get("status") != "completed" for run in runs):
@@ -227,7 +236,7 @@ def rerun_parity(gh, runs):
     """Re-run stale failed storefront-parity checks; return True if one was started."""
     started = False
     for run in runs:
-        if run.get("name") == PARITY_CHECK and run.get("status") == "completed" and run.get("conclusion") != "success":
+        if run.get("name") == PARITY_CHECK and from_actions(run) and run.get("status") == "completed" and run.get("conclusion") != "success":
             match = re.search(r"/actions/runs/([0-9]+)(?:/|$)", run.get("details_url") or "")
             if match:
                 gh.request("POST", f"/actions/runs/{match.group(1)}/rerun-failed-jobs")
@@ -237,7 +246,7 @@ def rerun_parity(gh, runs):
 
 def parity_state(runs):
     """Return 'ok', 'pending' or 'failed' for the storefront-parity check runs."""
-    own = [run for run in runs if run.get("name") == PARITY_CHECK]
+    own = [run for run in runs if run.get("name") == PARITY_CHECK and from_actions(run)]
     if not own:
         return "missing"
     if any(run.get("status") != "completed" for run in own):
@@ -251,7 +260,9 @@ def process(gh, repo, entry, live, dry_run):
     entry = dict(entry, repo=repo)
     pr = gh.request("GET", f"/pulls/{number}")
     sha = (pr.get("head") or {}).get("sha", "")
-    files = [item.get("filename", "") for item in gh.paged(f"/pulls/{number}/files")]
+    files = []
+    for item in gh.paged(f"/pulls/{number}/files"):
+        files.extend(name for name in (item.get("filename"), item.get("previous_filename")) if name)
     declared = problems = None
     if sha == entry["head_sha"]:
         site_text = gh.file_text(DECLARATION_FILE, sha)

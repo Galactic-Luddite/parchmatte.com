@@ -22,8 +22,9 @@ SITE = json.dumps({"version": "1.1", "receipt": "docs/homepage-media.json"})
 INDEX = '{"softwareVersion": "1.1"}'
 RECEIPT = json.dumps({"build": "1.1.0 (26)"})
 ENTRY = {"pr": 7, "version": "1.1", "head_sha": SHA, "repo": REPO}
-RUNS = [{"name": "validate-site", "status": "completed", "conclusion": "success"},
-        {"name": "storefront-parity", "status": "completed", "conclusion": "success", "details_url": f"https://github.com/{REPO}/actions/runs/55/job/1"}]
+ACTIONS = {"app": {"slug": "github-actions"}}
+RUNS = [dict(ACTIONS, name="validate-site", status="completed", conclusion="success"),
+        dict(ACTIONS, name="storefront-parity", status="completed", conclusion="success", details_url=f"https://github.com/{REPO}/actions/runs/55/job/1")]
 OK_CHECKS = ("ok", "")
 
 
@@ -91,15 +92,19 @@ class GatePaths(unittest.TestCase):
 
 class Checks(unittest.TestCase):
     def test_summary(self):
-        done = {"status": "completed", "conclusion": "success"}
+        done = dict(ACTIONS, status="completed", conclusion="success")
         self.assertEqual(M.check_summary(RUNS, True)[0], "ok")
         self.assertEqual(M.check_summary([], True)[0], "failed")
         self.assertEqual(M.check_summary([dict(done, name="other")], True)[0], "failed")
         self.assertEqual(M.check_summary([dict(done, name="storefront-parity")], True)[0], "failed")
         self.assertEqual(M.check_summary(RUNS, False)[0], "failed")
-        self.assertEqual(M.check_summary(RUNS + [{"name": "validate-site", "status": "in_progress"}], True)[0], "pending")
+        forged = [dict(RUNS[0], app={"slug": "other"}), RUNS[1]]
+        self.assertEqual(M.check_summary(forged, True)[0], "failed")
+        self.assertEqual(M.parity_state([RUNS[0], dict(RUNS[1], app={"slug": "other"})]), "missing")
+        self.assertEqual(M.check_summary([dict(RUNS[0], app={"slug": "other"}, conclusion="failure")] + RUNS, True)[0], "ok")
+        self.assertEqual(M.check_summary(RUNS + [dict(ACTIONS, name="validate-site", status="in_progress")], True)[0], "pending")
         for conclusion in ("failure", "skipped", "cancelled", "neutral", None):
-            self.assertEqual(M.check_summary(RUNS + [{"name": "validate-site", "status": "completed", "conclusion": conclusion}], True)[0], "failed")
+            self.assertEqual(M.check_summary(RUNS + [dict(ACTIONS, name="validate-site", status="completed", conclusion=conclusion)], True)[0], "failed")
 
     def test_parity_ignored_by_summary_but_tracked(self):
         failed = [RUNS[0], dict(RUNS[1], conclusion="failure")]
@@ -113,7 +118,7 @@ class Checks(unittest.TestCase):
 class Decide(unittest.TestCase):
     def test_merge(self):
         self.assertEqual(decide(), ("merge", []))
-        self.assertEqual(decide(live="1.1.1")[0], "merge")
+        self.assertEqual(decide(live="1.1.0")[0], "merge")
 
     def test_each_refusal_is_not_yet(self):
         cases = {
@@ -144,6 +149,7 @@ class Decide(unittest.TestCase):
         self.assertEqual(action, M.NOT_YET)
         self.assertIn("publishing gate", reasons[0])
         self.assertEqual(decide(files=["release/held.json"])[0], M.NOT_YET)
+        self.assertEqual(decide(files=["index.html", ".github/workflows/publish-when-live.yml"])[0], M.NOT_YET)
 
     def test_declaration_conditions(self):
         self.assertEqual(decide(declared=None, problems=["unreadable"])[0], M.NOT_YET)
@@ -154,6 +160,7 @@ class Decide(unittest.TestCase):
     def test_live_version(self):
         self.assertEqual(decide(live="1.0")[0], M.NOT_YET)
         self.assertEqual(decide(live=None)[0], M.NOT_YET)
+        self.assertEqual(decide(live="1.1.1")[0], M.ERROR)
         action, reasons = decide(live="1.2.0")
         self.assertEqual(action, M.ERROR)
         self.assertIn("newer", reasons[0])
@@ -170,14 +177,18 @@ class Decide(unittest.TestCase):
 class FakeGitHub:
     """Serves one pull request; `fresh` (if given) is returned from the second read of it."""
 
-    def __init__(self, pull=None, fresh=None, files=("index.html",), runs=RUNS, site=SITE, index=INDEX, receipt=RECEIPT, fail=()):
+    def __init__(self, pull=None, fresh=None, files=("index.html",), runs=RUNS, site=SITE, index=INDEX, receipt=RECEIPT, fail=(), total=None, renamed=None):
         self.pull, self.fresh, self.files, self.runs = pull or pr(), fresh, list(files), runs
+        self.total, self.renamed = total, renamed
         self.contents = {"release/site-version.json": site, "index.html": index, "docs/homepage-media.json": receipt}
         self.calls, self.fail = [], set(fail)
 
     def paged(self, path):
         self.calls.append(("paged", path))
-        return [{"filename": name} for name in self.files]
+        items = [{"filename": name} for name in self.files]
+        if self.renamed:
+            items.append({"filename": "docs/moved.md", "previous_filename": self.renamed})
+        return items
 
     def file_text(self, path, ref):
         self.calls.append(("file", path, ref))
@@ -188,7 +199,7 @@ class FakeGitHub:
         if path in self.fail:
             raise OSError("boom")
         if path.startswith("/commits"):
-            return {"check_runs": self.runs, "total_count": len(self.runs)}
+            return {"check_runs": self.runs, "total_count": self.total if self.total is not None else len(self.runs)}
         if method == "GET" and path == "/pulls/7":
             reads = [c for c in self.calls if c[0] == "GET" and c[1] == path]
             return self.fresh if self.fresh is not None and len(reads) > 1 else self.pull
@@ -249,6 +260,17 @@ class Process(unittest.TestCase):
         self.go(fake)
         self.assertEqual(fake.writes(), [])
 
+    def test_renaming_a_gate_file_away_is_refused(self):
+        for name in (".github/workflows/publish-when-live.yml", "release/held.json", "scripts/publish_when_live.py"):
+            fake = FakeGitHub(renamed=name)
+            self.go(fake)
+            self.assertEqual(fake.writes(), [], name)
+
+    def test_more_check_runs_than_fetched_is_refused(self):
+        fake = FakeGitHub(total=150)
+        self.go(fake)
+        self.assertEqual(fake.writes(), [])
+
     def test_declaration_mismatch_is_refused(self):
         fake = FakeGitHub(index='{"softwareVersion": "1.0"}')
         self.go(fake)
@@ -269,6 +291,11 @@ class Process(unittest.TestCase):
         fake = FakeGitHub(runs=[RUNS[0], dict(RUNS[1], conclusion="failure")])
         self.assertEqual(self.go(fake)[0], 0)
         self.assertEqual(fake.writes(), [("POST", "/actions/runs/55/rerun-failed-jobs", None)])
+
+    def test_forged_parity_from_another_app_is_not_accepted(self):
+        fake = FakeGitHub(runs=[RUNS[0], dict(RUNS[1], app={"slug": "other"})])
+        self.go(fake)
+        self.assertEqual([c for c in fake.writes() if c[0] == "PUT"], [])
 
     def test_missing_or_pending_parity_waits(self):
         for runs in ([RUNS[0]], [RUNS[0], dict(RUNS[1], status="in_progress")]):
@@ -305,6 +332,10 @@ class Confirm(unittest.TestCase):
         self.assertFalse(M.confirm_publication(fake, "1.1", attempts=1, pause=0))
 
     def test_waits_for_the_live_version(self):
+        fake = FakeGitHub()
+        with mock.patch.object(M, "live_site_version", return_value="1.1"), mock.patch.object(M.time, "sleep"):
+            self.assertTrue(M.confirm_publication(fake, "1.1", attempts=1, pause=0))
+        self.assertIn(("POST", "/pages/builds", None), fake.calls)
         fake = FakeGitHub()
         with mock.patch.object(M, "live_site_version", side_effect=["1.0", "1.1"]), mock.patch.object(M.time, "sleep"):
             self.assertTrue(M.confirm_publication(fake, "1.1", attempts=3, pause=0))

@@ -101,8 +101,9 @@ What the site declares:
 - `softwareVersion` in the home page's structured data and the `build` field of that
   receipt must agree with it on major.minor.
 - `python3 scripts/storefront_parity.py` checks that they agree and that the declared
-  version equals the version Apple's public lookup reports for the app (major.minor,
-  so 1.1 matches 1.1.0). It fails when the lookup is unreachable or returns nothing.
+  version equals the version Apple's public lookup reports for the app (1.1 matches
+  1.1.0; a store version of 1.1.1 is newer than a declared 1.1 and fails). It fails when
+  the lookup is unreachable or returns nothing.
   `--declared-only` checks only that the three declarations agree; the main CI job
   runs that, and a separate `storefront-parity` job runs the full check.
 
@@ -132,22 +133,22 @@ exactly which condition was not met:
 - the pull request is open, not a draft, targets `main`, its branch is in this
   repository (not a fork), and its head is exactly the armed sha;
 - the first line of its description is the matching hold line;
-- it does not change the publishing gate (see above);
+- it does not change the publishing gate (see above, renames included);
 - the declared version, the home page and the receipt at that head agree and equal
   the armed version (read through the API as data; no pull request code runs);
-- the store version equals the armed version on major.minor, as Apple's lookup
-  reports it right now;
+- the store version equals the armed version as Apple's lookup reports it right now
+  (1.1 matches 1.1.0);
 - GitHub reports it conflict-free, a `validate-site` check succeeded on the head and
-  none of the other checks failed, and a `storefront-parity` check succeeded on the
-  head. That check fails on a held pull request until release, so the publisher
+  no other GitHub Actions check failed or is still running, and a `storefront-parity`
+  check succeeded on the head (check runs from other integrations are ignored). That check fails on a held pull request until release, so the publisher
   re-runs a stale failure at decision time and merges on a later run.
 
 The merge pins the armed sha, uses the subject "<title> (#N)" and deletes the
 branch. Afterwards the publisher requests a Pages build and waits up to ten minutes
 for the live home page to declare the new version, and fails the run if it does not.
 
-If the store version is newer than the armed one (for example 1.1.1 is live while 1.1
-is armed), the run fails on purpose so someone notices; update or remove the entry.
+If the store version is newer than the armed one (for example 1.1.1 or 1.2 is live while
+1.1 is armed), the run fails on purpose so someone notices; update or remove the entry.
 An outage, an empty lookup (a pulled release) or an older store version only means
 "not yet"; the publisher never reverts anything.
 
@@ -166,12 +167,19 @@ Limits and settings:
   a repository setting the repository owner changes. Until then the publisher checks
   them itself; no setting is needed for it to work. With `storefront-parity` required,
   a held pull request cannot be merged by hand before release either.
-- The publisher trusts the `validate-site` result a pull request's own workflow
-  reports. Requiring it as a status check does not change that; it is why a held
-  pull request may not edit `.github/`.
+- The publisher trusts the `validate-site` result that the pull request's own workflow
+  run reports. A held pull request cannot edit the workflow files, but it can edit the
+  validators and tests that job runs (`scripts/verify_site.py` and the tests), so that
+  check is evidence from reviewed content, not an independent control. The declaration
+  check is repeated by the publisher itself from main's code. Requiring `validate-site`
+  as a status check does not change this.
 
-Trust model: only this repository's own scheduled and manual runs on `main` act, with
-a token limited to the permissions the one job lists. The workflow never uses
+Trust model: only this repository's own scheduled and manual runs act, with a token
+limited to the permissions the one job lists. The job runs only when the workflow is
+run from `main`; someone with write access could still run a modified copy of the
+workflow from another branch, so write access is the boundary. The publisher runs with
+`python3 -I` and imports its one sibling module after the standard library, so a file
+added under `scripts/` cannot shadow a standard module. The workflow never uses
 `pull_request_target`, never checks out pull request code, uses no secrets and no
 third-party actions, and uses the one first-party action pinned by commit. Fork pull
 requests never qualify. The store response and all GitHub responses are parsed as data

@@ -26,15 +26,16 @@ import urllib.request
 APP_ID = 6815385110
 LOOKUP_URL = f"https://itunes.apple.com/lookup?id={APP_ID}&country=us&entity=macSoftware"
 ROOT = Path(__file__).resolve().parents[1]
-VERSION_RE = re.compile(r"^[0-9]{1,4}\.[0-9]{1,4}(\.[0-9]{1,4}){0,2}$")
-BUILD_RE = re.compile(r"^([0-9]{1,4}\.[0-9]{1,4}(?:\.[0-9]{1,4}){0,2})(?: \([0-9]{1,6}\))?$")
+NUM = r"(?:0|[1-9][0-9]{0,3})"
+VERSION_RE = re.compile(rf"{NUM}\.{NUM}(\.{NUM}){{0,2}}")
+BUILD_RE = re.compile(rf"({NUM}\.{NUM}(?:\.{NUM}){{0,2}})(?: \([0-9]{{1,6}}\))?")
 LD_VERSION_RE = re.compile(r'"softwareVersion"\s*:\s*"([^"]*)"')
-RECEIPT_RE = re.compile(r"^docs/[A-Za-z0-9._-]+\.json$")
+RECEIPT_RE = re.compile(r"docs/[A-Za-z0-9._-]+\.json")
 
 
 def major_minor(version):
     """Return (major, minor) for a dotted version string, else None."""
-    if not isinstance(version, str) or not VERSION_RE.match(version):
+    if not isinstance(version, str) or not VERSION_RE.fullmatch(version):
         return None
     major, minor = version.split(".")[:2]
     return int(major), int(minor)
@@ -73,7 +74,7 @@ def parse_site_version(text):
     if not isinstance(data, dict):
         return None, None
     version, receipt = data.get("version"), data.get("receipt")
-    if major_minor(version) is None or not isinstance(receipt, str) or not RECEIPT_RE.match(receipt):
+    if major_minor(version) is None or not isinstance(receipt, str) or not RECEIPT_RE.fullmatch(receipt):
         return None, None
     return version, receipt
 
@@ -93,7 +94,7 @@ def parse_receipt_version(text):
     except (TypeError, ValueError):
         return None
     build = data.get("build") if isinstance(data, dict) else None
-    found = BUILD_RE.match(build) if isinstance(build, str) else None
+    found = BUILD_RE.fullmatch(build) if isinstance(build, str) else None
     return found.group(1) if found else None
 
 
@@ -113,9 +114,20 @@ def declared_problems(site_version_text, index_html, receipt_text):
     return version, problems
 
 
+def triple(version):
+    """Return (major, minor, patch) with a missing patch read as 0, else None."""
+    if major_minor(version) is None:
+        return None
+    parts = [int(p) for p in version.split(".")]
+    return tuple((parts + [0, 0, 0])[:3])
+
+
 def compare_live(declared, live):
-    """Return 'match', 'behind' (store older than the site), 'ahead' (store newer) or 'unknown'."""
-    a, b = major_minor(declared), major_minor(live)
+    """Return 'match', 'behind' (store older than the site), 'ahead' (store newer) or 'unknown'.
+
+    A declared 1.1 equals a store 1.1.0; a store 1.1.1 is ahead of a declared 1.1.
+    """
+    a, b = triple(declared), triple(live)
     if a is None or b is None:
         return "unknown"
     if a == b:
