@@ -1,14 +1,17 @@
 # parchmatte.com
 
 The static website for [Parchmatte](https://github.com/Galactic-Luddite/parchmatte):
-the home page, the comparison at `/compare/`, and the privacy policy at
-`/privacy/`, which the app's menu and its App Store listing link to.
+the home page, the comparison at `/compare/`, the privacy policy at
+`/privacy/`, which the app's menu and its App Store listing link to, and the
+terms at `/terms/`.
 
 Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The homepage uses current screenshots of Build 21:
+The homepage uses screenshots of Build 21 (version 1.0). They are due to be
+re-shot for 1.1, so some details, such as the Denim color, no longer match the
+app:
 
 - `images/shots/01-overview-build21.png` — Denim on a writing page
 - `images/shots/02-menu-build21.png` — current menu and eight-texture list
@@ -62,7 +65,7 @@ the check only covers text it can recognize.
 Before publishing, run `python3 scripts/verify_site.py` and
 `python3 -m unittest discover -s scripts/tests -v`. The first command checks
 the current screenshot file hashes and PNG dimensions plus local references on
-the three live pages. GitHub Actions runs these checks and the historical
+the four live pages. GitHub Actions runs these checks and the historical
 Build 6 site-image receipt check on pull requests and pushes to `main` or
 `task/**` branches. External links and visual appearance still need review.
 
@@ -74,14 +77,16 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-Parchmatte 1.0 went on sale on the Mac App Store on 2026-10-07. The home and
+Parchmatte 1.0 went on sale on the Mac App Store on 2026-10-07. Version 1.1 has
+been submitted to Apple but is not released; the site describes 1.1 features
+but does not claim 1.1 is available. The home and
 comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
 and FAQ structured data describe the $2.99 listing. Keep the structured data
 in step with the visible text whenever either changes.
 
-The three pages share `style.css`, header navigation, and footer links. Check
-all three in light and dark mode at phone and desktop widths after changing
+The four pages share `style.css`, header navigation, and footer links. Check
+all four in light and dark mode at phone and desktop widths after changing
 shared styles. Keyboard users must be able to reach the skip link, navigation,
 comparison table, and expandable questions.
