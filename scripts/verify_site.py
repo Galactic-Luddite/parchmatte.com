@@ -45,7 +45,7 @@ def verify(root):
         if (width, height, data[25]) != (expected["width"], expected["height"], expected["color_type"]):
             failures.append(f"screenshot dimensions/color mismatch: {name}")
 
-    for page in ("index.html", "compare/index.html", "privacy/index.html"):
+    for page in ("index.html", "compare/index.html", "privacy/index.html", "terms/index.html"):
         source = root / page
         if not source.is_file():
             failures.append(f"missing page: {page}")
@@ -81,7 +81,7 @@ def main():
         print(f"FAIL: {failure}")
     if failures:
         return 1
-    print("PASS: current screenshot hashes/dimensions and three pages' local references match")
+    print("PASS: current screenshot hashes/dimensions and four pages' local references match")
     return 0
 
 
