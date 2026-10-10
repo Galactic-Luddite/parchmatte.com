@@ -86,3 +86,57 @@ The four pages share `style.css`, header navigation, and footer links. Check
 all four in light and dark mode at phone and desktop widths after changing
 shared styles. Keyboard users must be able to reach the skip link, navigation,
 comparison table, and expandable questions.
+
+## Holding a release
+
+The site must describe what is on the Mac App Store. Copy for a version that is
+not out yet goes in a pull request that is held, and a scheduled workflow merges
+it once that version is live.
+
+To hold a pull request, make the first line of its description exactly:
+
+`Hold: do not merge until Parchmatte X.Y is live on the Mac App Store.`
+
+`.github/workflows/publish-when-live.yml` runs every 30 minutes (and on demand)
+and runs `scripts/publish_when_live.py`. It reads the version on the store from
+Apple's public lookup. For each open pull request into `main` that has the hold
+line, it squash-merges the pull request only when all of these hold; otherwise
+it merges nothing and prints which condition was not met:
+
+- the live version equals the held version (`1.1` matches a store version of `1.1.0`);
+- the pull request is not a draft, targets `main`, and its branch is in this
+  repository, not a fork;
+- its author is an owner, member or collaborator of the repository;
+- GitHub reports it mergeable and clean, and every check on the head commit succeeded;
+- the newest comment by an owner, member or collaborator that states a reviewed
+  head has a line `READY TO MERGE` (and no line with another verdict) and a line
+  `Reviewed head: <full 40-character sha>` equal to the pull request's current head.
+
+The merge pins the head sha, so a push after the check cannot slip in, and it
+deletes the branch. A new push makes the review stale; post a new review for the
+new head. Then the workflow requests a Pages build and reports whether the live
+home page changed. That last step is best effort and never fails the run.
+
+To cancel a hold, edit the first line of the description (so it is no longer the
+hold line) or convert the pull request to a draft. To see what would happen
+without merging, run `python3 scripts/publish_when_live.py --dry-run` (set
+`GH_TOKEN` to avoid anonymous rate limits), or run the workflow by hand with its
+dry-run input left on (the default for manual runs).
+
+Limits to know about:
+
+- Apple's lookup can lag a release, so the site may trail the store for a while.
+- Scheduled runs can be delayed by GitHub, sometimes by many minutes.
+- GitHub disables scheduled workflows in a public repository with no activity for
+  60 days. A held release that never publishes is the sign. Re-enable the
+  workflow from the Actions tab or with `gh workflow enable publish-when-live.yml`.
+- A pull request held for a version is merged only when the store version equals
+  it. If a later version goes live first, the pull request waits for an edit.
+
+Trust model: only this repository's own scheduled and manual runs act. The
+workflow never uses `pull_request_target`, never checks out pull request code
+and uses no secrets beyond the run's own token. Fork pull requests never qualify.
+A hold line in a pull request from someone without write access is not enough,
+because the branch must be in this repository and its author must be an owner,
+member or collaborator. A review comment from anyone else is ignored. The store
+lookup and all GitHub responses are parsed as data and never reach a shell.

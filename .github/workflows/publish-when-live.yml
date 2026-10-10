@@ -1,0 +1,51 @@
+name: Publish when live
+
+# Merges a held website pull request once the Parchmatte version it describes is
+# live on the Mac App Store. See "Holding a release" in README.md.
+# Triggers are the schedule and a manual run only: never pull_request_target,
+# never a pull request event, and no pull request code is checked out.
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Print what would happen without merging'
+        type: boolean
+        default: true
+
+# Least privilege: merge and delete the branch (contents, pull-requests), request a
+# Pages build (pages), and read check results and statuses.
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  checks: read
+  statuses: read
+
+concurrency:
+  group: publish-when-live
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Merge a held pull request if its version is live
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 scripts/publish_when_live.py --dry-run
+          else
+            python3 scripts/publish_when_live.py
+          fi
