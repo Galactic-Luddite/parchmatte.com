@@ -9,19 +9,18 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The homepage uses screenshots of Build 21 (version 1.0). They are due to be
-re-shot for 1.1, so some details, such as the Denim color, no longer match the
-app:
+The homepage uses screenshots of Parchmatte 1.1.0 (26), captured on
+2026-10-10 from the installed App Store build:
 
-- `images/shots/01-overview-build21.png` — Denim on a writing page
-- `images/shots/02-menu-build21.png` — current menu and eight-texture list
+- `images/shots/01-overview.png` — Denim on a writing page
+- `images/shots/02-menu.png` — menu with the Page Light submenu, Glow levels and Light Strength
 - `images/shots/07-woven-terminal.png` — Woven on a dark terminal demo
 - `images/shots/08-denim-terminal.png` — Denim on a dark terminal demo
 
 These PNGs show the current app but are not part of the Build 6 App Store media
 audit or its hash receipt. Their dimensions and pixel and file hashes are in
-`docs/homepage-media-build21.json`, with a readable summary in
-`docs/homepage-media-build21.md`. The synthetic terminal page used in the two
+`docs/homepage-media.json`, with a readable summary in
+`docs/homepage-media.md`. The synthetic terminal page used in the two
 texture examples is retained at `scripts/fixtures/terminal-demo.html`.
 
 ## Historical Build 6 release media
@@ -72,7 +71,7 @@ Build 6 site-image receipt check on pull requests and pushes to `main` or
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
-The homepage uses the current Build 21 screenshots listed above. The older
+The homepage uses the current 1.1.0 (26) screenshots listed above. The older
 responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
