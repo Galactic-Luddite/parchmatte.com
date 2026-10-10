@@ -1,8 +1,9 @@
 # parchmatte.com
 
 The static website for [Parchmatte](https://github.com/Galactic-Luddite/parchmatte):
-the home page, the comparison at `/compare/`, and the privacy policy at
-`/privacy/`, which the app's menu and its App Store listing link to.
+the home page, the comparison at `/compare/`, the privacy policy at
+`/privacy/`, which the app's menu and its App Store listing link to, and the
+terms at `/terms/`.
 
 Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
@@ -62,7 +63,7 @@ the check only covers text it can recognize.
 Before publishing, run `python3 scripts/verify_site.py` and
 `python3 -m unittest discover -s scripts/tests -v`. The first command checks
 the current screenshot file hashes and PNG dimensions plus local references on
-the three live pages. GitHub Actions runs these checks and the historical
+the four live pages. GitHub Actions runs these checks and the historical
 Build 6 site-image receipt check on pull requests and pushes to `main` or
 `task/**` branches. External links and visual appearance still need review.
 
@@ -81,7 +82,7 @@ served unmodified per Apple's marketing guidelines), and the homepage offer
 and FAQ structured data describe the $2.99 listing. Keep the structured data
 in step with the visible text whenever either changes.
 
-The three pages share `style.css`, header navigation, and footer links. Check
-all three in light and dark mode at phone and desktop widths after changing
+The four pages share `style.css`, header navigation, and footer links. Check
+all four in light and dark mode at phone and desktop widths after changing
 shared styles. Keyboard users must be able to reach the skip link, navigation,
 comparison table, and expandable questions.
