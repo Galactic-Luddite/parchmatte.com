@@ -89,3 +89,104 @@ The four pages share `style.css`, header navigation, and footer links. Check
 all four in light and dark mode at phone and desktop widths after changing
 shared styles. Keyboard users must be able to reach the skip link, navigation,
 comparison table, and expandable questions.
+
+## Holding a release
+
+The site must describe what is on the Mac App Store. Copy for a version that is
+not out yet goes in a pull request that is held, and a scheduled workflow merges
+it once that version is live. Only an entry in `release/held.json` on `main` can
+arm a merge. A comment, a label or a pull request description cannot.
+
+What the site declares:
+
+- `release/site-version.json` names the app version the site describes (`version`,
+  for example `1.0`) and the media receipt for that version (`receipt`).
+- `softwareVersion` in the home page's structured data and the `build` field of that
+  receipt must agree with it on major.minor.
+- `python3 scripts/storefront_parity.py` checks that they agree and that the declared
+  version equals the version Apple's public lookup reports for the app (1.1 matches
+  1.1.0; a store version of 1.1.1 is newer than a declared 1.1 and fails). It fails when
+  the lookup is unreachable or returns nothing.
+  `--declared-only` checks only that the three declarations agree; the main CI job
+  runs that, and a separate `storefront-parity` job runs the full check.
+
+How to hold a release:
+
+1. Prepare the release copy in a pull request. It declares the new version in
+   `release/site-version.json`, the home page and its receipt. Make the first line of
+   its description exactly `Hold: do not merge until Parchmatte X.Y is live on the Mac App Store.`
+   (a notice for people; the publisher requires it to be present and to match, but it
+   does not arm anything). The pull request may not change `.github/`, `release/`
+   (other than `release/site-version.json`) or the two publishing scripts.
+2. Arm it in a second, small pull request that adds an entry to `release/held.json`:
+   `{"pr": N, "version": "X.Y", "head_sha": "<the 40-character head of pull request N>"}`.
+   That pull request changes nothing a visitor sees. Merging it is the decision to
+   publish automatically.
+3. Any later push to the held pull request leaves it unmerged until the entry is
+   updated with the new head.
+
+To disarm, remove the entry from `release/held.json` on `main`, or close the pull
+request. Entries for merged or closed pull requests do nothing and can be deleted.
+
+`.github/workflows/publish-when-live.yml` runs `scripts/publish_when_live.py` every
+30 minutes and on demand (manual runs default to a dry run; it only ever acts from
+`main`). For each entry it merges only when all of these hold, and otherwise prints
+exactly which condition was not met:
+
+- the pull request is open, not a draft, targets `main`, its branch is in this
+  repository (not a fork), and its head is exactly the armed sha;
+- the first line of its description is the matching hold line;
+- it does not change the publishing gate (see above, renames included);
+- the declared version, the home page and the receipt at that head agree and equal
+  the armed version (read through the API as data; no pull request code runs);
+- the store version equals the armed version as Apple's lookup reports it right now
+  (1.1 matches 1.1.0);
+- GitHub reports it conflict-free, a `validate-site` check succeeded on the head and
+  no other GitHub Actions check failed or is still running, and a `storefront-parity`
+  check succeeded on the head (check runs from other integrations are ignored). That check fails on a held pull request until release, so the publisher
+  re-runs a stale failure at decision time and merges on a later run.
+
+The merge pins the armed sha, uses the subject "<title> (#N)" and deletes the
+branch. Afterwards the publisher requests a Pages build and waits up to ten minutes
+for the live home page to declare the new version, and fails the run if it does not.
+
+If the store version is newer than the armed one (for example 1.1.1 or 1.2 is live while
+1.1 is armed), the run fails on purpose so someone notices; update or remove the entry.
+An outage, an empty lookup (a pulled release) or an older store version only means
+"not yet"; the publisher never reverts anything.
+
+Limits and settings:
+
+- Apple's lookup is cached and can lag a release by hours, so the site may trail the
+  store.
+- Scheduled runs can be delayed by GitHub.
+- GitHub disables scheduled workflows in a public repository with no activity for 60
+  days. A held release that never publishes is the sign. Re-enable it from the Actions
+  tab or with `gh workflow enable publish-when-live.yml`.
+- Pushes and merges made with the workflow token do not start a branch-based Pages
+  build by themselves, so the workflow requests one explicitly. If that request
+  fails, or the live site does not change, the run fails.
+- Making `validate-site` and `storefront-parity` required status checks on `main` is
+  a repository setting the repository owner changes. Until then the publisher checks
+  them itself; no setting is needed for it to work. With `storefront-parity` required,
+  a held pull request cannot be merged by hand before release either.
+- The publisher trusts the `validate-site` result that the pull request's own workflow
+  run reports. A held pull request cannot edit the workflow files, but it can edit the
+  validators and tests that job runs (`scripts/verify_site.py` and the tests), so that
+  check is evidence from reviewed content, not an independent control. The declaration
+  check is repeated by the publisher itself from main's code. Requiring `validate-site`
+  as a status check does not change this.
+
+Trust model: only this repository's own scheduled and manual runs act, with a token
+limited to the permissions the one job lists. The job runs only when the workflow is
+run from `main`; someone with write access could still run a modified copy of the
+workflow from another branch, so write access is the boundary. The publisher runs with
+`python3 -I` and imports its one sibling module after the standard library, so a file
+added under `scripts/` cannot shadow a standard module. The workflow never uses
+`pull_request_target`, never checks out pull request code, uses no secrets and no
+third-party actions, and uses the one first-party action pinned by commit. Fork pull
+requests never qualify. The store response and all GitHub responses are parsed as data
+(JSON and anchored patterns with bounded digits) and never reach a shell. Everyone who
+works on this repository, people and agents alike, shares one GitHub account, so a
+comment or review proves nothing about who wrote it; that is why no comment can arm or
+authorize a merge.
