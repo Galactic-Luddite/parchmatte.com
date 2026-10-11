@@ -1,0 +1,78 @@
+{
+  "build": "1.1.0 (26)",
+  "images": {
+    "01-overview.png": {
+      "blob_sha256": "beb141c31d3640fe5fd50c481065b10be1862e6187d7abc2d7bdb15d2b1ce998",
+      "color_type": 6,
+      "height": 1800,
+      "pixels_sha256": "2b4234f8c699990d8b866ee1dbb68cf8bd95f13c6b2d2c767e33d4a8931548dd",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 2880
+    },
+    "02-menu.png": {
+      "blob_sha256": "8c89289cbd3db76ba3819f0c396ea61c0f77d8cac092c57d69adf46263aec6a3",
+      "color_type": 6,
+      "height": 1800,
+      "pixels_sha256": "0afe79d89e0f2c2264cb92a5ce76f94de36abe8365b891b9caa3ae012a1c9de7",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 2880
+    },
+    "07-woven-terminal.png": {
+      "blob_sha256": "3c30d53492c192c201200cb1af1962e6a0bbffbf6a72229b9e827c04acade7ee",
+      "color_type": 6,
+      "height": 1300,
+      "pixels_sha256": "b11207a357c2266c887964c8a7c60f2edea5fbd1138b7bccb4d24b5f6414fcd8",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 1400
+    },
+    "08-denim-terminal.png": {
+      "blob_sha256": "0fec8448a58efbc66c850472634df63ed7e6b9a2a35c4d1b61e899041c9a7a4e",
+      "color_type": 6,
+      "height": 1300,
+      "pixels_sha256": "bda3d97332b0e3849b5532fb941223883f2ad4b8f1b62d6abcaf35ce2f8afa0a",
+      "policy": {
+        "max_blob_bytes": 16777216,
+        "max_decompressed_bytes": 33554432,
+        "max_dimension": 4096,
+        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      },
+      "width": 1400
+    }
+  },
+  "menu_settings": {
+    "glow": "Medium",
+    "lightStrength": 0.5,
+    "pageLight": "Candlelight",
+    "softness": 0.35,
+    "strength": 0.4
+  },
+  "method": "Captured 2026-10-10 from a pre-release build of 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines.",
+  "overview_settings": {
+    "page": "TextEdit sample prose",
+    "strength": 0.4,
+    "texture": "Denim",
+    "wholeScreen": true
+  },
+  "terminal_demo_settings": {
+    "hideFromScreenshots": false,
+    "opacity": 0.15,
+    "pageLight": "off",
+    "softness": 0.35,
+    "wholeScreen": true
+  }
+}

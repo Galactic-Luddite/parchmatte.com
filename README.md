@@ -9,17 +9,18 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The homepage uses current screenshots of Build 21:
+The homepage uses screenshots of Parchmatte 1.1.0 (26), captured on
+2026-10-10 from a pre-release build:
 
-- `images/shots/01-overview-build21.png` — Denim on a writing page (2880x1734, cropped to remove the menu bar)
-- `images/shots/02-menu-build21.png` — current menu and eight-texture list (2880x1734, cropped to remove the menu bar)
+- `images/shots/01-overview.png` — Denim on a writing page
+- `images/shots/02-menu.png` — menu with the Page Light submenu, Glow levels and Light Strength
 - `images/shots/07-woven-terminal.png` — Woven on a dark terminal demo
 - `images/shots/08-denim-terminal.png` — Denim on a dark terminal demo
 
 These PNGs show the current app but are not part of the Build 6 App Store media
 audit or its hash receipt. Their dimensions and pixel and file hashes are in
-`docs/homepage-media-build21.json`, with a readable summary in
-`docs/homepage-media-build21.md`. The synthetic terminal page used in the two
+`docs/homepage-media.json`, with a readable summary in
+`docs/homepage-media.md`. The synthetic terminal page used in the two
 texture examples is retained at `scripts/fixtures/terminal-demo.html`.
 
 ## Historical Build 6 release media
@@ -70,12 +71,14 @@ Build 6 site-image receipt check on pull requests and pushes to `main` or
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
-The homepage uses the current Build 21 screenshots listed above. The older
+The homepage uses the current 1.1.0 (26) screenshots listed above. The older
 responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-Parchmatte 1.0 went on sale on the Mac App Store on 2026-10-07. The home and
+Parchmatte 1.0 went on sale on the Mac App Store on 2026-10-07. Version 1.1 has
+been submitted to Apple but is not released; the site describes 1.1 features
+but does not claim 1.1 is available. The home and
 comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
