@@ -26,7 +26,7 @@ class References(HTMLParser):
 def verify(root):
     root = root.resolve()
     failures = []
-    receipt = json.loads((root / "docs/homepage-media-build21.json").read_text())
+    receipt = json.loads((root / "docs/homepage-media.json").read_text())
     images = receipt["images"]
     if not images:
         failures.append("current screenshot receipt is empty")

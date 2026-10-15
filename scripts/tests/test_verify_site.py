@@ -32,7 +32,7 @@ class VerifySiteTests(unittest.TestCase):
         (self.root / "terms/index.html").write_text('<a href="/">Home</a>')
 
     def write_receipt(self):
-        (self.root / "docs/homepage-media-build21.json").write_text(json.dumps(self.receipt))
+        (self.root / "docs/homepage-media.json").write_text(json.dumps(self.receipt))
 
     def test_valid_site(self):
         self.assertEqual(MODULE.verify(self.root), [])
