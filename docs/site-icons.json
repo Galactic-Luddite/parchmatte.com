@@ -1,0 +1,32 @@
+{
+  "artwork": "Approved Balanced A, pale-edge correction; system-resolved PNG exports",
+  "source_commit": "b85e0bb80a5748097453bb0a3420561c835ccac0",
+  "source_document": "Resources/AppIcon.icon",
+  "source_capture_method": "AppKit NSWorkspace.icon(forFile:) via scripts/render_bundle_icon.py at 1024 and 32 pixels",
+  "transformation": "Ancillary PNG metadata stripped only; IHDR, IDAT and IEND chunks preserved byte-for-byte. No pixel edits, resizing, relighting or shape changes.",
+  "google_guidance": "https://developers.google.com/search/docs/appearance/favicon-in-search",
+  "assets": {
+    "icon.png": {
+      "source_export": "system-1024.png",
+      "width": 1024,
+      "height": 1024,
+      "blob_sha256": "8878941642b65a23d805068271fe325eef472cfad4ad4ee0dd0d453b89e712e7",
+      "source_blob_sha256": "78eecbd6e95795df852cbd47123ff6f9250ed1d85f306fbf008a7a60e45a9f72",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    },
+    "favicon.png": {
+      "source_export": "system-32.png",
+      "width": 32,
+      "height": 32,
+      "blob_sha256": "b318b1c338c6587cf0ed3e512317f1df61b32031560dbbffd2f6d21f8a9bcb68",
+      "source_blob_sha256": "36a5d4e3d2267ddea41803b74c5e93d48f2fabb5ab5683c3a9a611a49130eaf6",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    }
+  }
+}
