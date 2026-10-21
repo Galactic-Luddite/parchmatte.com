@@ -10,18 +10,18 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The homepage uses screenshots of Parchmatte 1.1.0 (26):
+The held 1.2 candidate combines new Parchmatte 1.2.0 (27) captures with
+explicitly retained 1.1.0 (26) examples:
 
-- `images/shots/01-overview.png` — Denim on a writing page (2880x1800)
-- `images/shots/02-menu.png` — current menu and eight-texture list (2880x1800)
-- `images/shots/07-woven-terminal.png` — Woven on a dark terminal demo
-- `images/shots/08-denim-terminal.png` — Denim on a dark terminal demo
+- `images/shots/01-overview.png` — Velvet on one writing window (1440x900, 1.2)
+- `images/shots/09-velvet-writing.png` — whole-screen Velvet at 15% Strength and 35% Softness (1440x900, 1.2)
+- `images/shots/02-menu.png` — nine-texture menu with Velvet selected; Candlelight on (1920x1048, 1.2)
+- `images/shots/07-woven-terminal.png` and `08-denim-terminal.png` — retained 1.1 dark terminal examples (1400x1300)
 
-These PNGs show the current app but are not part of the Build 6 App Store media
-audit or its hash receipt. Their dimensions and pixel and file hashes are in
-`docs/homepage-media.json`, with a readable summary in
-`docs/homepage-media.md`. The synthetic terminal page used in the two
-texture examples is retained at `scripts/fixtures/terminal-demo.html`.
+Per-image build, settings, source identity, transformations, dimensions and file
+hashes are recorded in `docs/homepage-media.json`; see `docs/homepage-media.md`.
+The synthetic terminal fixture is `scripts/fixtures/terminal-demo.html`. These
+images are separate from the historical Build 6 App Store media receipt.
 
 ## Historical Build 6 release media
 
@@ -71,12 +71,13 @@ Build 6 site-image receipt check on pull requests and pushes to `main` or
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
-The homepage uses the current 1.1 screenshots listed above. The older
+The held homepage uses the mixed-release screenshots listed above. The older
 responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-Parchmatte 1.1 is available on the Mac App Store. The home and
+This 1.2 candidate must remain held until the corresponding app version is live
+and owner review is complete. The home and
 comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
