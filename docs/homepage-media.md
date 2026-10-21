@@ -1,34 +1,38 @@
 # Homepage media
 
-The homepage's four PNG screenshots were captured on 2026-10-10 from the
-pre-release build of Parchmatte 1.1.0 (26). They show Denim on a writing
-page, the menu with the Page Light submenu open, and two texture examples over
-a browser-rendered dark terminal demo. The demo contains synthetic sample text.
-Both dark examples use strength 0.15, softness 0.35 and Page Light off; only
-the texture changes.
+This held 1.2 candidate uses actual Parchmatte 1.2.0 (27) captures alongside
+retained 1.1.0 (26) texture examples. Each image has its own provenance in
+[`homepage-media.json`](homepage-media.json); the top-level build is the release
+target, not a claim that every retained image came from that build.
 
-| Public file | Size | What it shows |
-| --- | --- | --- |
-| `images/shots/01-overview.png` | 2880x1800 | Denim at 40% strength over a TextEdit page of sample prose, whole-screen paper |
-| `images/shots/02-menu.png` | 2880x1800 | Menu with Strength 40%, Softness 35%, Page Light submenu (Candlelight on, six tints, Glow: Medium, Light Strength 50%) |
-| `images/shots/07-woven-terminal.png` | 1400x1300 | Woven, the app's linen texture, on a dark terminal demo |
-| `images/shots/08-denim-terminal.png` | 1400x1300 | Denim on a dark terminal demo |
+| Public file | Size | Build | What it shows |
+| --- | --- | --- | --- |
+| `images/shots/01-overview.png` | 1440x900 | 1.2.0 (27) | Velvet in Wine confined to one sample writing window; the reference area outside stays plain |
+| `images/shots/09-velvet-writing.png` | 1440x900 | 1.2.0 (27) | Velvet in Wine across the sample writing workspace |
+| `images/shots/02-menu.png` | 1920x1048 | 1.2.0 (27) | Nine-texture menu with Velvet selected, Strength 15%, Softness 35%, Candlelight on |
+| `images/shots/07-woven-terminal.png` | 1400x1300 | 1.1.0 (26) | Woven on a dark synthetic terminal demo |
+| `images/shots/08-denim-terminal.png` | 1400x1300 | 1.1.0 (26) | Denim on the same dark synthetic terminal demo |
 
-The two full-frame images are direct desktop-compositor captures with only
-ancillary PNG metadata removed. The two terminal images are lossless crops,
-cut with ffmpeg from 2880x1800 direct captures, then stripped of metadata; the
-crop re-encodes the pixels, so their IDAT bytes differ from the capture. The
-page displays them at 700x650 CSS pixels, so they are 2x images.
+The three 1.2 frames were captured on 2026-10-19 from source commit
+`007fcaff1090b2bb1a6ca9a5898e6a679ede294e`, Store-project ad-hoc Release,
+on macOS 26.7.1 (25G241), with a 1920x1080 display at scale 1.
+`/usr/sbin/screencapture` captured the physical desktop compositor at rectangle
+`80,90,1440,900`. The overview and Velvet scene use Strength 15%, Softness 35%, Page Light off, normal
+orientation and Hide from Screenshots disabled. The overview uses single-window
+paper; the Velvet scene uses whole-screen paper. The menu capture uses rectangle
+`0,32,1920,1048`, whole-screen Velvet, Candlelight on, Light Strength 60% and
+Glow Medium; Strength and Softness remain 15% and 35%. The writing and reference
+content are neutral sample material. Only ancillary PNG metadata was removed;
+IHDR and IDAT are preserved byte for byte, with no crop or resampling.
 
-The exact dimensions, pixel hashes, and PNG file hashes are recorded in
-[`homepage-media.json`](homepage-media.json). The terminal demo source is
-retained at `scripts/fixtures/terminal-demo.html` so the neutral sample content
-can be reproduced.
+The retained 1.1 terminal images were captured on 2026-10-10 at Strength 15%,
+Softness 35%, Page Light off, with the actual app overlay on a browser-rendered
+synthetic terminal demo. They are lossless 1400x1300 crops from 2880x1800 direct
+captures, with metadata removed. The crop re-encoded pixels but did not resample
+or edit the texture. Their original file and pixel hashes remain in the receipt.
+The demo source is `scripts/fixtures/terminal-demo.html`.
 
 Use `python3 scripts/strip_png_metadata.py INPUT.png OUTPUT.png` to remove
-ancillary capture metadata before publication. It preserves the image header
-and compressed pixel chunks byte for byte; it does not add or simulate texture.
-
-These files are separate from the historical Build 6 App Store media
-documented in `release-media-build6.json`, and are not covered by that
-receipt's hashes or GUI-audit record.
+ancillary capture metadata. These images are separate from historical Build 6
+App Store media in `release-media-build6.json`. The candidate remains held until
+1.2 is live and owner review is complete; no publication is authorized here.

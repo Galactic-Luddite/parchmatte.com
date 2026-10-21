@@ -45,7 +45,7 @@ class SitePositioningTests(unittest.TestCase):
             self.assertIn(field + ' content="' + description + '"', source)
         headings = ["One window, with your own paper.", "One window or the whole screen", "Make it your paper.", "Add optional Page Light.", "Set it up for your workspace.", "Paper on a darker screen.", "Compare paper texture and screen tint.", "A few practical details", "Give your Mac a paper texture."]
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
-        for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up", "Velvet"):
+        for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
         self.assertIn("Paper texture on a writing window", source)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)

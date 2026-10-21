@@ -1,31 +1,79 @@
 {
-  "build": "1.1.0 (26)",
+  "build": "1.2.0 (27)",
   "images": {
     "01-overview.png": {
-      "blob_sha256": "beb141c31d3640fe5fd50c481065b10be1862e6187d7abc2d7bdb15d2b1ce998",
+      "blob_sha256": "3c1c383253c192a605a2a6c1cbaf9a68cac96a54161bcecbcfac3d4d0b2278c8",
+      "bytes": 923274,
+      "width": 1440,
+      "height": 900,
       "color_type": 6,
-      "height": 1800,
-      "pixels_sha256": "2b4234f8c699990d8b866ee1dbb68cf8bd95f13c6b2d2c767e33d4a8931548dd",
-      "policy": {
-        "max_blob_bytes": 16777216,
-        "max_decompressed_bytes": 33554432,
-        "max_dimension": 4096,
-        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      "build": "1.2.0 (27)",
+      "source_commit": "007fcaff1090b2bb1a6ca9a5898e6a679ede294e",
+      "macOS": "26.7.1 (25G241)",
+      "display_pixels": [
+        1920,
+        1080
+      ],
+      "scale": 1,
+      "source_file": "03-paper-one-window.png",
+      "source_sha256": "38fd70ad3bddc34b420c184774070c9f23137c6e6e8eaae7f5fe33bf845c9dc9",
+      "source_bytes": 923880,
+      "capture_rect": "80,90,1440,900",
+      "settings": {
+        "glow": "medium",
+        "hideFromScreenshots": false,
+        "lamp": "off",
+        "lampStrength": 0.6,
+        "opacity": 0.15,
+        "orientation": "normal",
+        "pauseOnBattery": false,
+        "schedule": "always",
+        "softness": 0.35,
+        "texture": "velvet",
+        "wholeScreen": false
       },
-      "width": 2880
+      "transformation": "Ancillary PNG metadata removed only; IHDR and IDAT preserved byte for byte. No crop, resampling or texture editing.",
+      "capture_date": "2026-10-19",
+      "capture_method": "Physical desktop-compositor capture using /usr/sbin/screencapture with the recorded rectangle.",
+      "flavor": "Store-project ad-hoc Release",
+      "source_file_mtime_utc": "2026-10-19T15:02:05.999602+00:00"
     },
     "02-menu.png": {
-      "blob_sha256": "8c89289cbd3db76ba3819f0c396ea61c0f77d8cac092c57d69adf46263aec6a3",
+      "blob_sha256": "27ad689f17660ed2ec58e16b787f992c53459db9a49dc2800b6f0c8715460e52",
+      "bytes": 2663362,
+      "width": 1920,
+      "height": 1048,
       "color_type": 6,
-      "height": 1800,
-      "pixels_sha256": "0afe79d89e0f2c2264cb92a5ce76f94de36abe8365b891b9caa3ae012a1c9de7",
-      "policy": {
-        "max_blob_bytes": 16777216,
-        "max_decompressed_bytes": 33554432,
-        "max_dimension": 4096,
-        "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
+      "build": "1.2.0 (27)",
+      "source_commit": "007fcaff1090b2bb1a6ca9a5898e6a679ede294e",
+      "macOS": "26.7.1 (25G241)",
+      "display_pixels": [
+        1920,
+        1080
+      ],
+      "scale": 1,
+      "source_file": "05-texture-menu.png",
+      "source_sha256": "6dbd5954b0f67ef493f66defeec530a7eef0300b7887faabbcf6429bbf883070",
+      "source_bytes": 2663969,
+      "capture_rect": "0,32,1920,1048",
+      "settings": {
+        "glow": "medium",
+        "hideFromScreenshots": false,
+        "lamp": "candlelight",
+        "lampStrength": 0.6,
+        "opacity": 0.15,
+        "orientation": "normal",
+        "pauseOnBattery": false,
+        "schedule": "always",
+        "softness": 0.35,
+        "texture": "velvet",
+        "wholeScreen": true
       },
-      "width": 2880
+      "capture_date": "2026-10-19",
+      "capture_method": "Physical desktop-compositor capture using /usr/sbin/screencapture with the recorded rectangle.",
+      "flavor": "Store-project ad-hoc Release",
+      "transformation": "Ancillary PNG metadata removed only; IHDR and IDAT preserved byte for byte. No crop, resampling or texture editing.",
+      "source_file_mtime_utc": "2026-10-19T15:05:16.978514+00:00"
     },
     "07-woven-terminal.png": {
       "blob_sha256": "3c30d53492c192c201200cb1af1962e6a0bbffbf6a72229b9e827c04acade7ee",
@@ -38,7 +86,9 @@
         "max_dimension": 4096,
         "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
       },
-      "width": 1400
+      "width": 1400,
+      "build": "1.1.0 (26)",
+      "capture_method": "Captured 2026-10-10 from a pre-release build of 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines."
     },
     "08-denim-terminal.png": {
       "blob_sha256": "0fec8448a58efbc66c850472634df63ed7e6b9a2a35c4d1b61e899041c9a7a4e",
@@ -51,28 +101,55 @@
         "max_dimension": 4096,
         "profile": "png-v1-ihdr-idat-iend-8bit-rgb-rgba-noninterlaced"
       },
-      "width": 1400
+      "width": 1400,
+      "build": "1.1.0 (26)",
+      "capture_method": "Captured 2026-10-10 from a pre-release build of 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines."
+    },
+    "09-velvet-writing.png": {
+      "blob_sha256": "85e3d3edaff8e35315ed39659012a28f65ed6dae9391d9bf39bc8f056a5e90a6",
+      "bytes": 1343966,
+      "width": 1440,
+      "height": 900,
+      "color_type": 6,
+      "build": "1.2.0 (27)",
+      "source_commit": "007fcaff1090b2bb1a6ca9a5898e6a679ede294e",
+      "macOS": "26.7.1 (25G241)",
+      "display_pixels": [
+        1920,
+        1080
+      ],
+      "scale": 1,
+      "source_file": "02-after-velvet.png",
+      "source_sha256": "53cb7120d5444ca79d58dc5346f02df6778c16a6bb8bfd378112d30580c9371c",
+      "source_bytes": 1344572,
+      "capture_rect": "80,90,1440,900",
+      "settings": {
+        "glow": "medium",
+        "hideFromScreenshots": false,
+        "lamp": "off",
+        "lampStrength": 0.6,
+        "opacity": 0.15,
+        "orientation": "normal",
+        "pauseOnBattery": false,
+        "schedule": "always",
+        "softness": 0.35,
+        "texture": "velvet",
+        "wholeScreen": true
+      },
+      "transformation": "Ancillary PNG metadata removed only; IHDR and IDAT preserved byte for byte. No crop, resampling or texture editing.",
+      "capture_date": "2026-10-19",
+      "capture_method": "Physical desktop-compositor capture using /usr/sbin/screencapture with the recorded rectangle.",
+      "flavor": "Store-project ad-hoc Release",
+      "source_file_mtime_utc": "2026-10-19T15:01:54.975203+00:00"
     }
   },
-  "menu_settings": {
-    "glow": "Medium",
-    "lightStrength": 0.5,
-    "pageLight": "Candlelight",
-    "softness": 0.35,
-    "strength": 0.4
-  },
-  "method": "Captured 2026-10-10 from a pre-release build of 1.1.0 (26). 01-overview.png and 02-menu.png are direct 2880x1800 desktop-compositor captures; only PNG ancillary metadata was removed, and IHDR and IDAT bytes are preserved. 07-woven-terminal.png and 08-denim-terminal.png are 1400x1300 crops, cut losslessly with ffmpeg from 2880x1800 direct captures of a browser-rendered synthetic terminal demo with the actual app overlay, then stripped of ancillary metadata (the crop re-encoded the pixels; no resampling or editing). pixels_sha256 is the SHA-256 of the unfiltered RGBA scanlines.",
-  "overview_settings": {
-    "page": "TextEdit sample prose",
-    "strength": 0.4,
-    "texture": "Denim",
-    "wholeScreen": true
-  },
-  "terminal_demo_settings": {
+  "method": "Mixed-release media: each image records its own build and provenance. The release target is 1.2.0 (27); retained 1.1 images have not been relabeled.",
+  "historical_terminal_demo_settings": {
     "hideFromScreenshots": false,
     "opacity": 0.15,
     "pageLight": "off",
     "softness": 0.35,
     "wholeScreen": true
-  }
+  },
+  "timestamp_note": "source_file_mtime_utc records capture file filesystem mtime, retained during copy; it is not embedded camera metadata."
 }
