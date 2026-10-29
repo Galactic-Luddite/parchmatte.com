@@ -44,6 +44,11 @@ def decide(entry=ENTRY, pull=None, files=("index.html",), declared="1.1", proble
 
 
 class Arming(unittest.TestCase):
+    def test_patch_version_can_be_armed(self):
+        entry = {"pr": 7, "version": "1.2.1", "head_sha": SHA}
+        self.assertEqual(M.parse_held(json.dumps({"held": [entry]})), ([entry], None))
+        self.assertEqual(M.parse_hold_line(HOLD.replace('1.1', '1.2.1')), '1.2.1')
+
     def test_valid(self):
         entries, error = M.parse_held(json.dumps({"held": [{"pr": 7, "version": "1.1", "head_sha": SHA}]}))
         self.assertIsNone(error)
@@ -59,7 +64,7 @@ class Arming(unittest.TestCase):
             json.dumps({"held": [dict(good, pr="7")]}),
             json.dumps({"held": [dict(good, pr=True)]}),
             json.dumps({"held": [dict(good, pr=0)]}),
-            json.dumps({"held": [dict(good, version="1.1.0")]}),
+            json.dumps({"held": [dict(good, version="1.1.0.1")]}),
             json.dumps({"held": [dict(good, version="x")]}),
             json.dumps({"held": [dict(good, head_sha=SHA[:12])]}),
             json.dumps({"held": [dict(good, head_sha=SHA.upper())]}),
@@ -75,7 +80,7 @@ class HoldLine(unittest.TestCase):
     def test_parse(self):
         self.assertEqual(M.parse_hold_line(HOLD), "1.1")
         self.assertEqual(M.parse_hold_line(HOLD + "\r\nmore"), "1.1")
-        for body in (None, "", "\n" + HOLD, "x\n" + HOLD, HOLD.replace("1.1", "1.1.0"), HOLD.replace("1.1", "9" * 5000 + ".1"),
+        for body in (None, "", "\n" + HOLD, "x\n" + HOLD, HOLD.replace("1.1", "1.1.0.1"), HOLD.replace("1.1", "9" * 5000 + ".1"),
                      HOLD.replace("1.1", "١.١"), HOLD + " x", "> " + HOLD, HOLD.replace("Hold:", "hold:")):
             self.assertIsNone(M.parse_hold_line(body), body)
 
@@ -116,6 +121,29 @@ class Checks(unittest.TestCase):
 
 
 class Decide(unittest.TestCase):
+    def test_four_part_store_version_cannot_merge(self):
+        entry = dict(ENTRY, version="1.2.1")
+        pull = pr(body=HOLD.replace("1.1", "1.2.1"))
+        action, reasons = decide(entry=entry, pull=pull, declared="1.2.1", live="1.2.1.1")
+        self.assertEqual(action, M.NOT_YET)
+        self.assertTrue(reasons)
+
+    def test_patch_release_gates(self):
+        entry = dict(ENTRY, version='1.2.1')
+        pull = pr(body=HOLD.replace('1.1', '1.2.1'))
+        self.assertEqual(decide(entry=entry, pull=pull, declared='1.2.1', live='1.2.1'), ('merge', []))
+        self.assertEqual(decide(entry=entry, pull=pull, declared='1.2.1', live='1.2.0')[0], M.NOT_YET)
+
+    def test_patch_declaration_cannot_use_minor_arming(self):
+        action, reasons = decide(entry=dict(ENTRY, version='1.2'),
+                                 pull=pr(body=HOLD.replace('1.1', '1.2')),
+                                 declared='1.2.1', live='1.2.0')
+        self.assertEqual(action, M.NOT_YET)
+        self.assertTrue(any('declares 1.2.1, armed for 1.2' in r for r in reasons))
+        self.assertEqual(decide(entry=dict(ENTRY, version='1.2'),
+                                pull=pr(body=HOLD.replace('1.1', '1.2')),
+                                declared='1.2.0', live='1.2.0'), ('merge', []))
+
     def test_merge(self):
         self.assertEqual(decide(), ("merge", []))
         self.assertEqual(decide(live="1.1.0")[0], "merge")
@@ -327,6 +355,15 @@ class Process(unittest.TestCase):
 
 
 class Confirm(unittest.TestCase):
+    def test_confirmation_requires_matching_patch(self):
+        for seen, target, expected in (('1.2.0', '1.2.1', False),
+                                       ('1.2.1', '1.2.1', True),
+                                       ('1.2.0', '1.2', True),
+                                       (None, '1.2.1', False)):
+            with self.subTest(seen=seen, target=target):
+                with mock.patch.object(M, 'live_site_version', return_value=seen), mock.patch.object(M.time, 'sleep'):
+                    self.assertEqual(M.confirm_publication(FakeGitHub(), target, attempts=1, pause=0), expected)
+
     def test_pages_request_failure(self):
         fake = FakeGitHub(fail={"/pages/builds"})
         self.assertFalse(M.confirm_publication(fake, "1.1", attempts=1, pause=0))

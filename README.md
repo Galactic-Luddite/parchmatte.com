@@ -91,7 +91,10 @@ comparison table, and expandable questions.
 
 ## Holding a release
 
-The site must describe what is on the Mac App Store. Copy for a version that is
+The site must describe what is on the Mac App Store. Release gates compare the
+major, minor and patch numbers, with a missing patch read as zero: `1.2` equals
+`1.2.0`, while `1.2.1` requires that exact patch in the declarations and live store.
+Arming entries and hold lines accept `X.Y` or `X.Y.Z`. Copy for a version that is
 not out yet goes in a pull request that is held, and a scheduled workflow merges
 it once that version is live. Only an entry in `release/held.json` on `main` can
 arm a merge. A comment, a label or a pull request description cannot.

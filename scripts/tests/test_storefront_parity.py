@@ -32,6 +32,10 @@ class Versions(unittest.TestCase):
         for bad in (None, "", "1", "1.1 beta", "1.1;x", "9" * 5000 + ".1", "١.١", "1.1.1.1.1", "1.01", "01.1", "1.1\n", 1.1):
             self.assertIsNone(P.major_minor(bad), bad)
 
+    def test_four_part_versions_are_unknown(self):
+        self.assertEqual(P.compare_live("1.2.1", "1.2.1.1"), "unknown")
+        self.assertEqual(P.compare_live(None, None), "unknown")
+
     def test_compare_live(self):
         self.assertEqual(P.compare_live("1.1", "1.1.0"), "match")
         self.assertEqual(P.compare_live("1.1", "1.1.1"), "ahead")
@@ -46,6 +50,9 @@ class Versions(unittest.TestCase):
 
 
 class Lookup(unittest.TestCase):
+    def test_four_part_lookup_is_unknown(self):
+        self.assertIsNone(P.parse_live_version(lookup(version="1.2.1.1")))
+
     def test_good(self):
         self.assertEqual(P.parse_live_version(lookup()), "1.1.0")
 
@@ -80,6 +87,24 @@ class Declarations(unittest.TestCase):
         self.assertEqual(P.parse_receipt_version(json.dumps({"build": "1.0"})), "1.0")
         for bad in ("", "[]", "{}", json.dumps({"build": "release"}), json.dumps({"build": 1})):
             self.assertIsNone(P.parse_receipt_version(bad), bad)
+
+    def test_patch_declarations_must_agree(self):
+        site = SITE.replace('1.1', '1.2.1')
+        index = INDEX.replace('1.1', '1.2.1')
+        receipt = RECEIPT.replace('1.1.0', '1.2.1')
+        self.assertEqual(P.declared_problems(site, index, receipt), ('1.2.1', []))
+        for html, media in ((index.replace('1.2.1', '1.2.0'), receipt),
+                            (index, receipt.replace('1.2.1', '1.2.0'))):
+            with self.subTest(html=html, media=media):
+                self.assertEqual(len(P.declared_problems(site, html, media)[1]), 1)
+
+    def test_four_part_declarations_are_rejected(self):
+        site = SITE.replace("1.1", "1.2.1.1")
+        index = INDEX.replace("1.1", "1.2.1.1")
+        receipt = RECEIPT.replace("1.1.0", "1.2.1.1")
+        self.assertIsNone(P.parse_receipt_version(receipt))
+        self.assertTrue(P.declared_problems(site, index, receipt)[1])
+        self.assertTrue(P.declared_problems(SITE, index, receipt)[1])
 
     def test_agreement(self):
         self.assertEqual(P.declared_problems(SITE, INDEX, RECEIPT), ("1.1", []))
