@@ -37,9 +37,9 @@ API = "https://api.github.com"
 SITE_URL = "https://parchmatte.com/"
 ROOT = Path(__file__).resolve().parents[1]
 NUM = r"(?:0|[1-9][0-9]{0,3})"
-HOLD_RE = re.compile(rf"Hold: do not merge until Parchmatte ({NUM}\.{NUM}) is live on the Mac App Store\.")
+HOLD_RE = re.compile(rf"Hold: do not merge until Parchmatte ({NUM}\.{NUM}(?:\.{NUM})?) is live on the Mac App Store\.")
 SHA_RE = re.compile(r"[0-9a-f]{40}")
-VERSION_ARMED_RE = re.compile(rf"{NUM}\.{NUM}")
+VERSION_ARMED_RE = re.compile(rf"{NUM}\.{NUM}(?:\.{NUM})?")
 GATE_PREFIXES = (".github/", "release/")
 GATE_FILES = ("scripts/publish_when_live.py", "scripts/storefront_parity.py")
 DECLARATION_FILE = "release/site-version.json"
@@ -65,7 +65,7 @@ def parse_held(text):
         if type(number) is not int or number < 1 or number in seen:
             return [], "held entry has a bad or duplicate pr number"
         if not isinstance(version, str) or not VERSION_ARMED_RE.fullmatch(version):
-            return [], "held entry version must look like X.Y"
+            return [], "held entry version must look like X.Y or X.Y.Z"
         if not isinstance(sha, str) or not SHA_RE.fullmatch(sha):
             return [], "held entry head_sha must be 40 lowercase hex characters"
         seen.add(number)
@@ -74,7 +74,7 @@ def parse_held(text):
 
 
 def parse_hold_line(body):
-    """Return X.Y from a description whose first line is the hold line, else None."""
+    """Return X.Y or X.Y.Z from a description whose first line is the hold line, else None."""
     if not isinstance(body, str):
         return None
     match = HOLD_RE.fullmatch(body.replace("\r\n", "\n").split("\n", 1)[0].rstrip())
@@ -141,7 +141,7 @@ def decide(entry, pr, files, declared, problems, live, checks):
         reasons.append("pull request changes the publishing gate: " + ", ".join(sorted(blocked)[:5]))
     if declared is None or problems:
         reasons.extend(problems or ["site version declaration is unreadable"])
-    elif parity.major_minor(declared) != parity.major_minor(entry["version"]):
+    elif parity.triple(declared) != parity.triple(entry["version"]):
         reasons.append(f"pull request declares {declared}, armed for {entry['version']}")
     if pr.get("mergeable") is not True or pr.get("mergeable_state") == "dirty":
         reasons.append(f"not mergeable (mergeable={pr.get('mergeable')}, state={pr.get('mergeable_state')})")
@@ -225,7 +225,7 @@ def confirm_publication(gh, version, attempts=20, pause=30):
     for _ in range(attempts):
         time.sleep(pause)
         seen = live_site_version()
-        if parity.major_minor(seen) == parity.major_minor(version):
+        if parity.compare_live(version, seen) == "match":
             print(f"Live site now declares {seen}.")
             return True
     print(f"ERROR: the live site did not show version {version} within {attempts * pause} seconds. Check the Pages build.")

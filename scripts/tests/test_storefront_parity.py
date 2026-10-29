@@ -81,6 +81,16 @@ class Declarations(unittest.TestCase):
         for bad in ("", "[]", "{}", json.dumps({"build": "release"}), json.dumps({"build": 1})):
             self.assertIsNone(P.parse_receipt_version(bad), bad)
 
+    def test_patch_declarations_must_agree(self):
+        site = SITE.replace('1.1', '1.2.1')
+        index = INDEX.replace('1.1', '1.2.1')
+        receipt = RECEIPT.replace('1.1.0', '1.2.1')
+        self.assertEqual(P.declared_problems(site, index, receipt), ('1.2.1', []))
+        for html, media in ((index.replace('1.2.1', '1.2.0'), receipt),
+                            (index, receipt.replace('1.2.1', '1.2.0'))):
+            with self.subTest(html=html, media=media):
+                self.assertEqual(len(P.declared_problems(site, html, media)[1]), 1)
+
     def test_agreement(self):
         self.assertEqual(P.declared_problems(SITE, INDEX, RECEIPT), ("1.1", []))
         _, problems = P.declared_problems(SITE, INDEX.replace("1.1", "1.0"), RECEIPT)

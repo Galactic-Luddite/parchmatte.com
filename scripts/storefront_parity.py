@@ -104,12 +104,12 @@ def declared_problems(site_version_text, index_html, receipt_text):
     if version is None:
         return None, ["release/site-version.json is missing or malformed"]
     problems = []
-    declared = major_minor(version)
+    declared = triple(version)
     ld = parse_ld_version(index_html)
-    if major_minor(ld) != declared:
+    if triple(ld) != declared:
         problems.append(f"home page softwareVersion {ld!r} does not match declared {version}")
     build = parse_receipt_version(receipt_text)
-    if major_minor(build) != declared:
+    if triple(build) != declared:
         problems.append(f"media receipt build {build!r} does not match declared {version}")
     return version, problems
 
