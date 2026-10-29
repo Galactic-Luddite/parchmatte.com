@@ -8,10 +8,14 @@ was verified through App Store Connect GET as 1.2 READY_FOR_SALE on October 29.
 This candidate describes 1.2.1 and must remain unpublished until both Connect
 and the public listing show that release.
 
-Existing image assets retain their recorded 1.2/1.1 provenance. Final candidate
-captures must replace affected menu/feature images before final visual approval;
-no new picture is represented as already captured. Keep pricing, support/legal
-destinations, approved icon/favicon and all existing shortcut assignments.
+The hero now uses the actual build 28 same-app independent-style capture.
+The Page Light section now shows actual build 28 native shape and position
+controls. Both images preserve source pixels with ancillary PNG metadata removed;
+`docs/homepage-media.json` records source/image hashes, dimensions and methods.
+The retained material and texture-menu examples keep their original 1.2/1.1
+provenance. The release-target receipt declares 1.2.1 (28). Final image approval
+remains pending. Keep pricing, support/legal destinations, icon/favicon and
+shortcut assignments unchanged.
 
 The private app issue #67 owns progress; #65 owns wording and #66 captures.
 The public repository receives only the reviewed website publication batch.
@@ -22,4 +26,4 @@ local asset references and retained image hashes. The existing positioning test
 now expects the proposed title/lead and section order. Headless desktop (1440px)
 and emulated mobile (390px) upper-page renders were visually inspected. Mobile
 document width equals viewport width (390px); no horizontal overflow observed.
-Full-page/final-image review remains required before publication.
+The refreshed media received full-page desktop and correctly emulated 390px mobile inspection; final owner image approval remains required before publication.
