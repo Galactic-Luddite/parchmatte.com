@@ -121,6 +121,13 @@ class Checks(unittest.TestCase):
 
 
 class Decide(unittest.TestCase):
+    def test_four_part_store_version_cannot_merge(self):
+        entry = dict(ENTRY, version="1.2.1")
+        pull = pr(body=HOLD.replace("1.1", "1.2.1"))
+        action, reasons = decide(entry=entry, pull=pull, declared="1.2.1", live="1.2.1.1")
+        self.assertEqual(action, M.NOT_YET)
+        self.assertTrue(reasons)
+
     def test_patch_release_gates(self):
         entry = dict(ENTRY, version='1.2.1')
         pull = pr(body=HOLD.replace('1.1', '1.2.1'))
