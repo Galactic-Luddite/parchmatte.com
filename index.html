@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Parchmatte: Paper Texture Overlay for Mac</title>
-  <meta name="description" content="Add paper texture to one window or your whole Mac screen. Adjust the grain and optional Page Light tint. On the Mac App Store. Requires macOS 13+.">
+  <title>Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac</title>
+  <meta name="description" content="Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar.">
   <meta name="apple-itunes-app" content="app-id=6815385110">
   <link rel="canonical" href="https://parchmatte.com/">
   <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
@@ -14,12 +14,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://parchmatte.com/">
   <meta property="og:site_name" content="Parchmatte">
-  <meta property="og:title" content="Parchmatte: Paper Texture Overlay for Mac">
-  <meta property="og:description" content="Add paper texture to one window or your whole Mac screen. Adjust the grain and optional Page Light tint. On the Mac App Store. Requires macOS 13+.">
+  <meta property="og:title" content="Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac">
+  <meta property="og:description" content="Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar.">
   <meta property="og:image" content="https://parchmatte.com/images/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Parchmatte: Paper Texture Overlay for Mac">
-  <meta name="twitter:description" content="Add paper texture to one window or your whole Mac screen. Adjust the grain and optional Page Light tint. On the Mac App Store. Requires macOS 13+.">
+  <meta name="twitter:title" content="Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac">
+  <meta name="twitter:description" content="Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar.">
   <meta name="twitter:image" content="https://parchmatte.com/images/og.jpg">
   <script type="application/ld+json">
 {
@@ -27,11 +27,17 @@
   "@type": "SoftwareApplication",
   "name": "Parchmatte",
   "url": "https://parchmatte.com/",
-  "description": "Nine paper textures for your Mac, over one window or the whole screen, including Velvet in Wine.",
-  "featureList": ["Nine adjustable paper textures, including Velvet in Wine", "Paper one window or the whole screen", "Optional Page Light with separate Light Strength and Glow"],
+  "description": "Adjustable paper texture and optional Page Light for individual Mac windows or the whole screen.",
+  "featureList": [
+    "Nine adjustable paper and cloth textures",
+    "Independent texture and light for each window, including windows in the same app",
+    "Six Page Light colors, three glow styles, four shapes and nine positions",
+    "Stay-open menu-bar customization",
+    "Display selection and frontmost-app pause rules"
+  ],
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "macOS 13 or later",
-  "softwareVersion": "1.2",
+  "softwareVersion": "1.2.1",
   "image": "https://parchmatte.com/icon.png",
   "screenshot": "https://parchmatte.com/images/shots/01-overview.png",
   "author": {
@@ -66,8 +72,8 @@
   </header>
   <main id="main" class="wrap">
     <div class="intro">
-      <h1>Paper texture for your Mac.</h1>
-      <p class="lede">Add a paper texture overlay to one window or your whole screen. Adjust its strength and softness, then add an optional Page Light tint. Clicks, scrolling and typing pass through.</p>
+      <h1>A softer, matte look for your Mac screen.</h1>
+      <p class="lede">Add paper texture and gentle light to individual windows or your whole screen. Fine-tune the look right from your menu bar.</p>
       <div class="download">
         <a class="store-badge" href="https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12"><picture><source srcset="/images/badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="/images/badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="195" height="50"></picture></a>
 
@@ -76,10 +82,10 @@
       <p class="demo-link"><a href="#paper-in-use">See the texture and controls</a></p>
     </div>
     <section id="paper-in-use" aria-labelledby="paper-title">
-      <div class="section-intro"><h2 id="paper-title">One window, with your own paper.</h2><p>Give one window its own texture while the rest of your workspace stays as it is. You can also cover the whole screen. <a href="/guides/paper-texture-on-mac/">Learn how to add paper texture to one Mac window</a>.</p></div>
+      <div class="section-intro"><h2 id="paper-title">Your windows. Your look.</h2><p>Give individual windows their own texture and light, even two windows in the same app. Keep your writing window and reference document looking different, or use one look for the whole screen. <a href="/guides/paper-texture-on-mac/">Learn how to add paper texture to one Mac window</a>.</p></div>
     <figure class="hero-shot">
-      <a href="/images/shots/01-overview.png"><img class="shot" src="/images/shots/01-overview.png" sizes="(max-width: 960px) calc(100vw - 40px), 920px" width="1440" height="900" fetchpriority="high" alt="Parchmatte’s Velvet texture on one window of sample writing, with the reference area outside the window left plain"></a>
-      <figcaption>Paper texture on a writing window</figcaption>
+      <a href="/images/shots/01-overview.png"><img class="shot" src="/images/shots/01-overview.png" sizes="(max-width: 960px) calc(100vw - 40px), 920px" width="1920" height="970" fetchpriority="high" alt="Two sample document windows in the same app with independent Parchmatte styles: Woven with Gallery light on the left, Soft Leaf with Candlelight on the right"></a>
+      <figcaption>Two windows in the same app, each with its own texture and light</figcaption>
     </figure>
     </section>
 
@@ -99,13 +105,16 @@
     </section>
 
     <section class="product-section" aria-labelledby="light-title">
-      <div class="section-intro"><h2 id="light-title">Add optional Page Light.</h2><p>Add a tint alongside the paper texture. Choose a Page Light preset, then adjust Light Strength and Glow separately. Leave Page Light off when you want texture alone.</p></div>
+      <div class="section-intro"><h2 id="light-title">Add a little light.</h2><p>Choose from six Page Light colors and three glow styles. Shape the light with Oval, Round, Wide or Tall, then place it in the center, along an edge or in a corner. Adjust Light Strength separately from the paper, or turn Page Light off for texture alone.</p></div>
+      <figure class="light-controls-shot"><a href="/images/shots/10-light-shape-controls.png"><img class="shot" src="/images/shots/10-light-shape-controls.png" width="635" height="804" loading="lazy" alt="Parchmatte’s native Page Light menu showing Oval, Round, Wide and Tall shape choices, with Oval selected, plus nine position controls"></a><figcaption>Page Light shape controls · Oval selected, centered position, Gallery light</figcaption></figure>
     </section>
+    <section class="product-section" aria-labelledby="controls-title"><div class="section-intro"><h2 id="controls-title">Simple controls. Right where you need them.</h2><p>Choose a texture, shape the light and adjust the sliders right from your menu bar. The customization controls stay open as you make changes. Clicks, scrolling and typing pass through to the apps underneath.</p></div></section>
     <section class="product-section" aria-labelledby="workspace-title">
-      <h2 id="workspace-title">Set it up for your workspace.</h2>
+      <h2 id="workspace-title">Fit your workspace.</h2>
       <dl class="feature-notes">
         <div><dt>On your schedule</dt><dd>Use sunrise and sunset or set your own hours. Snooze for a break or pause on battery.</dd></div>
-        <div><dt>Across your displays</dt><dd>Choose which displays to cover and which apps to exclude.</dd></div>
+        <div><dt>Choose your displays</dt><dd>Turn whole-screen paper on for the displays you want to use.</dd></div>
+        <div><dt>Choose when to pause</dt><dd>Exclude an app to pause paper while it is in front.</dd></div>
       </dl>
     </section>
 
@@ -134,8 +143,9 @@
     <section aria-labelledby="questions-title">
       <h2 id="questions-title">A few practical details</h2>
       <div class="faq">
-        <details><summary>What is new in Parchmatte 1.2?</summary><p>Velvet adds a fine plush texture in Wine, bringing the collection to nine textures. The starting Strength and Softness settings remain 15% and 35%.</p></details>
-        <details><summary>Does it get in the way?</summary><p>Clicks, scrolling and typing pass through the overlay. You can exclude apps, snooze Parchmatte, or pause it on battery.</p></details>
+        <details><summary>What is new in Parchmatte 1.2.1?</summary><p>Page Light has four shapes and nine positions, with centered Oval as the default. Customization controls stay open while you make changes. Turning a window’s paper off and back on restores its style during the current app session.</p></details>
+        <details><summary>Can two windows in the same app look different?</summary><p>Yes. Each window with its own paper can have its own texture and light. Window choices are kept for the current app session; they are not saved as permanent per-app rules.</p></details>
+        <details><summary>Does it get in the way?</summary><p>Clicks, scrolling and typing pass through the overlay. Adjust the paper from your menu bar while you keep using your apps.</p></details>
         <details><summary>Does it appear in screenshots?</summary><p>By default, Parchmatte asks macOS to leave the overlay out of screenshots. Some capture tools may still include it.</p></details>
         <details><summary>What can Parchmatte see?</summary><p>Parchmatte reads window positions and sizes to place its overlays. It does not read window contents, window titles or your typing, collect personal data, or make network connections.</p></details>
         <details><summary>Where can I get Parchmatte?</summary><p>Parchmatte is available on the <a href="https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12">Mac App Store</a>. The US price is $2.99; regional prices vary. Requires macOS 13 or later.</p></details>
@@ -159,7 +169,7 @@
       </div>
       <p class="small muted">Read the <a href="/privacy/">privacy policy</a> or <a href="mailto:support@parchmatte.com">contact support</a>.</p>
     </section>
-    <section class="closing"><h2>Give your Mac a paper texture.</h2><div class="download"><a class="store-badge" href="https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12"><picture><source srcset="/images/badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="/images/badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="195" height="50"></picture></a><p>US $2.99 on the Mac App Store. Regional prices vary. Requires macOS 13 or later.</p></div></section>
+    <section class="closing"><h2>Make your screen feel more like your page.</h2><div class="download"><a class="store-badge" href="https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12"><picture><source srcset="/images/badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="/images/badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="195" height="50"></picture></a><p>US $2.99 on the Mac App Store. Regional prices vary. Requires macOS 13 or later.</p></div></section>
   </main>
   <footer class="site-footer wrap">
     <span>Made by Galactic Luddite</span>

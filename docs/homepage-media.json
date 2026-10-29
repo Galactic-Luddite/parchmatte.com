@@ -1,42 +1,38 @@
 {
-  "build": "1.2.0 (27)",
+  "build": "1.2.1 (28)",
   "images": {
     "01-overview.png": {
-      "blob_sha256": "3c1c383253c192a605a2a6c1cbaf9a68cac96a54161bcecbcfac3d4d0b2278c8",
-      "bytes": 923274,
-      "width": 1440,
-      "height": 900,
+      "build": "1.2.1 (28)",
+      "source_commit": "00b92ddcbec5dc45253c4b46e98ffccb0488cb09",
+      "executable_sha256": "af212885f62f2ec46315996dd016e10c04f99a44d1d8f7de2a6e46a348cd9fb7",
+      "capture_date": "2026-10-29",
+      "status": "Pre-submission candidate; images approved for the held 1.2.1 website update",
+      "transformation": "Ancillary PNG metadata removed only with scripts/strip_png_metadata.py; IHDR and IDAT preserved byte for byte. No crop, resampling, texture editing or invented controls.",
+      "blob_sha256": "a3cbc298c31f0f06e3b1a1e3f196ad94aa9fb2e4868388ec6effd753dd1c0edc",
+      "bytes": 2162660,
+      "width": 1920,
+      "height": 970,
       "color_type": 6,
-      "build": "1.2.0 (27)",
-      "source_commit": "007fcaff1090b2bb1a6ca9a5898e6a679ede294e",
-      "macOS": "26.7.1 (25G241)",
-      "display_pixels": [
-        1920,
-        1080
-      ],
-      "scale": 1,
-      "source_file": "03-paper-one-window.png",
-      "source_sha256": "38fd70ad3bddc34b420c184774070c9f23137c6e6e8eaae7f5fe33bf845c9dc9",
-      "source_bytes": 923880,
-      "capture_rect": "80,90,1440,900",
+      "source_file": "same-app-two-styles.png",
+      "source_sha256": "506ff98cb20b049ef7eea072502ee632225016d37abb2cd7b02aed350e9457a7",
+      "source_bytes": 2163266,
+      "capture_method": "Physical desktop-compositor capture using screencapture -x -R0,80,1920,970 of two owned synthetic styleCanvas document windows with actual app overlays.",
       "settings": {
-        "glow": "medium",
+        "left": {
+          "texture": "Woven",
+          "pageLight": "Gallery",
+          "strength": 0.28,
+          "lightStrength": 0.75
+        },
+        "right": {
+          "texture": "Soft Leaf",
+          "pageLight": "Candlelight",
+          "strength": 0.28,
+          "lightStrength": 0.75
+        },
         "hideFromScreenshots": false,
-        "lamp": "off",
-        "lampStrength": 0.6,
-        "opacity": 0.15,
-        "orientation": "normal",
-        "pauseOnBattery": false,
-        "schedule": "always",
-        "softness": 0.35,
-        "texture": "velvet",
         "wholeScreen": false
-      },
-      "transformation": "Ancillary PNG metadata removed only; IHDR and IDAT preserved byte for byte. No crop, resampling or texture editing.",
-      "capture_date": "2026-10-19",
-      "capture_method": "Physical desktop-compositor capture using /usr/sbin/screencapture with the recorded rectangle.",
-      "flavor": "Store-project ad-hoc Release",
-      "source_file_mtime_utc": "2026-10-19T15:02:05.999602+00:00"
+      }
     },
     "02-menu.png": {
       "blob_sha256": "27ad689f17660ed2ec58e16b787f992c53459db9a49dc2800b6f0c8715460e52",
@@ -141,9 +137,36 @@
       "capture_method": "Physical desktop-compositor capture using /usr/sbin/screencapture with the recorded rectangle.",
       "flavor": "Store-project ad-hoc Release",
       "source_file_mtime_utc": "2026-10-19T15:01:54.975203+00:00"
+    },
+    "10-light-shape-controls.png": {
+      "build": "1.2.1 (28)",
+      "source_commit": "00b92ddcbec5dc45253c4b46e98ffccb0488cb09",
+      "executable_sha256": "af212885f62f2ec46315996dd016e10c04f99a44d1d8f7de2a6e46a348cd9fb7",
+      "capture_date": "2026-10-29",
+      "status": "Pre-submission candidate; images approved for the held 1.2.1 website update",
+      "transformation": "Ancillary PNG metadata removed only with scripts/strip_png_metadata.py; IHDR and IDAT preserved byte for byte. No crop, resampling, texture editing or invented controls.",
+      "blob_sha256": "108cf19af032ad3495d2ad90b1263c0cdd94f69e682eb63d7f97585b92998e6a",
+      "bytes": 116177,
+      "width": 635,
+      "height": 804,
+      "color_type": 6,
+      "source_file": "shape-only/shape-options-native-menu-0.png",
+      "source_sha256": "dfea4f0b07b4a1942f030a883ff88d1da1213ebf9ddfa5dbb18d4ce4f37e9e0b",
+      "source_bytes": 116782,
+      "capture_method": "Actual owned native menu-window layer captured using screencapture -x -o -l<windowID> after AX opened Page Light > Shape. The image is a native menu capture, not a desktop recreation.",
+      "settings": {
+        "visible_menu_state": {
+          "shape": "Oval",
+          "position": "Center",
+          "pageLight": "Gallery",
+          "lightStrength": "50%",
+          "thisWindowStrength": "15%",
+          "thisWindowSoftness": "35%"
+        }
+      }
     }
   },
-  "method": "Mixed-release media: each image records its own build and provenance. The release target is 1.2.0 (27); retained 1.1 images have not been relabeled.",
+  "method": "Mixed-release media: the release target is 1.2.1 (28). Each image records its own build and provenance; retained 1.2.0 (27) and 1.1.0 (26) examples are not relabeled. New 1.2.1 images are actual pre-submission candidate captures, not a final distribution receipt.",
   "historical_terminal_demo_settings": {
     "hideFromScreenshots": false,
     "opacity": 0.15,
