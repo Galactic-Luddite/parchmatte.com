@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Check that the app version the site describes matches the Mac App Store.
 
-The site declares one version in three places that must agree on major.minor:
+The site declares one version in three places that must agree on major, minor and patch:
 
 - `release/site-version.json` (`version`, plus `receipt`, the path of the media receipt),
 - `softwareVersion` in the home page's JSON-LD,
 - the `build` field of the media receipt named there (for example "1.0.0 (21)").
 
 `--declared-only` checks only that these agree. Without it the declared version must
-also equal the version Apple's public lookup reports (major.minor, so 1.1 equals
-1.1.0); an unreachable or empty lookup fails. Standard library only.
+also equal the version Apple's public lookup reports (a missing patch is zero, so 1.1 equals
+1.1.0 but differs from 1.1.1); an unreachable or empty lookup fails. Standard library only.
 
 The pure functions take file contents as text so a caller can pass data read from
 anywhere (a local checkout, or a pull request's files fetched through the API)
@@ -27,8 +27,8 @@ APP_ID = 6815385110
 LOOKUP_URL = f"https://itunes.apple.com/lookup?id={APP_ID}&country=us&entity=macSoftware"
 ROOT = Path(__file__).resolve().parents[1]
 NUM = r"(?:0|[1-9][0-9]{0,3})"
-VERSION_RE = re.compile(rf"{NUM}\.{NUM}(\.{NUM}){{0,2}}")
-BUILD_RE = re.compile(rf"({NUM}\.{NUM}(?:\.{NUM}){{0,2}})(?: \([0-9]{{1,6}}\))?")
+VERSION_RE = re.compile(rf"{NUM}\.{NUM}(\.{NUM})?")
+BUILD_RE = re.compile(rf"({NUM}\.{NUM}(?:\.{NUM})?)(?: \([0-9]{{1,6}}\))?")
 LD_VERSION_RE = re.compile(r'"softwareVersion"\s*:\s*"([^"]*)"')
 RECEIPT_RE = re.compile(r"docs/[A-Za-z0-9._-]+\.json")
 
@@ -104,12 +104,12 @@ def declared_problems(site_version_text, index_html, receipt_text):
     if version is None:
         return None, ["release/site-version.json is missing or malformed"]
     problems = []
-    declared = major_minor(version)
+    declared = triple(version)
     ld = parse_ld_version(index_html)
-    if major_minor(ld) != declared:
+    if triple(ld) != declared:
         problems.append(f"home page softwareVersion {ld!r} does not match declared {version}")
     build = parse_receipt_version(receipt_text)
-    if major_minor(build) != declared:
+    if triple(build) != declared:
         problems.append(f"media receipt build {build!r} does not match declared {version}")
     return version, problems
 
