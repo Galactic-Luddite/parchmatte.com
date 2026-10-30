@@ -47,7 +47,7 @@ class SitePositioningTests(unittest.TestCase):
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
-        self.assertIn("Two windows in the same app, each with its own texture and light", source)
+        self.assertIn("Independently styled Preview windows", source)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
 
     def test_metadata_and_shared_navigation(self):
