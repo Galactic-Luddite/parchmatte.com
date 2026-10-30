@@ -10,10 +10,11 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The held 1.2 candidate combines new Parchmatte 1.2.0 (27) captures with
-explicitly retained 1.1.0 (26) examples:
+The held 1.2.1 candidate combines actual pre-submission Parchmatte 1.2.1 (28)
+captures with explicitly retained 1.2.0 (27) and 1.1.0 (26) examples:
 
-- `images/shots/01-overview.png` — Velvet on one writing window (1440x900, 1.2)
+- `images/shots/01-overview.png` — independently styled windows in the same app (1920x970, 1.2.1)
+- `images/shots/10-light-shape-controls.png` — actual native shape and position menu controls (635x804, 1.2.1)
 - `images/shots/09-velvet-writing.png` — whole-screen Velvet at 15% Strength and 35% Softness (1440x900, 1.2)
 - `images/shots/02-menu.png` — nine-texture menu with Velvet selected; Candlelight on (1920x1048, 1.2)
 - `images/shots/07-woven-terminal.png` and `08-denim-terminal.png` — retained 1.1 dark terminal examples (1400x1300)
@@ -76,7 +77,7 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-This 1.2 candidate must remain held until the corresponding app version is live
+This 1.2.1 candidate must remain held until the corresponding app version is live
 and owner review is complete. The home and
 comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,

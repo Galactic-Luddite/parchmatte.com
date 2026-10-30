@@ -1,38 +1,29 @@
 # Homepage media
 
-This held 1.2 candidate uses actual Parchmatte 1.2.0 (27) captures alongside
-retained 1.1.0 (26) texture examples. Each image has its own provenance in
-[`homepage-media.json`](homepage-media.json); the top-level build is the release
-target, not a claim that every retained image came from that build.
+The held 1.2.1 website uses four botanical compositions from genuine
+Parchmatte 1.2.1 (28) application captures. Two retained terminal examples
+keep their original 1.1.0 (26) provenance. Image hashes, sizes and visible
+settings are recorded in [homepage-media.json](homepage-media.json).
 
-| Public file | Size | Build | What it shows |
-| --- | --- | --- | --- |
-| `images/shots/01-overview.png` | 1440x900 | 1.2.0 (27) | Velvet in Wine confined to one sample writing window; the reference area outside stays plain |
-| `images/shots/09-velvet-writing.png` | 1440x900 | 1.2.0 (27) | Velvet in Wine across the sample writing workspace |
-| `images/shots/02-menu.png` | 1920x1048 | 1.2.0 (27) | Nine-texture menu with Velvet selected, Strength 15%, Softness 35%, Candlelight on |
-| `images/shots/07-woven-terminal.png` | 1400x1300 | 1.1.0 (26) | Woven on a dark synthetic terminal demo |
-| `images/shots/08-denim-terminal.png` | 1400x1300 | 1.1.0 (26) | Denim on the same dark synthetic terminal demo |
+| Public file | What it shows |
+| --- | --- |
+| `01-overview.png` | Two Preview windows, Woven and Velvet; Strength 28%, Softness 50%, Page Light off |
+| `09-velvet-writing.png` | Botanical document with Velvet; Strength 28%, Softness 50%, Page Light off |
+| `02-menu.png` | Separate native menu details and document; Velvet selected among nine textures, Strength 28%, Softness 50%, Page Light off |
+| `10-light-shape-controls.png` | Separate native menu details; Tall, Bottom Right, Light Strength 75%, Candlelight, Warm |
+| `07-woven-terminal.png` | Retained Woven terminal example |
+| `08-denim-terminal.png` | Retained Denim terminal example |
 
-The three 1.2 frames were captured on 2026-10-19 from source commit
-`007fcaff1090b2bb1a6ca9a5898e6a679ede294e`, Store-project ad-hoc Release,
-on macOS 26.7.1 (25G241), with a 1920x1080 display at scale 1.
-`/usr/sbin/screencapture` captured the physical desktop compositor at rectangle
-`80,90,1440,900`. The overview and Velvet scene use Strength 15%, Softness 35%, Page Light off, normal
-orientation and Hide from Screenshots disabled. The overview uses single-window
-paper; the Velvet scene uses whole-screen paper. The menu capture uses rectangle
-`0,32,1920,1048`, whole-screen Velvet, Candlelight on, Light Strength 60% and
-Glow Medium; Strength and Softness remain 15% and 35%. The writing and reference
-content are neutral sample material. Only ancillary PNG metadata was removed;
-IHDR and IDAT are preserved byte for byte, with no crop or resampling.
+The four new exports use lossless RGB8 PNG. Ancillary density metadata was
+removed; image headers and compressed pixel chunks remain byte-identical. Native menu details are presented
+as separate panels rather than a continuous fabricated menu. Texture and
+controls are not enhanced or invented. All screenshots link to full-size
+images; the wide menu details require that view to read fine labels on a
+narrow screen.
 
-The retained 1.1 terminal images were captured on 2026-10-10 at Strength 15%,
-Softness 35%, Page Light off, with the actual app overlay on a browser-rendered
-synthetic terminal demo. They are lossless 1400x1300 crops from 2880x1800 direct
-captures, with metadata removed. The crop re-encoded pixels but did not resample
-or edit the texture. Their original file and pixel hashes remain in the receipt.
-The demo source is `scripts/fixtures/terminal-demo.html`.
+The terminal examples are lossless crops of a synthetic terminal with the
+actual application overlay, at Strength 15%, Softness 35%, Page Light off.
+Their original hashes and settings are retained in the JSON receipt.
 
-Use `python3 scripts/strip_png_metadata.py INPUT.png OUTPUT.png` to remove
-ancillary capture metadata. These images are separate from historical Build 6
-App Store media in `release-media-build6.json`. The candidate remains held until
-1.2 is live and owner review is complete; no publication is authorized here.
+Publication remains held until 1.2.1 is verified live on the Mac App Store
+and the public update has completed its review and approval gates.

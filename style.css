@@ -85,6 +85,7 @@ figure { margin: 0; }
 .store-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
 .shot { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
 .hero-shot { margin-bottom: 0; }
+.light-controls-shot { max-width: 635px; margin-inline: auto; }
 section { padding-block: 40px; border-top: 1px solid var(--rule); }
 .section-intro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; margin-bottom: 26px; }
 .section-intro p { margin: 0; color: var(--ink-soft); }
