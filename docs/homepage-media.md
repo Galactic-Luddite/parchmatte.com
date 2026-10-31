@@ -15,9 +15,15 @@ settings are recorded in [homepage-media.json](homepage-media.json).
 | `08-denim-terminal.png` | Retained Denim terminal example |
 
 The four new exports use lossless RGB8 PNG. Ancillary density metadata was
-removed; image headers and compressed pixel chunks remain byte-identical. Native menu details are presented
-as separate panels rather than a continuous fabricated menu. Texture and
-controls are not enhanced or invented. All screenshots link to full-size
+removed; image headers and compressed pixel chunks remain byte-identical.
+Native menu details are presented as separate panels rather than a continuous
+fabricated menu. The two menu compositions use corrected native captures from
+the same qualified
+1.2.1 (28) executable. Editable silhouette masks exclude only pixels outside
+the actual menu windows and their outside shadows; native interior control
+pixels remain unchanged. This is a media repair, with no new build
+qualification claimed. Texture and controls are not enhanced or invented.
+All screenshots link to full-size
 images; the wide menu details require that view to read fine labels on a
 narrow screen.
 
