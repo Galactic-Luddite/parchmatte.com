@@ -1,5 +1,5 @@
 {
-  "build": "1.2.1 (28)",
+  "build": "Mixed capture provenance; see per-image records",
   "images": {
     "01-overview.png": {
       "build": "1.2.1 (28)",
@@ -14,21 +14,26 @@
       "source_sha256": "c8534afb25f3cdbfd7b71bedb294057e6132089825d1d43e5d8e1724b70295be"
     },
     "02-menu.png": {
-      "build": "1.2.1 (28)",
-      "blob_sha256": "2dd2de45ec194de1020812766d1c8d11f4a61fbe73b7fba9d166be3b64e85cdf",
-      "bytes": 1010425,
+      "build": "1.2.1 (28) scene; 1.2.2 (29) native controls",
+      "blob_sha256": "961a8ec7908145daaec83a5feee946c58cf68e760f9b49b45e80fe82418ed4cc",
+      "bytes": 1011855,
       "width": 1920,
       "height": 1048,
       "color_type": 2,
       "description": "Separate genuine Parchmatte menu details showing Preview window Strength 28%, Softness 50%, and Velvet selected among nine textures, beside a botanical document.",
       "settings_caption": "Nine textures, with Velvet selected \u00b7 Strength 28%, Softness 50%, Page Light off \u00b7 Menu details and document shown separately",
-      "transformation": "Lossless RGB8 website composition of genuine 1.2.1 (28) application captures on the retained botanical document. Native menu details remain separate panels. Editable silhouette masks exclude pixels outside the actual menu windows and their outside shadows; native interior control pixels are unchanged. No invented controls or texture enhancement. Ancillary PNG metadata removed with strip_png_metadata.py; IHDR and IDAT preserved byte for byte.",
-      "source_sha256": "a7df94b08b5e046e7c2c38cf24926d2c5a6b088d295b3e68cd2efc914ff07eb9",
+      "transformation": "Lossless RGB8 website composition retaining the botanical artwork and genuine native controls. Native controls were recaptured at Retina 2x and fitted at native pixel size or smaller, with integer alignment for 1:1 placement. PhotoCraft converts the source display ICC profile to the destination workingRGB profile; no manual tone, text or effect edits. Editable alpha silhouettes exclude pixels outside actual menu windows and their outside shadows. Ancillary PNG metadata removed with strip_png_metadata.py; IHDR and IDAT preserved byte for byte.",
+      "source_sha256": "58ab59be9dfc8677ae27375f22ade262561469a03a3c40cfae4ca185f501e22b",
       "capture_qualification": {
+        "version": "1.2.2",
+        "build": "29",
+        "executable_sha256": "583507dc87c24270137c8264723ebc39bd26e843d8caad8124270018ecc348ae",
+        "basis": "Installed TestFlight 1.2.2/build 29 identity and composed-screen capture receipt. Native controls only; retained scene pixels have their prior1.2.1/build28 provenance."
+      },
+      "retained_scene": {
         "version": "1.2.1",
         "build": "28",
-        "executable_sha256": "e6eddb4d8e07a35a5a6c420d0bab3ddf6356c0172b262ef89f20b89b41136acd",
-        "basis": "Prior qualified executable receipt; no new full build qualification claimed."
+        "settings": "Velvet, Strength 28%, Softness 50%, Page Light off; retained botanical scene, unchanged."
       }
     },
     "07-woven-terminal.png": {
@@ -74,25 +79,25 @@
       "source_sha256": "c43791fbf6c90a8878134f732fc5b580a4805d4cdf3c9706d4f081733587cd52"
     },
     "10-light-shape-controls.png": {
-      "build": "1.2.1 (28)",
-      "blob_sha256": "b36645ef45c9c3dc838edc711c36875651496c26b9f0286fd2ab92a45df159bc",
-      "bytes": 101017,
+      "build": "1.2.2 (29) native controls",
+      "blob_sha256": "6995dcbe8b63ea2c3bac07aaa9fcb194a387148b4d0d5e9fceec74970be50c6b",
+      "bytes": 111304,
       "width": 635,
       "height": 804,
       "color_type": 2,
       "description": "Separate native Page Light details showing Tall selected, Bottom Right position, and Light Strength 75%.",
       "settings_caption": "Tall shape \u00b7 Bottom Right \u00b7 Light Strength 75% \u00b7 Candlelight, Warm \u00b7 Separate native menu details",
-      "transformation": "Lossless RGB8 website composition of genuine 1.2.1 (28) application captures on the retained botanical document. Native menu details remain separate panels. Editable silhouette masks exclude pixels outside the actual menu windows and their outside shadows; native interior control pixels are unchanged. No invented controls or texture enhancement. Ancillary PNG metadata removed with strip_png_metadata.py; IHDR and IDAT preserved byte for byte.",
-      "source_sha256": "ed05fbb9b60f54454f6544d008fe1a00b220c186ff4752a416d055ab597f46ec",
+      "transformation": "Lossless RGB8 website composition retaining the botanical artwork and genuine native controls. Native controls were recaptured at Retina 2x and fitted at native pixel size or smaller, with integer alignment for 1:1 placement. PhotoCraft converts the source display ICC profile to the destination workingRGB profile; no manual tone, text or effect edits. Editable alpha silhouettes exclude pixels outside actual menu windows and their outside shadows. Ancillary PNG metadata removed with strip_png_metadata.py; IHDR and IDAT preserved byte for byte.",
+      "source_sha256": "c59b2e2ffe31286d49351c74c978cefa9e92f6c991a18968487d28e9563eb3ef",
       "capture_qualification": {
-        "version": "1.2.1",
-        "build": "28",
-        "executable_sha256": "e6eddb4d8e07a35a5a6c420d0bab3ddf6356c0172b262ef89f20b89b41136acd",
-        "basis": "Prior qualified executable receipt; no new full build qualification claimed."
+        "version": "1.2.2",
+        "build": "29",
+        "executable_sha256": "583507dc87c24270137c8264723ebc39bd26e843d8caad8124270018ecc348ae",
+        "basis": "Installed TestFlight 1.2.2/build 29 identity and composed-screen capture receipt. Native controls only; retained scene pixels have their prior1.2.1/build28 provenance."
       }
     }
   },
-  "method": "Four botanical website compositions from genuine 1.2.1 (28) application captures, plus two retained 1.1.0 (26) terminal examples. Per-image descriptions and hashes identify the displayed assets.",
+  "method": "Four botanical website compositions with retained 1.2.1 (28) scenes; website 02/10 native menu components recaptured from installed TestFlight 1.2.2 (29). Two retained 1.1.0 (26) terminal examples. Per-image descriptions and hashes identify the exact assets.",
   "historical_terminal_demo_settings": {
     "hideFromScreenshots": false,
     "opacity": 0.15,
