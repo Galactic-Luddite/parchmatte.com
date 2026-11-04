@@ -47,11 +47,12 @@ class SitePositioningTests(unittest.TestCase):
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
-        shots = re.findall(r'<img class="shot[^"]*" src="/images/shots/([a-z-]+)\.png" srcset="[^"]*" sizes="[^"]*" width="(\d+)" height="(\d+)"', source)
+        shots = re.findall(r'<img class="shot[^"]*" src="/images/shots/([a-z-]+)\.webp" srcset="/images/shots/([a-z0-9-]+\.webp) \d+w, [^"]*" sizes="[^"]*" width="(\d+)" height="(\d+)"', source)
         self.assertEqual(len(shots), 9)
-        self.assertEqual({(width, height) for _, width, height in shots}, {("960", "640")})
-        for name, _, _ in shots:
-            self.assertTrue((ROOT / "images/shots" / (name + "-480.png")).is_file())
+        # Every homepage picture is the same 3:2 shape, with a smaller copy for phones.
+        for name, small, width, height in shots:
+            self.assertEqual(int(width) * 2, int(height) * 3, name)
+            self.assertTrue((ROOT / "images/shots" / small).is_file(), small)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
 
     def test_metadata_and_shared_navigation(self):

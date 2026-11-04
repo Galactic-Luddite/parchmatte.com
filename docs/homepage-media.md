@@ -5,13 +5,18 @@ captions and labels are real HTML; the images hold only the product.
 
 Rules:
 
-- Every image is a 3:2 crop in the same CSS frame, shipped as 960x640 and 480x320
-  PNG (`srcset`), both listed in [homepage-media.json](homepage-media.json).
+- Every image is a 3:2 crop in the same CSS frame. Each ships at its original crop
+  size (never enlarged) plus a smaller copy for phones (600x400, or 480x320 for the
+  texture close-ups) via `srcset`, all listed in [homepage-media.json](homepage-media.json).
 - Sources are crops of the uploaded 2880x1800 App Store screenshots (panels only,
   without their headlines, labels or leaf art) and one native menu capture from the
   installed 1.2.2 build. Crop boxes are in each receipt entry's `transformation`.
-- Resized with macOS `sips`, then stripped with `scripts/strip_png_metadata.py`.
-  Nothing is retouched, redrawn or retyped. Captions must match the settings shown.
+- Cropped and, for the phone copies, resized with macOS `sips`, then encoded as WebP
+  quality 90 with `cwebp -q 90 -metadata none`. In a side-by-side at 1:1 the grain
+  matches the exact PNG. Nothing is retouched, redrawn or retyped. Captions must match
+  the settings shown.
+- The hero slider is plain HTML/CSS with a short inline script: a hidden range input
+  keeps it keyboard accessible, and mouse or a sideways finger drag moves the divider.
 
 | Files | Shows |
 | --- | --- |

@@ -74,5 +74,33 @@ class VerifySiteTests(unittest.TestCase):
         self.assertTrue(any("escapes site" in item for item in MODULE.verify(self.root)))
 
 
+    def write_webp(self, width=960, height=640):
+        frame = b"\x10\x02\x00" + b"\x9d\x01\x2a" + struct.pack("<HH", width, height)
+        data = b"RIFF" + struct.pack("<I", 4 + 8 + len(frame)) + b"WEBP" + b"VP8 " + struct.pack("<I", len(frame)) + frame
+        (self.root / "images/shots/demo.webp").write_bytes(data)
+        self.receipt["images"]["demo.webp"] = {"blob_sha256": hashlib.sha256(data).hexdigest(), "width": 960, "height": 640, "format": "webp"}
+        self.write_receipt()
+
+    def test_valid_webp(self):
+        self.write_webp()
+        self.assertEqual(MODULE.verify(self.root), [])
+
+    def test_webp_wrong_dimensions_fail(self):
+        self.write_webp(width=961)
+        self.assertTrue(any("dimensions/color mismatch: demo.webp" in item for item in MODULE.verify(self.root)))
+
+    def test_webp_declared_as_png_fails(self):
+        self.write_webp()
+        del self.receipt["images"]["demo.webp"]["format"]
+        self.write_receipt()
+        self.assertTrue(any("dimensions/color mismatch: demo.webp" in item for item in MODULE.verify(self.root)))
+
+    def test_unknown_image_format_fails(self):
+        self.image.write_bytes(b"GIF89a" + b"\0" * 40)
+        self.receipt["images"]["demo.png"]["blob_sha256"] = hashlib.sha256(self.image.read_bytes()).hexdigest()
+        self.write_receipt()
+        self.assertIn("invalid PNG/WebP header: demo.png", MODULE.verify(self.root))
+
+
 if __name__ == "__main__":
     unittest.main()

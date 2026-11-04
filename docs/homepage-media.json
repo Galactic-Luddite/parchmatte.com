@@ -1,186 +1,204 @@
 {
   "build": "1.2.2 (29)",
   "images": {
-    "home-plain.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "97229502f561de9518a831d166a3b0d5c129b36fd50dd6a20655269bf6843f9e",
-      "bytes": 147355,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "home-plain.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "2611443840c24c0b9b2ad20a47e339c67eadbd4aa0a12d892de86e6f789f7a40",
+      "bytes": 37430,
+      "width": 1176,
+      "height": 784,
+      "format": "webp",
       "description": "Before panel of App Store card 1",
-      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "5c5d61b475dc6a2e813d30fe30c07f8125063f45cc019a6d3b7b5917574ca806"
     },
-    "home-plain-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "e2b2a9ce6932c7e44344911f54412ae3327554a63df34dad594dc101b7b5ef22",
-      "bytes": 51937,
-      "width": 480,
-      "height": 320,
-      "color_type": 2,
+    "home-plain-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "025ebd99f87111ce55ac18fddac30195786aca605ec309dbb06fdbafaa9ce27a",
+      "bytes": 14742,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "Before panel of App Store card 1",
-      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "5c5d61b475dc6a2e813d30fe30c07f8125063f45cc019a6d3b7b5917574ca806"
     },
-    "home-velvet.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "5d2ab9b9f57766418134a1e18458f3b0ac851abc69c9077017fb95d46865f25e",
-      "bytes": 795080,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "home-velvet.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "9f2126b692faa76fb0620bf2f57a58434dd8f6f97abd7dc4be421ffcace33476",
+      "bytes": 98264,
+      "width": 1176,
+      "height": 784,
+      "format": "webp",
       "description": "With Velvet panel of App Store card 1",
-      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "5c5d61b475dc6a2e813d30fe30c07f8125063f45cc019a6d3b7b5917574ca806"
     },
-    "home-velvet-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "3e5cfd499f15c1f111189a33b34f2dce1730f5ef38d34610f0b1053198cf67d5",
-      "bytes": 229335,
-      "width": 480,
-      "height": 320,
-      "color_type": 2,
+    "home-velvet-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "ca0ed5492e9b57bd2ce9b8a19712d783bd7a72494cda0ef037b1929032a82225",
+      "bytes": 39476,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "With Velvet panel of App Store card 1",
-      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "5c5d61b475dc6a2e813d30fe30c07f8125063f45cc019a6d3b7b5917574ca806"
     },
-    "window-woven.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "499c7d14bb2c0c50a2007b07eb89694b2cb576b9c49304a7da227f1c900a6674",
-      "bytes": 773189,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "window-woven.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "ed6e0f7d0af3d8fd0d522838626112bac54815d5592b1b06a90c21612b80ed95",
+      "bytes": 80438,
+      "width": 1200,
+      "height": 800,
+      "format": "webp",
       "description": "Woven window of card 2",
-      "transformation": "Woven window of card 2: cropped to 1200x800 at x=172, y=705, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Woven window of App Store card 2: cropped to 1200x800 at x=172, y=705 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "b7db4b7bee73239e9f66d8d3cc7f5b06beb7285bd893660bc453131a88a72e86"
     },
-    "window-woven-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "8c60eb82ea1ecfa7bca11698da5eaf927c80fc73a2e168a1fce23fe0d739f16f",
-      "bytes": 212570,
-      "width": 480,
-      "height": 320,
-      "color_type": 2,
+    "window-woven-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "04123ccc10663050d8386cf65e02a0ee82210e32e54a7a3a1df54823f6560155",
+      "bytes": 27468,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "Woven window of card 2",
-      "transformation": "Woven window of card 2: cropped to 1200x800 at x=172, y=705, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Woven window of App Store card 2: cropped to 1200x800 at x=172, y=705, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "b7db4b7bee73239e9f66d8d3cc7f5b06beb7285bd893660bc453131a88a72e86"
     },
-    "window-velvet.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "c7084cd513413ecd3591eab5c4f547c5bfa02a3b3101793b56d8a4fc8c73a9ce",
-      "bytes": 716777,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "window-velvet.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "4f09d61fbe1c099cec38276e45db4ee42211d04b7ee2227c4367606fe990681f",
+      "bytes": 80354,
+      "width": 1200,
+      "height": 800,
+      "format": "webp",
       "description": "Velvet window of card 2",
-      "transformation": "Velvet window of card 2: cropped to 1200x800 at x=1491, y=705, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Velvet window of App Store card 2: cropped to 1200x800 at x=1491, y=705 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "b7db4b7bee73239e9f66d8d3cc7f5b06beb7285bd893660bc453131a88a72e86"
     },
-    "window-velvet-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "0414775f4daecbc7b43cb64d0271c5a567de171d14109657470aad15bf8b2cd3",
-      "bytes": 215814,
-      "width": 480,
-      "height": 320,
-      "color_type": 2,
+    "window-velvet-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "26f0c376d1acd5aaded87a79e4156d5a4d5ca09921a30478572ca40fd06036eb",
+      "bytes": 34112,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "Velvet window of card 2",
-      "transformation": "Velvet window of card 2: cropped to 1200x800 at x=1491, y=705, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Velvet window of App Store card 2: cropped to 1200x800 at x=1491, y=705, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "b7db4b7bee73239e9f66d8d3cc7f5b06beb7285bd893660bc453131a88a72e86"
     },
-    "texture-velvet.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "fca7002dfe54c87eb2a4cb865f31af7d5a20c7899b252eaa4c54e8db2a8d873c",
-      "bytes": 635500,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "texture-velvet.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "8ea5e7239fa8737eb0a060d39efcafbbca09ab027c09e6f1a030872c6fb7f8cd",
+      "bytes": 32270,
+      "width": 720,
+      "height": 480,
+      "format": "webp",
       "description": "Velvet detail of card 3",
-      "transformation": "Velvet detail of card 3: cropped to 720x480 at x=192, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Velvet detail of App Store card 3: cropped to 720x480 at x=192, y=816 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "texture-velvet-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "68e527fd9d77eba9e450e609bbeac28d803d553a00bcaf30f8f941629efa7205",
-      "bytes": 198316,
+    "texture-velvet-480.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "2d5ba03aea174b61e2796157d83b109e4806b46026bfa25b75cb111c4e6d2f3a",
+      "bytes": 19302,
       "width": 480,
       "height": 320,
-      "color_type": 2,
+      "format": "webp",
       "description": "Velvet detail of card 3",
-      "transformation": "Velvet detail of card 3: cropped to 720x480 at x=192, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Velvet detail of App Store card 3: cropped to 720x480 at x=192, y=816, resized to 480x320 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "texture-woven.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "057aaad3d7169b3df9d17eb411648c94654b0161456bc2d19645d5fddfe1cd55",
-      "bytes": 692943,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "texture-woven.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "ba54b8cb5b553888080af3f31632cc0d2a8afbf2622855ca7a836818d2f192e1",
+      "bytes": 29290,
+      "width": 720,
+      "height": 480,
+      "format": "webp",
       "description": "Woven detail of card 3",
-      "transformation": "Woven detail of card 3: cropped to 720x480 at x=1082, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Woven detail of App Store card 3: cropped to 720x480 at x=1082, y=816 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "texture-woven-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "2633f9a67e75b36a78965b7ace4effc94b0657f6de234c96ec4425cfc9293f6b",
-      "bytes": 200783,
+    "texture-woven-480.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "be973f66b833c45295c68f9614dffeba4fa4d39d965d57ba5044737c2ef92b9d",
+      "bytes": 15206,
       "width": 480,
       "height": 320,
-      "color_type": 2,
+      "format": "webp",
       "description": "Woven detail of card 3",
-      "transformation": "Woven detail of card 3: cropped to 720x480 at x=1082, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Woven detail of App Store card 3: cropped to 720x480 at x=1082, y=816, resized to 480x320 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "texture-denim.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "cbbd1ca9bba2f8764f342195a3a964cd67e6199f12cd3624538a5816208e8883",
-      "bytes": 812475,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "texture-denim.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "3e79752dbe2f909bde7c1d6a6cd1f89234a2622aeeaefa236927f23aa707e4c2",
+      "bytes": 46302,
+      "width": 720,
+      "height": 480,
+      "format": "webp",
       "description": "Denim detail of card 3",
-      "transformation": "Denim detail of card 3: cropped to 720x480 at x=1972, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Denim detail of App Store card 3: cropped to 720x480 at x=1972, y=816 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "texture-denim-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "cf5c7670475653d1bf91221dccd3c4486a62ab8f5f896e4c134d602d1ab4e7d7",
-      "bytes": 239664,
+    "texture-denim-480.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "b0f92f0ec69a2dcbb6eda0cd36a823f3f393cfe8154e18515721fd75b56f1bf0",
+      "bytes": 26756,
       "width": 480,
       "height": 320,
-      "color_type": 2,
+      "format": "webp",
       "description": "Denim detail of card 3",
-      "transformation": "Denim detail of card 3: cropped to 720x480 at x=1972, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Denim detail of App Store card 3: cropped to 720x480 at x=1972, y=816, resized to 480x320 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
     },
-    "light-candlelight.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "ef205bb4a1fc65f1e65b3cef5b4f822b28426fb0e182822065db64e7b8576232",
-      "bytes": 820214,
-      "width": 960,
-      "height": 640,
-      "color_type": 2,
+    "light-candlelight.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "4bf63edaba8f23ff3ac3a343270c41d0d239cdc3e49aeb1acbbd2b95d364bf2e",
+      "bytes": 117198,
+      "width": 1380,
+      "height": 920,
+      "format": "webp",
       "description": "Candlelight document panel of card 4",
-      "transformation": "Candlelight document panel of card 4: cropped to 1380x920 at x=200, y=690, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Candlelight document panel of App Store card 4: cropped to 1380x920 at x=200, y=690 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "4496694a75d2e8e4a78c332097a41920e8f78a9ab922a493d853b2044ce3ab3c"
     },
-    "light-candlelight-480.png": {
-      "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "7e751c1a241bf6d9dba3e013a04d00a9440947b0fcbe3e6d09604d3d75874e21",
-      "bytes": 231074,
-      "width": 480,
-      "height": 320,
-      "color_type": 2,
+    "light-candlelight-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "7ff3f20b30fbff541c1ed06767b49451a1bd0205dfef38c8e6c8fc382440db31",
+      "bytes": 39212,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "Candlelight document panel of card 4",
-      "transformation": "Candlelight document panel of card 4: cropped to 1380x920 at x=200, y=690, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Candlelight document panel of App Store card 4: cropped to 1380x920 at x=200, y=690, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "4496694a75d2e8e4a78c332097a41920e8f78a9ab922a493d853b2044ce3ab3c"
     },
-    "menu-textures.png": {
-      "build": "1.2.2 (29) native capture",
-      "blob_sha256": "47b3a4d51e182e661ed2178dbb57ab4d3d3c5d61fdbefd28ad2f6aa036df262b",
-      "bytes": 689131,
-      "width": 960,
-      "height": 640,
-      "color_type": 6,
+    "menu-textures.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "43edffa2a42dd6633c053d45b5109ba3ac9024cec3133bd5c052b00e256ee97f",
+      "bytes": 105192,
+      "width": 1602,
+      "height": 1068,
+      "format": "webp",
       "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
-      "transformation": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 960x640 with sips, metadata stripped. No retouch."
+      "transformation": "Texture menu from the clean native 1.2.2 (29) capture group4-texture: cropped to 1602x1068 at x=2330, y=0 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "d6e51224835debde15490c55eb00866907b52d6c4f93cd49b28599fe05c1578e"
     },
-    "menu-textures-480.png": {
-      "build": "1.2.2 (29) native capture",
-      "blob_sha256": "4656ec396e7eaaef855a5b17681a73e39c1147f300b5e722f1e0f21952182172",
-      "bytes": 207273,
-      "width": 480,
-      "height": 320,
-      "color_type": 6,
+    "menu-textures-600.webp": {
+      "build": "1.2.2 (29)",
+      "blob_sha256": "3bd0e17131b80110096f1ea154bc0e5c0a208daaa03e5d6357c4b4e7660e18ab",
+      "bytes": 31828,
+      "width": 600,
+      "height": 400,
+      "format": "webp",
       "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
-      "transformation": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 480x320 with sips, metadata stripped. No retouch."
+      "transformation": "Texture menu from the clean native 1.2.2 (29) capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
+      "source_sha256": "d6e51224835debde15490c55eb00866907b52d6c4f93cd49b28599fe05c1578e"
     }
   },
-  "method": "Each homepage image is a crop of a genuine Parchmatte 1.2.2 (29) capture: panels cut from the uploaded App Store screenshots (headlines, labels and decoration left out), plus one native menu capture. Resized with macOS sips, ancillary PNG metadata removed with strip_png_metadata.py. Nothing retouched or retyped. Each image ships at 960x640 and 480x320 (same 3:2 crop)."
+  "method": "Each homepage image is a crop of a genuine Parchmatte 1.2.2 (29) capture: panels cut from the uploaded App Store screenshots (headlines, labels and decoration left out), plus one native menu capture. Each ships at its original crop size (never enlarged) and a smaller copy for phones, encoded as WebP quality 90. source_sha256 is the exact source file. Nothing retouched or retyped."
 }
