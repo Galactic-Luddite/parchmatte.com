@@ -1,78 +1,186 @@
 {
   "build": "1.2.2 (29)",
   "images": {
-    "card-01-softer-look.png": {
+    "home-plain.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "12a436798e60498ea68a86c538691d68faee443a4c8b9efcbf4b02e68cd2f9df",
-      "bytes": 785787,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "97229502f561de9518a831d166a3b0d5c129b36fd50dd6a20655269bf6843f9e",
+      "bytes": 147355,
+      "width": 960,
+      "height": 640,
       "color_type": 2,
-      "description": "Before and after: a botanical design document as it is, then with Parchmatte’s Velvet texture.",
-      "settings_caption": "PARCHMATTE · A softer, matte look. For your Mac. · BEFORE / WITH PARCHMATTE · VELVET",
-      "transformation": "App Store screenshot 1 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "5c5d61b475dc6a2e813d30fe30c07f8125063f45cc019a6d3b7b5917574ca806"
+      "description": "Before panel of App Store card 1",
+      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756, resized to 960x640 with sips, metadata stripped. No retouch."
     },
-    "card-02-your-windows.png": {
+    "home-plain-480.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "319d109fee6d8126309dddca2017a4230370067f8eb1d3185eaca8080be71837",
-      "bytes": 1210618,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "e2b2a9ce6932c7e44344911f54412ae3327554a63df34dad594dc101b7b5ef22",
+      "bytes": 51937,
+      "width": 480,
+      "height": 320,
       "color_type": 2,
-      "description": "Two Preview windows in the same app showing the same botanical document, one with Woven and one with Velvet.",
-      "settings_caption": "Your windows. Your look. Style two windows in the same app. · PREVIEW · WOVEN / PREVIEW · VELVET",
-      "transformation": "App Store screenshot 2 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "b7db4b7bee73239e9f66d8d3cc7f5b06beb7285bd893660bc453131a88a72e86"
+      "description": "Before panel of App Store card 1",
+      "transformation": "Before panel of App Store card 1: cropped to 1176x784 at x=172, y=756, resized to 480x320 with sips, metadata stripped. No retouch."
     },
-    "card-03-textures.png": {
+    "home-velvet.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "486e45127b2e5ac4fc109c9d5b88f1f959a59d97c4cab632b4c1c8cd42aecb2f",
-      "bytes": 1110611,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "5d2ab9b9f57766418134a1e18458f3b0ac851abc69c9077017fb95d46865f25e",
+      "bytes": 795080,
+      "width": 960,
+      "height": 640,
       "color_type": 2,
-      "description": "Matching close-ups of a botanical illustration with the Velvet, Woven and Denim textures.",
-      "settings_caption": "Find your texture. A different feel for your workspace. · VELVET / WOVEN / DENIM",
-      "transformation": "App Store screenshot 3 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "ccab23cc00a1e625301cce913d5c96e3339502a5fb140a2f8fc6fdc9c281f1f4"
+      "description": "With Velvet panel of App Store card 1",
+      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756, resized to 960x640 with sips, metadata stripped. No retouch."
     },
-    "card-04-light.png": {
+    "home-velvet-480.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "837520b9c392a9db247b5fd7c046b8457ef648e6ff1616a1b3ed783f40378cc7",
-      "bytes": 1014631,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "3e5cfd499f15c1f111189a33b34f2dce1730f5ef38d34610f0b1053198cf67d5",
+      "bytes": 229335,
+      "width": 480,
+      "height": 320,
       "color_type": 2,
-      "description": "A botanical document with warm Candlelight Page Light, beside the Shape menu set to Tall and the Position menu set to Bottom Right.",
-      "settings_caption": "Shape your light. Choose a shape. Place it where you want. · CANDLELIGHT · WARM / SHAPE · TALL / POSITION · BOTTOM RIGHT",
-      "transformation": "App Store screenshot 4 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "4496694a75d2e8e4a78c332097a41920e8f78a9ab922a493d853b2044ce3ab3c"
+      "description": "With Velvet panel of App Store card 1",
+      "transformation": "With Velvet panel of App Store card 1: cropped to 1176x784 at x=1531, y=756, resized to 480x320 with sips, metadata stripped. No retouch."
     },
-    "card-05-menu-bar.png": {
+    "window-woven.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "03f33d0b8a9db561c651129a6d9fc6103bf5d247ce6846ee8f49bcf828161ec7",
-      "bytes": 1155481,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "499c7d14bb2c0c50a2007b07eb89694b2cb576b9c49304a7da227f1c900a6674",
+      "bytes": 773189,
+      "width": 960,
+      "height": 640,
       "color_type": 2,
-      "description": "The Parchmatte menu with the Texture submenu open, beside a botanical document with Velvet.",
-      "settings_caption": "Right in your menu bar. Texture, light and everyday adjustments. · NATIVE TEXTURE MENU / YOUR WORK · VELVET",
-      "transformation": "App Store screenshot 5 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "585e40c8c021eac5c61b996e388a663adde6c977c0f1bf4ff42d6eeb2f32c1b6"
+      "description": "Woven window of card 2",
+      "transformation": "Woven window of card 2: cropped to 1200x800 at x=172, y=705, resized to 960x640 with sips, metadata stripped. No retouch."
     },
-    "card-06-workspace.png": {
+    "window-woven-480.png": {
       "build": "1.2.2 (29) App Store screenshot set",
-      "blob_sha256": "7b6263c43bb25fcc61a22a7b890e5ea25d55864b541e320efad7827bce45ff3d",
-      "bytes": 810593,
-      "width": 1840,
-      "height": 1150,
+      "blob_sha256": "8c60eb82ea1ecfa7bca11698da5eaf927c80fc73a2e168a1fce23fe0d739f16f",
+      "bytes": 212570,
+      "width": 480,
+      "height": 320,
       "color_type": 2,
-      "description": "A botanical document with paper on, the same document paused while Preview is excluded, and the Schedule, Displays and Excluded Apps menu.",
-      "settings_caption": "Fit your workspace. Paper where you want it. Pause when you need to. · PAPER ON / PAUSED · PREVIEW EXCLUDED",
-      "transformation": "App Store screenshot 6 of 6, resized from 2880x1800 to 1840x1150 with macOS sips, then ancillary PNG metadata removed with strip_png_metadata.py. No crop, retouch or text change.",
-      "source_sha256": "9af3284478fcff06b5615cf4611320aebcf1c1c32223b24daa50f7ba0ed821b5"
+      "description": "Woven window of card 2",
+      "transformation": "Woven window of card 2: cropped to 1200x800 at x=172, y=705, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "window-velvet.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "c7084cd513413ecd3591eab5c4f547c5bfa02a3b3101793b56d8a4fc8c73a9ce",
+      "bytes": 716777,
+      "width": 960,
+      "height": 640,
+      "color_type": 2,
+      "description": "Velvet window of card 2",
+      "transformation": "Velvet window of card 2: cropped to 1200x800 at x=1491, y=705, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "window-velvet-480.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "0414775f4daecbc7b43cb64d0271c5a567de171d14109657470aad15bf8b2cd3",
+      "bytes": 215814,
+      "width": 480,
+      "height": 320,
+      "color_type": 2,
+      "description": "Velvet window of card 2",
+      "transformation": "Velvet window of card 2: cropped to 1200x800 at x=1491, y=705, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "texture-velvet.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "fca7002dfe54c87eb2a4cb865f31af7d5a20c7899b252eaa4c54e8db2a8d873c",
+      "bytes": 635500,
+      "width": 960,
+      "height": 640,
+      "color_type": 2,
+      "description": "Velvet detail of card 3",
+      "transformation": "Velvet detail of card 3: cropped to 720x480 at x=192, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "texture-velvet-480.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "68e527fd9d77eba9e450e609bbeac28d803d553a00bcaf30f8f941629efa7205",
+      "bytes": 198316,
+      "width": 480,
+      "height": 320,
+      "color_type": 2,
+      "description": "Velvet detail of card 3",
+      "transformation": "Velvet detail of card 3: cropped to 720x480 at x=192, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "texture-woven.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "057aaad3d7169b3df9d17eb411648c94654b0161456bc2d19645d5fddfe1cd55",
+      "bytes": 692943,
+      "width": 960,
+      "height": 640,
+      "color_type": 2,
+      "description": "Woven detail of card 3",
+      "transformation": "Woven detail of card 3: cropped to 720x480 at x=1082, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "texture-woven-480.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "2633f9a67e75b36a78965b7ace4effc94b0657f6de234c96ec4425cfc9293f6b",
+      "bytes": 200783,
+      "width": 480,
+      "height": 320,
+      "color_type": 2,
+      "description": "Woven detail of card 3",
+      "transformation": "Woven detail of card 3: cropped to 720x480 at x=1082, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "texture-denim.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "cbbd1ca9bba2f8764f342195a3a964cd67e6199f12cd3624538a5816208e8883",
+      "bytes": 812475,
+      "width": 960,
+      "height": 640,
+      "color_type": 2,
+      "description": "Denim detail of card 3",
+      "transformation": "Denim detail of card 3: cropped to 720x480 at x=1972, y=816, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "texture-denim-480.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "cf5c7670475653d1bf91221dccd3c4486a62ab8f5f896e4c134d602d1ab4e7d7",
+      "bytes": 239664,
+      "width": 480,
+      "height": 320,
+      "color_type": 2,
+      "description": "Denim detail of card 3",
+      "transformation": "Denim detail of card 3: cropped to 720x480 at x=1972, y=816, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "light-candlelight.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "ef205bb4a1fc65f1e65b3cef5b4f822b28426fb0e182822065db64e7b8576232",
+      "bytes": 820214,
+      "width": 960,
+      "height": 640,
+      "color_type": 2,
+      "description": "Candlelight document panel of card 4",
+      "transformation": "Candlelight document panel of card 4: cropped to 1380x920 at x=200, y=690, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "light-candlelight-480.png": {
+      "build": "1.2.2 (29) App Store screenshot set",
+      "blob_sha256": "7e751c1a241bf6d9dba3e013a04d00a9440947b0fcbe3e6d09604d3d75874e21",
+      "bytes": 231074,
+      "width": 480,
+      "height": 320,
+      "color_type": 2,
+      "description": "Candlelight document panel of card 4",
+      "transformation": "Candlelight document panel of card 4: cropped to 1380x920 at x=200, y=690, resized to 480x320 with sips, metadata stripped. No retouch."
+    },
+    "menu-textures.png": {
+      "build": "1.2.2 (29) native capture",
+      "blob_sha256": "47b3a4d51e182e661ed2178dbb57ab4d3d3c5d61fdbefd28ad2f6aa036df262b",
+      "bytes": 689131,
+      "width": 960,
+      "height": 640,
+      "color_type": 6,
+      "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
+      "transformation": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 960x640 with sips, metadata stripped. No retouch."
+    },
+    "menu-textures-480.png": {
+      "build": "1.2.2 (29) native capture",
+      "blob_sha256": "4656ec396e7eaaef855a5b17681a73e39c1147f300b5e722f1e0f21952182172",
+      "bytes": 207273,
+      "width": 480,
+      "height": 320,
+      "color_type": 6,
+      "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
+      "transformation": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 480x320 with sips, metadata stripped. No retouch."
     }
   },
-  "method": "The six Parchmatte 1.2.2 Mac App Store screenshots, in listing order. Each source_sha256 is the exact file uploaded to App Store Connect on 2026-11-01 (asc-retina-upload-plan.json); composition provenance for each card is in the private 1.2.2 artwork package (manifest c9e56cba92ef6425ff5964bd7cce77bc853253bd22fac7da3f17f95041e4c237)."
+  "method": "Each homepage image is a crop of a genuine Parchmatte 1.2.2 (29) capture: panels cut from the uploaded App Store screenshots (headlines, labels and decoration left out), plus one native menu capture. Resized with macOS sips, ancillary PNG metadata removed with strip_png_metadata.py. Nothing retouched or retyped. Each image ships at 960x640 and 480x320 (same 3:2 crop)."
 }

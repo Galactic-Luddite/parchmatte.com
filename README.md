@@ -10,11 +10,12 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The homepage shows the six Parchmatte 1.2.2 Mac App Store screenshots, in listing
-order, all at 1840x1150: `images/shots/card-01-softer-look.png` through
-`card-06-workspace.png`. They are the uploaded App Store files, resized and
-stripped of PNG metadata only. Hashes and source identity are in
-`docs/homepage-media.json`; see `docs/homepage-media.md`. These images are
+The homepage shows nine genuine Parchmatte 1.2.2 captures, each a 3:2 crop in
+one frame style, shipped at 960x640 and 480x320 (`images/shots/home-*`,
+`window-*`, `texture-*`, `light-candlelight*`, `menu-textures*`). They are crops of the
+uploaded App Store screenshots and one native menu capture, resized and stripped of
+PNG metadata only. No headline or label text is baked into them. Hashes and source
+identity are in `docs/homepage-media.json`; see `docs/homepage-media.md`. These images are
 separate from the historical Build 6 App Store media receipt.
 
 ## Historical Build 6 release media
