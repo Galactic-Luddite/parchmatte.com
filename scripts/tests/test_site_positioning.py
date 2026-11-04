@@ -38,16 +38,16 @@ class SitePositioningTests(unittest.TestCase):
 
     def test_homepage_copy_and_section_sequence(self):
         source = (ROOT / "index.html").read_text()
-        self.assertIn("<title>Parchmatte: Paper Texture Overlay for Mac</title>", source)
-        self.assertIn("<h1>Paper texture for your Mac.</h1>", source)
-        description = "Add paper texture to one window or your whole Mac screen. Adjust the grain and optional Page Light tint. On the Mac App Store. Requires macOS 13+."
+        self.assertIn("<title>Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac</title>", source)
+        self.assertIn("<h1>A softer, matte look for your Mac screen.</h1>", source)
+        description = "Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar."
         for field in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
             self.assertIn(field + ' content="' + description + '"', source)
-        headings = ["One window, with your own paper.", "One window or the whole screen", "Make it your paper.", "Add optional Page Light.", "Set it up for your workspace.", "Paper on a darker screen.", "Compare paper texture and screen tint.", "A few practical details", "Give your Mac a paper texture."]
+        headings = ["Your windows. Your look.", "One window or the whole screen", "Make it your paper.", "Add a little light.", "Simple controls. Right where you need them.", "Fit your workspace.", "Paper on a darker screen.", "Compare paper texture and screen tint.", "A few practical details", "Make your screen feel more like your page."]
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
-        self.assertIn("Paper texture on a writing window", source)
+        self.assertIn("Independently styled Preview windows", source)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
 
     def test_metadata_and_shared_navigation(self):
