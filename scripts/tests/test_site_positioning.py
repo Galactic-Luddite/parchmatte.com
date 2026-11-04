@@ -39,7 +39,7 @@ class SitePositioningTests(unittest.TestCase):
     def test_homepage_copy_and_section_sequence(self):
         source = (ROOT / "index.html").read_text()
         self.assertIn("<title>Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac</title>", source)
-        self.assertIn('<h1 class="sr-only">A softer, matte look for your Mac screen.</h1>', source)
+        self.assertIn('<h1>A softer, matte look for your Mac screen.</h1>', source)
         description = "Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar."
         for field in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
             self.assertIn(field + ' content="' + description + '"', source)
@@ -47,10 +47,12 @@ class SitePositioningTests(unittest.TestCase):
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
-        cards = re.findall(r'<img class="shot" src="/images/shots/(card-0[1-6]-[a-z-]+)\.png" width="(\d+)" height="(\d+)"', source)
-        self.assertEqual([name[:7] for name, _, _ in cards], ["card-0" + str(n) for n in range(1, 7)])
-        self.assertEqual({(width, height) for _, width, height in cards}, {("1840", "1150")})
-        self.assertEqual(source.count('<img class="shot"'), 6)
+        shots = re.findall(r'<img class="shot[^"]*" src="/images/shots/([a-z-]+)\.webp" srcset="/images/shots/([a-z0-9-]+\.webp) \d+w, [^"]*" sizes="[^"]*" width="(\d+)" height="(\d+)"', source)
+        self.assertEqual(len(shots), 9)
+        # Every homepage picture is the same 3:2 shape, with a smaller copy for phones.
+        for name, small, width, height in shots:
+            self.assertEqual(int(width) * 2, int(height) * 3, name)
+            self.assertTrue((ROOT / "images/shots" / small).is_file(), small)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
 
     def test_metadata_and_shared_navigation(self):

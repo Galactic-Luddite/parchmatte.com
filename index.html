@@ -39,7 +39,7 @@
   "operatingSystem": "macOS 13 or later",
   "softwareVersion": "1.2.2",
   "image": "https://parchmatte.com/icon.png",
-  "screenshot": "https://parchmatte.com/images/shots/card-01-softer-look.png",
+  "screenshot": "https://parchmatte.com/images/shots/home-velvet.webp",
   "author": {
     "@type": "Organization",
     "name": "Galactic Luddite"
@@ -71,52 +71,71 @@
     <nav class="site-nav" aria-label="Site"><a href="/" aria-current="page"><img src="/icon.png" alt="" width="28" height="28">Parchmatte</a><a href="/compare/">Compare</a><a href="/privacy/">Privacy</a></nav>
   </header>
   <main id="main" class="wrap">
-    <div class="intro intro-card">
-      <h1 class="sr-only">A softer, matte look for your Mac screen.</h1>
-      <figure class="card-shot"><a href="/images/shots/card-01-softer-look.png"><img class="shot" src="/images/shots/card-01-softer-look.png" width="1840" height="1150" fetchpriority="high" alt="Before and after: a botanical design document as it is, then with Parchmatte’s Velvet texture."></a></figure>
+    <div class="hero">
+      <h1>A softer, matte look for your Mac screen.</h1>
       <p class="lede">Add paper texture and gentle light to individual windows or your whole screen. Fine-tune the look right from your menu bar.</p>
       <div class="download">
         <a class="store-badge" href="https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12"><picture><source srcset="/images/badges/mac-app-store-white.svg" media="(prefers-color-scheme: dark)"><img src="/images/badges/mac-app-store-black.svg" alt="Download on the Mac App Store" width="195" height="50"></picture></a>
-
         <p>US $2.99 on the Mac App Store. Regional prices vary. Requires macOS 13 or later.</p>
       </div>
-      <p class="demo-link"><a href="#paper-in-use">See the texture and controls</a></p>
+      <figure class="compare-shot" id="compare">
+        <div class="compare-stage">
+          <img class="shot" src="/images/shots/home-plain.webp" srcset="/images/shots/home-plain-600.webp 600w, /images/shots/home-plain.webp 1176w" sizes="(min-width: 960px) 920px, calc(100vw - 40px)" width="1176" height="784" fetchpriority="high" alt="A botanical design document in Preview with no paper applied.">
+          <div class="compare-top"><img class="shot" src="/images/shots/home-velvet.webp" srcset="/images/shots/home-velvet-600.webp 600w, /images/shots/home-velvet.webp 1176w" sizes="(min-width: 960px) 920px, calc(100vw - 40px)" width="1176" height="784" fetchpriority="high" alt="The same document with Parchmatte’s Velvet texture."></div>
+          <span class="tag tag-left">Without paper</span><span class="tag tag-right">With Velvet</span>
+          <input class="compare-range" type="range" min="0" max="100" value="50" aria-label="Compare the document without paper and with Velvet">
+        </div>
+        <figcaption>The same document, before and with Velvet. Drag to compare.</figcaption>
+      </figure>
     </div>
-    <section class="card-section" aria-label="Why Parchmatte">
-      <dl class="feature-notes proof-points">
-        <div><dt>One window or the whole screen</dt><dd>Choose an individual window, or cover your display.</dd></div>
-        <div><dt>Keep working underneath</dt><dd>Clicks, scrolling and typing pass through the overlay.</dd></div>
-        <div><dt>Preferences stay on your Mac</dt><dd>No account, data collection or app network connections.</dd></div>
-      </dl>
+
+    <dl class="feature-notes proof-points">
+      <div><dt>One window or the whole screen</dt><dd>Choose an individual window, or cover your display.</dd></div>
+      <div><dt>Keep working underneath</dt><dd>Clicks, scrolling and typing pass through the overlay.</dd></div>
+      <div><dt>Preferences stay on your Mac</dt><dd>No account, data collection or app network connections.</dd></div>
+    </dl>
+
+    <section id="paper-in-use" aria-labelledby="paper-title">
+      <div class="section-intro">
+        <h2 id="paper-title">Your windows. Your look.</h2>
+        <p>Give individual windows their own texture and light, even two windows in the same app. Keep your writing window and reference document looking different, or use one look for the whole screen. Window choices last for the current app session. <a href="/guides/paper-texture-on-mac/">Learn how to add paper texture to one Mac window</a>.</p>
+      </div>
+      <div class="pair">
+        <figure><img class="shot" src="/images/shots/window-woven.webp" srcset="/images/shots/window-woven-600.webp 600w, /images/shots/window-woven.webp 1200w" sizes="(min-width: 960px) 450px, calc(100vw - 40px)" width="1200" height="800" loading="lazy" alt="A Preview window showing the botanical document with the Woven texture."><figcaption>Woven</figcaption></figure>
+        <figure><img class="shot" src="/images/shots/window-velvet.webp" srcset="/images/shots/window-velvet-600.webp 600w, /images/shots/window-velvet.webp 1200w" sizes="(min-width: 960px) 450px, calc(100vw - 40px)" width="1200" height="800" loading="lazy" alt="A second Preview window showing the same document with the Velvet texture."><figcaption>Velvet</figcaption></figure>
+      </div>
     </section>
 
-    <section id="paper-in-use" class="card-section" aria-labelledby="paper-title">
-      <h2 id="paper-title" class="sr-only">Your windows. Your look.</h2>
-      <figure class="card-shot"><a href="/images/shots/card-02-your-windows.png"><img class="shot" src="/images/shots/card-02-your-windows.png" width="1840" height="1150" loading="lazy" alt="Two Preview windows in the same app showing the same botanical document, one with Woven and one with Velvet."></a></figure>
-      <p>Give individual windows their own texture and light, even two windows in the same app. Keep your writing window and reference document looking different, or use one look for the whole screen. <a href="/guides/paper-texture-on-mac/">Learn how to add paper texture to one Mac window</a>.</p>
+    <section aria-labelledby="texture-title">
+      <div class="section-intro">
+        <h2 id="texture-title">Find your texture.</h2>
+        <p>Choose from nine textures: Parchmatte, Fine Grain, Chalkboard, Woven, Imprint, Soft Leaf, Felt, Denim and Velvet. Velvet adds a fine plush texture in Wine. Adjust strength and softness from the menu bar, with separate settings for a single window or the whole screen.</p>
+      </div>
+      <div class="trio">
+        <figure><img class="shot" src="/images/shots/texture-velvet.webp" srcset="/images/shots/texture-velvet-480.webp 480w, /images/shots/texture-velvet.webp 720w" sizes="(min-width: 960px) 290px, (min-width: 600px) 30vw, calc(100vw - 40px)" width="720" height="480" loading="lazy" alt="Close-up of a botanical illustration with the Velvet texture."><figcaption>Velvet</figcaption></figure>
+        <figure><img class="shot" src="/images/shots/texture-woven.webp" srcset="/images/shots/texture-woven-480.webp 480w, /images/shots/texture-woven.webp 720w" sizes="(min-width: 960px) 290px, (min-width: 600px) 30vw, calc(100vw - 40px)" width="720" height="480" loading="lazy" alt="The same close-up with the Woven texture."><figcaption>Woven</figcaption></figure>
+        <figure><img class="shot" src="/images/shots/texture-denim.webp" srcset="/images/shots/texture-denim-480.webp 480w, /images/shots/texture-denim.webp 720w" sizes="(min-width: 960px) 290px, (min-width: 600px) 30vw, calc(100vw - 40px)" width="720" height="480" loading="lazy" alt="The same close-up with the Denim texture."><figcaption>Denim</figcaption></figure>
+      </div>
     </section>
 
-    <section class="card-section" aria-labelledby="texture-title">
-      <h2 id="texture-title" class="sr-only">Find your texture.</h2>
-      <figure class="card-shot"><a href="/images/shots/card-03-textures.png"><img class="shot" src="/images/shots/card-03-textures.png" width="1840" height="1150" loading="lazy" alt="Matching close-ups of a botanical illustration with the Velvet, Woven and Denim textures."></a></figure>
-      <p>Choose from nine textures: Parchmatte, Fine Grain, Chalkboard, Woven, Imprint, Soft Leaf, Felt, Denim and Velvet. Velvet adds a fine plush texture in Wine. Adjust strength and softness from the menu bar, with separate settings for a single window or the whole screen.</p>
+    <section class="split" aria-labelledby="light-title">
+      <div class="split-text">
+        <h2 id="light-title">Shape your light.</h2>
+        <p>Choose from six Page Light colors and three glow styles. Shape the light with Oval, Round, Wide or Tall, then place it in the center, along an edge or in a corner. Adjust Light Strength separately from the paper, or turn Page Light off for texture alone.</p>
+      </div>
+      <figure><img class="shot" src="/images/shots/light-candlelight.webp" srcset="/images/shots/light-candlelight-600.webp 600w, /images/shots/light-candlelight.webp 1380w" sizes="(min-width: 960px) 500px, calc(100vw - 40px)" width="1380" height="920" loading="lazy" alt="A botanical document with warm Candlelight Page Light glowing from the lower right."><figcaption>Candlelight, placed at the bottom right.</figcaption></figure>
     </section>
 
-    <section class="card-section" aria-labelledby="light-title">
-      <h2 id="light-title" class="sr-only">Shape your light.</h2>
-      <figure class="card-shot"><a href="/images/shots/card-04-light.png"><img class="shot" src="/images/shots/card-04-light.png" width="1840" height="1150" loading="lazy" alt="A botanical document with warm Candlelight Page Light, beside the Shape menu set to Tall and the Position menu set to Bottom Right."></a></figure>
-      <p>Choose from six Page Light colors and three glow styles. Shape the light with Oval, Round, Wide or Tall, then place it in the center, along an edge or in a corner. Adjust Light Strength separately from the paper, or turn Page Light off for texture alone.</p>
+    <section class="split split-flip" aria-labelledby="controls-title">
+      <div class="split-text">
+        <h2 id="controls-title">Right in your menu bar.</h2>
+        <p>Choose a texture, shape the light and adjust the sliders right from your menu bar. The customization controls stay open as you make changes. Clicks, scrolling and typing pass through to the apps underneath.</p>
+      </div>
+      <figure><img class="shot" src="/images/shots/menu-textures.webp" srcset="/images/shots/menu-textures-600.webp 600w, /images/shots/menu-textures.webp 1602w" sizes="(min-width: 960px) 500px, calc(100vw - 40px)" width="1602" height="1068" loading="lazy" alt="The Parchmatte menu with the Texture submenu open and Velvet selected."><figcaption>The Texture menu, with Velvet selected.</figcaption></figure>
     </section>
 
-    <section class="card-section" aria-labelledby="controls-title">
-      <h2 id="controls-title" class="sr-only">Right in your menu bar.</h2>
-      <figure class="card-shot"><a href="/images/shots/card-05-menu-bar.png"><img class="shot" src="/images/shots/card-05-menu-bar.png" width="1840" height="1150" loading="lazy" alt="The Parchmatte menu with the Texture submenu open, beside a botanical document with Velvet."></a></figure>
-      <p>Choose a texture, shape the light and adjust the sliders right from your menu bar. The customization controls stay open as you make changes. Clicks, scrolling and typing pass through to the apps underneath.</p>
-    </section>
-
-    <section class="card-section" aria-labelledby="workspace-title">
-      <h2 id="workspace-title" class="sr-only">Fit your workspace.</h2>
-      <figure class="card-shot"><a href="/images/shots/card-06-workspace.png"><img class="shot" src="/images/shots/card-06-workspace.png" width="1840" height="1150" loading="lazy" alt="A botanical document with paper on, the same document paused while Preview is excluded, and the Schedule, Displays and Excluded Apps menu."></a></figure>
+    <section aria-labelledby="workspace-title">
+      <h2 id="workspace-title">Fit your workspace.</h2>
       <dl class="feature-notes proof-points">
         <div><dt>On your schedule</dt><dd>Use sunrise and sunset or set your own hours. Snooze for a break or pause on battery.</dd></div>
         <div><dt>Choose your displays</dt><dd>Turn whole-screen paper on for the displays you want to use.</dd></div>
@@ -164,5 +183,39 @@
     <span>Made by Galactic Luddite</span>
     <nav aria-label="Footer"><a href="/compare/">Compare</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:support@parchmatte.com">Support</a></nav>
   </footer>
+  <script>
+    // Drag the divider with a mouse or finger; the hidden range input keeps it keyboard accessible.
+    document.querySelectorAll(".compare-stage").forEach(function (stage) {
+      var range = stage.querySelector(".compare-range");
+      function show() { stage.style.setProperty("--pos", range.value + "%"); }
+      function moveTo(event) {
+        var box = stage.getBoundingClientRect();
+        range.value = Math.round(Math.max(0, Math.min(1, (event.clientX - box.left) / box.width)) * 100);
+        show();
+      }
+      // A finger moves the divider only once the swipe is clearly sideways, so vertical swipes still scroll the page.
+      var start = null, dragging = false;
+      stage.addEventListener("pointerdown", function (event) {
+        start = { x: event.clientX, y: event.clientY };
+        dragging = event.pointerType === "mouse";
+        stage.setPointerCapture(event.pointerId);
+        if (dragging) { event.preventDefault(); moveTo(event); }
+      });
+      stage.addEventListener("pointermove", function (event) {
+        if (!start || !stage.hasPointerCapture(event.pointerId)) return;
+        if (!dragging) {
+          var dx = Math.abs(event.clientX - start.x), dy = Math.abs(event.clientY - start.y);
+          if (dx < 6 || dx < dy) return;
+          dragging = true;
+        }
+        moveTo(event);
+      });
+      function stop() { start = null; dragging = false; }
+      stage.addEventListener("pointerup", stop);
+      stage.addEventListener("pointercancel", stop);
+      range.addEventListener("input", show);
+      show();
+    });
+  </script>
 </body>
 </html>

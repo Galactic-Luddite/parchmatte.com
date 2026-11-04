@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check current screenshot hashes/dimensions and local links on the live pages."""
+"""Check current screenshot hashes/dimensions (PNG or WebP) and local links on the live pages."""
 
 import argparse
 import hashlib
@@ -23,6 +23,24 @@ class References(HTMLParser):
                 self.urls.extend(item.strip().split()[0] for item in value.split(",") if item.strip())
 
 
+def image_header(data):
+    """Return (format, width, height, png_color_type) from a PNG or WebP header, or None."""
+    if len(data) >= 33 and data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR":
+        width, height = struct.unpack(">II", data[16:24])
+        return "png", width, height, data[25]
+    if len(data) >= 30 and data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        kind = data[12:16]
+        if kind == b"VP8 " and data[23:26] == b"\x9d\x01\x2a":
+            width, height = struct.unpack("<HH", data[26:30])
+            return "webp", width & 0x3FFF, height & 0x3FFF, None
+        if kind == b"VP8L" and data[20] == 0x2F:
+            bits = int.from_bytes(data[21:25], "little")
+            return "webp", (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1, None
+        if kind == b"VP8X":
+            return "webp", int.from_bytes(data[24:27], "little") + 1, int.from_bytes(data[27:30], "little") + 1, None
+    return None
+
+
 def verify(root):
     root = root.resolve()
     failures = []
@@ -38,11 +56,12 @@ def verify(root):
         data = path.read_bytes()
         if hashlib.sha256(data).hexdigest() != expected["blob_sha256"]:
             failures.append(f"screenshot hash mismatch: {name}")
-        if len(data) < 33 or data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
-            failures.append(f"invalid PNG header: {name}")
+        header = image_header(data)
+        if header is None:
+            failures.append(f"invalid PNG/WebP header: {name}")
             continue
-        width, height = struct.unpack(">II", data[16:24])
-        if (width, height, data[25]) != (expected["width"], expected["height"], expected["color_type"]):
+        kind, width, height, color_type = header
+        if kind != expected.get("format", "png") or (width, height) != (expected["width"], expected["height"]) or (kind == "png" and color_type != expected["color_type"]):
             failures.append(f"screenshot dimensions/color mismatch: {name}")
 
     for page in ("index.html", "compare/index.html", "privacy/index.html", "terms/index.html", "guides/paper-texture-on-mac/index.html"):
