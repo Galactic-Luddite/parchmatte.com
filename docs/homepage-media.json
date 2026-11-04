@@ -1,5 +1,5 @@
 {
-  "build": "Mixed capture provenance; see per-image records",
+  "build": "1.2.2 (29)",
   "images": {
     "01-overview.png": {
       "build": "1.2.1 (28)",

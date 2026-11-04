@@ -10,7 +10,7 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The held 1.2.1 candidate combines actual pre-submission Parchmatte 1.2.1 (28)
+The 1.2.2 homepage combines actual pre-submission Parchmatte 1.2.1 (28)
 captures with explicitly retained 1.2.0 (27) and 1.1.0 (26) examples:
 
 - `images/shots/01-overview.png` — independently styled windows in the same app (1920x970, 1.2.1)
@@ -77,8 +77,8 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-This 1.2.1 candidate must remain held until the corresponding app version is live
-and owner review is complete. The home and
+The homepage describes Parchmatte 1.2.2, the version live on the Mac App Store.
+The home and
 comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
