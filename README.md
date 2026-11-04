@@ -10,19 +10,12 @@ Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
 ## Website screenshots
 
-The 1.2.2 homepage combines actual pre-submission Parchmatte 1.2.1 (28)
-captures with explicitly retained 1.2.0 (27) and 1.1.0 (26) examples:
-
-- `images/shots/01-overview.png` — independently styled windows in the same app (1920x970, 1.2.1)
-- `images/shots/10-light-shape-controls.png` — actual native shape and position menu controls (635x804, 1.2.1)
-- `images/shots/09-velvet-writing.png` — whole-screen Velvet at 15% Strength and 35% Softness (1440x900, 1.2)
-- `images/shots/02-menu.png` — nine-texture menu with Velvet selected; Candlelight on (1920x1048, 1.2)
-- `images/shots/07-woven-terminal.png` and `08-denim-terminal.png` — retained 1.1 dark terminal examples (1400x1300)
-
-Per-image build, settings, source identity, transformations, dimensions and file
-hashes are recorded in `docs/homepage-media.json`; see `docs/homepage-media.md`.
-The synthetic terminal fixture is `scripts/fixtures/terminal-demo.html`. These
-images are separate from the historical Build 6 App Store media receipt.
+The homepage shows the six Parchmatte 1.2.2 Mac App Store screenshots, in listing
+order, all at 1840x1150: `images/shots/card-01-softer-look.png` through
+`card-06-workspace.png`. They are the uploaded App Store files, resized and
+stripped of PNG metadata only. Hashes and source identity are in
+`docs/homepage-media.json`; see `docs/homepage-media.md`. These images are
+separate from the historical Build 6 App Store media receipt.
 
 ## Historical Build 6 release media
 
@@ -72,7 +65,7 @@ Build 6 site-image receipt check on pull requests and pushes to `main` or
 GitHub Pages serves `main` at `https://parchmatte.com`. After a release-image
 change merges, verify the live home page, its image assets and `/privacy/`.
 
-The held homepage uses the mixed-release screenshots listed above. The older
+The homepage uses the App Store screenshots listed above. The older
 responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.

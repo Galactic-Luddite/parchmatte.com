@@ -43,11 +43,14 @@ class SitePositioningTests(unittest.TestCase):
         description = "Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar."
         for field in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
             self.assertIn(field + ' content="' + description + '"', source)
-        headings = ["Your windows. Your look.", "One window or the whole screen", "Make it your paper.", "Add a little light.", "Simple controls. Right where you need them.", "Fit your workspace.", "Paper on a darker screen.", "Compare paper texture and screen tint.", "A few practical details", "Make your screen feel more like your page."]
+        headings = ["One window or the whole screen", "Your windows. Your look.", "Find your texture.", "Shape your light.", "Right in your menu bar.", "Fit your workspace.", "Compare paper texture and screen tint.", "A few practical details", "Make your screen feel more like your page."]
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
-        self.assertIn("Independently styled Preview windows", source)
+        cards = re.findall(r'<img class="shot" src="/images/shots/(card-0[1-6]-[a-z-]+)\.png" width="(\d+)" height="(\d+)"', source)
+        self.assertEqual([name[:7] for name, _, _ in cards], ["card-0" + str(n) for n in range(1, 7)])
+        self.assertEqual({(width, height) for _, width, height in cards}, {("1840", "1150")})
+        self.assertEqual(source.count('<img class="shot"'), 6)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
 
     def test_metadata_and_shared_navigation(self):
