@@ -39,7 +39,7 @@ class SitePositioningTests(unittest.TestCase):
     def test_homepage_copy_and_section_sequence(self):
         source = (ROOT / "index.html").read_text()
         self.assertIn("<title>Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac</title>", source)
-        self.assertIn("<h1>A softer, matte look for your Mac screen.</h1>", source)
+        self.assertIn('<h1 class="sr-only">A softer, matte look for your Mac screen.</h1>', source)
         description = "Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar."
         for field in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
             self.assertIn(field + ' content="' + description + '"', source)

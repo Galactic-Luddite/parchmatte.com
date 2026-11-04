@@ -87,6 +87,8 @@ figure { margin: 0; }
 .hero-shot { margin-bottom: 0; }
 /* Homepage App Store cards: every card is the same 16:10 size. */
 .card-section { border-top: 0; padding-block: 0 64px; }
+.intro-card { max-width: none; padding-top: 32px; }
+.intro-card .lede { margin-top: 28px; }
 .card-shot .shot { border-radius: 10px; }
 .card-section > p { margin: 18px 0 0; max-width: 44em; color: var(--ink-soft); }
 .card-section .proof-points { margin: 26px 0 0; }
