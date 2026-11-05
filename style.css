@@ -1,53 +1,45 @@
 :root {
   color-scheme: light dark;
+  /* The page is the screen: cool and neutral. Paper appears only inside the app captures. */
   --paper: #f8f4eb;
-  --paper-deep: #eee7d9;
-  --ink: #302c26;
-  --ink-soft: #665e52;
-  --rule: #d9d1c2;
-  --accent: #87502b;
-  --accent-ink: #fffaf0;
-  --grain-opacity: 0.07;
-  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --paper-ink: #302c26;
+  --paper-deep: #e7e9ec;
+  --paper-tint: #f3f4f5;
+  --ink: #1f2328;
+  --ink-soft: #525a63;
+  --rule: #d4d8dd;
+  --accent: #7b2d42;
+  --accent-ink: #ffffff;
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --serif: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #22211e;
-    --paper-deep: #2b2924;
-    --ink: #eee8dc;
-    --ink-soft: #bdb5a6;
-    --rule: #444037;
-    --accent: #e0aa7c;
-    --accent-ink: #22211e;
-    --grain-opacity: 0.035;
+    --paper-tint: #1b1d20;
+    --paper-deep: #25282c;
+    --ink: #e9ebee;
+    --ink-soft: #aeb4bb;
+    --rule: #383c42;
+    --accent: #f0a9bb;
+    --accent-ink: #1b1d20;
   }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--paper-tint);
   color: var(--ink);
-  font: 18px/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font: 17px/1.6 var(--sans);
 }
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("/grain.png") repeat;
-  background-size: 256px;
-  opacity: var(--grain-opacity);
-  pointer-events: none;
-  z-index: -1;
-}
-.wrap { width: min(100% - 40px, 920px); margin-inline: auto; }
+.wrap { width: min(100% - 40px, 1120px); margin-inline: auto; }
 a { color: var(--accent); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 p { margin: 0 0 1em; }
-h1, h2, h3 { line-height: 1.2; font-weight: 600; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--serif); line-height: 1.15; font-weight: 600; text-wrap: balance; }
 h1 { font-size: clamp(2.25rem, 5.3vw, 3.5rem); letter-spacing: -0.035em; margin: 0 0 24px; }
-h2 { font-size: 1.8rem; letter-spacing: -0.02em; margin: 0 0 18px; }
+h2 { font-size: 2rem; letter-spacing: -0.02em; margin: 0 0 18px; }
 h3 { font-size: 1.2rem; margin: 0; }
 figure { margin: 0; }
 .muted { color: var(--ink-soft); }
@@ -63,7 +55,7 @@ figure { margin: 0; }
   white-space: nowrap;
   border: 0;
 }
-.skip-link { position: absolute; top: 8px; left: 20px; padding: 10px; background: var(--paper); transform: translateY(-160%); z-index: 2; }
+.skip-link { position: absolute; top: 8px; left: 20px; padding: 10px; background: var(--paper-tint); transform: translateY(-160%); z-index: 2; }
 .skip-link:focus { transform: none; }
 .site-header { padding-block: 26px; border-bottom: 1px solid var(--rule); }
 .site-nav { display: flex; gap: 28px; align-items: center; font: 0.9rem/1.4 var(--sans); }
@@ -75,7 +67,7 @@ figure { margin: 0; }
 .site-footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .site-footer a { color: inherit; display: inline-block; padding-block: 4px; }
 .intro { padding-block: 48px 40px; max-width: 740px; }
-.lede { font-size: 1.3rem; line-height: 1.55; color: var(--ink-soft); max-width: 32em; }
+.lede { font-size: 1.25rem; line-height: 1.5; color: var(--ink-soft); max-width: 30em; }
 .download { display: flex; align-items: center; gap: 22px; margin-top: 30px; }
 .download p { margin: 0; font: 0.85rem/1.75 var(--sans); }
 .button { display: inline-block; padding: 12px 20px; border-radius: 5px; background: var(--accent); color: var(--accent-ink); font: 500 0.9rem/1.4 var(--sans); text-decoration: none; }
@@ -85,25 +77,29 @@ figure { margin: 0; }
 .store-badge:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
 .shot { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
 /* Homepage images: every picture is a 3:2 crop in the same frame. */
-.hero { padding-block: 56px 24px; }
-.hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); max-width: 14em; margin-bottom: 20px; }
-.hero .lede { max-width: 30em; margin: 0; }
-.hero .download { margin-bottom: 44px; }
+.hero { padding-block: 56px 24px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(2.4rem, 4.2vw, 3.6rem); margin-bottom: 20px; }
+.hero .lede { margin: 0; }
+.hero .download { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 32px; }
+@media (max-width: 959px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 40px 8px; }
+  .hero .download { flex-direction: row; align-items: center; gap: 22px; margin-top: 28px; }
+}
 figure.compare-shot { margin: 0; }
 .shot { background: var(--paper-deep); aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; }
 .compare-stage { position: relative; aspect-ratio: 3 / 2; border-radius: 8px; overflow: hidden; border: 1px solid var(--rule); background: var(--paper-deep); --pos: 50%; }
 .compare-stage .shot { position: absolute; inset: 0; height: 100%; border: 0; border-radius: 0; }
 .compare-top { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
 .compare-stage { touch-action: pan-y; cursor: ew-resize; -webkit-user-select: none; user-select: none; }
-.compare-stage img, .compare-stage .tag { pointer-events: none; -webkit-user-drag: none; }
+.compare-stage img { pointer-events: none; -webkit-user-drag: none; }
 .compare-stage::after { content: ""; position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fffaf0; box-shadow: 0 0 0 1px rgba(0,0,0,.25); pointer-events: none; }
 /* Round handle on the divider, so it is clear where to drag. The pictures are light in both themes, so the handle is too. */
 .compare-stage::before { content: ""; position: absolute; z-index: 2; top: 50%; left: var(--pos); width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; background: #fffaf0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M16 14l-6 6 6 6M24 14l6 6-6 6' fill='none' stroke='%23665e52' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 40px no-repeat; box-shadow: 0 1px 4px rgba(0,0,0,.28); pointer-events: none; }
 .compare-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; pointer-events: none; }
 .compare-stage:has(.compare-range:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
-.tag { position: absolute; top: 12px; padding: 4px 10px; border-radius: 99px; background: var(--paper); color: var(--ink); font: 0.8rem/1.4 var(--sans); pointer-events: none; }
-.tag-left { left: 12px; } .tag-right { right: 12px; }
-figcaption { margin-top: 10px; color: var(--ink-soft); font: 0.85rem/1.5 var(--sans); }
+.compare-labels { display: flex; justify-content: space-between; margin-top: 10px; font: 600 0.9rem/1.4 var(--sans); color: var(--ink); }
+.compare-labels span:last-child { color: var(--accent); }
+figcaption { margin-top: 4px; color: var(--ink-soft); font: 0.85rem/1.5 var(--sans); }
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .split { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
@@ -112,7 +108,7 @@ figcaption { margin-top: 10px; color: var(--ink-soft); font: 0.85rem/1.5 var(--s
 .split-text p { color: var(--ink-soft); margin: 0; }
 .pair .shot, .trio .shot, .split .shot { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
 .section-intro { align-items: start; }
-section { padding-block: 40px; border-top: 1px solid var(--rule); }
+section { padding-block: 56px; }
 .section-intro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; margin-bottom: 26px; }
 .section-intro p { margin: 0; color: var(--ink-soft); }
 .feature-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 28px 0 0; }
@@ -124,9 +120,9 @@ section { padding-block: 40px; border-top: 1px solid var(--rule); }
 .comparison-link p { margin-bottom: 0; max-width: 42em; }
 .faq { margin-block: 20px; }
 .faq details { border-bottom: 1px solid var(--rule); }
-.faq summary { cursor: pointer; padding: 16px 26px 16px 0; position: relative; list-style: none; font-size: 1.1rem; }
+.faq summary { cursor: pointer; padding: 16px 26px 16px 0; position: relative; list-style: none; font-size: 1.05rem; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; position: absolute; right: 0; color: var(--accent); font-family: var(--sans); }
+.faq summary::after { content: "+"; position: absolute; right: 0; color: var(--accent); }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { max-width: 42em; padding-bottom: 6px; color: var(--ink-soft); }
 table { width: 100%; border-collapse: collapse; font: 0.9rem/1.5 var(--sans); }
@@ -138,7 +134,7 @@ kbd { font: 0.85em var(--sans); background: var(--paper-deep); border: 1px solid
 pre, code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.88em; }
 pre { background: var(--paper-deep); border: 1px solid var(--rule); border-radius: 4px; padding: 14px; overflow-x: auto; }
 .intro-compare { max-width: 800px; }
-.comparison { padding-top: 0; border-top: 0; }
+.comparison { padding-top: 0; }
 .table-wrap { overflow-x: auto; }
 table.compare { min-width: 820px; table-layout: fixed; }
 table.compare th:first-child { width: 18%; }
@@ -160,13 +156,14 @@ table.compare caption { text-align: left; padding-block: 14px; color: var(--ink-
   .intro { padding-block: 40px 28px; }
   .lede { font-size: 1.15rem; }
   .download { flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
-  section { padding-block: 30px; }
+  section { padding-block: 36px; }
   h2 { font-size: 1.5rem; }
   .section-intro, .feature-notes, .shot-grid, .alternative, .pair, .split, .split-flip { grid-template-columns: 1fr; gap: 14px; }
   .split-flip .split-text { order: 0; }
   .trio { gap: 8px; }
   .trio figcaption { font-size: 0.75rem; }
-  .hero { padding-block: 32px 8px; }
+  .hero { padding-block: 32px 8px; gap: 28px; }
+  .hero .download { flex-direction: column; align-items: flex-start; gap: 14px; }
   .section-intro h2 { margin-bottom: 0; }
   .feature-notes { gap: 22px; }
   .proof-points { grid-template-columns: 1fr; margin-bottom: 36px; }
