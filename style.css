@@ -188,3 +188,9 @@ table.compare caption { text-align: left; padding-block: 14px; color: var(--ink-
 @media (max-width: 880px) { .proof-points { grid-template-columns: 1fr; gap: 16px; } }
 @media (max-width: 880px) and (min-width: 601px) { .split, .split-flip { gap: 28px; } }
 @media (prefers-reduced-motion: no-preference) { .compare-stage .compare-top { transition: none; } }
+
+/* Contextual references retain full-size access beside live instructions. */
+.native-reference { width: min(100%, 380px); justify-self: center; }
+.texture-details { margin-top: 26px; max-width: 740px; }
+#compare { max-width: 740px; }
+@media (max-width: 959px) { .hero > .pair { grid-template-columns: 1fr; } }
