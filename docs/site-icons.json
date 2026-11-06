@@ -1,17 +1,22 @@
 {
-  "artwork": "Approved Balanced A, pale-edge correction; system-resolved PNG exports",
-  "source_commit": "b85e0bb80a5748097453bb0a3420561c835ccac0",
+  "artwork": "Approved Parchmatte 1.3 four-paper refinement; system-resolved PNG exports",
+  "target_release": "1.3",
+  "publication_status": "Held for the combined 1.3 release; not published",
+  "source_commit": "5999159c9777f109555627aeba6606224bd86ab2",
   "source_document": "Resources/AppIcon.icon",
-  "source_capture_method": "AppKit NSWorkspace.icon(forFile:) via scripts/render_bundle_icon.py at 1024 and 32 pixels",
-  "transformation": "Ancillary PNG metadata stripped only; IHDR, IDAT and IEND chunks preserved byte-for-byte. No pixel edits, resizing, relighting or shape changes.",
+  "approved_source_sha256": "34a9b62dc6c85b5c441cd7fa12ceebe160ac566d7bcd304400ed18625c68216c",
+  "approved_master_sha256": "6b2389d6603ae0f7cca390e97e6f84a299e35fa8b389826d2cd96c8350c643c2",
+  "source_capture_method": "AppKit NSWorkspace.icon(forFile:) via scripts/render_bundle_icon.py; each size captured directly from the same compiled app bundle with cache isolation",
+  "toolchain": "macOS 27.2 (26B5091g), Xcode 27.0 (27A266a)",
+  "transformation": "Ancillary PNG metadata stripped only; IHDR, IDAT and IEND chunks preserved byte-for-byte. No additional pixel edits, resizing, relighting or shape changes after system capture. Icon Composer applies the source document\u2019s uniform 1024/981 fit during compilation.",
   "google_guidance": "https://developers.google.com/search/docs/appearance/favicon-in-search",
   "assets": {
     "icon.png": {
       "source_export": "system-1024.png",
       "width": 1024,
       "height": 1024,
-      "blob_sha256": "8878941642b65a23d805068271fe325eef472cfad4ad4ee0dd0d453b89e712e7",
-      "source_blob_sha256": "78eecbd6e95795df852cbd47123ff6f9250ed1d85f306fbf008a7a60e45a9f72",
+      "blob_sha256": "296e6bc07a8a4ea24fcb96582195b7c6d133d7c191fb2dafa2e854de5a88a0a2",
+      "source_blob_sha256": "caae7f819c42498d508fc85c6e7d5cf9a62714261a1224a3c9728215a7e7c3cd",
       "removed_chunks": [
         "sRGB",
         "eXIf"
@@ -21,8 +26,52 @@
       "source_export": "system-32.png",
       "width": 32,
       "height": 32,
-      "blob_sha256": "b318b1c338c6587cf0ed3e512317f1df61b32031560dbbffd2f6d21f8a9bcb68",
-      "source_blob_sha256": "36a5d4e3d2267ddea41803b74c5e93d48f2fabb5ab5683c3a9a611a49130eaf6",
+      "blob_sha256": "a7fd386d1c4de984dda8bb34523b52cd2ee40068c082cd82491f303bf28ea096",
+      "source_blob_sha256": "09dcede07f26c772830b63c9bcbb2fbdedc85fd8ab948cc169705fae894d3e0e",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    },
+    "favicon-48.png": {
+      "source_export": "system-48.png",
+      "width": 48,
+      "height": 48,
+      "blob_sha256": "00b46c5bf85dd2165bd054dff78214296a53d954ff612521dd853f46ce421686",
+      "source_blob_sha256": "b36b53f7b5beff2ccbfa457ee5494e4ba10e9054b02c38e245fc50ef4cb84995",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    },
+    "favicon-96.png": {
+      "source_export": "system-96.png",
+      "width": 96,
+      "height": 96,
+      "blob_sha256": "496305cd7da8762369a40a98bc5e2b826793f5e83f622d5c032998337ea23dad",
+      "source_blob_sha256": "6f6252ae3b8839cf06229346eaf7572cf515caaa0210355ea59f7fbf57f9ec2c",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    },
+    "favicon-192.png": {
+      "source_export": "system-192.png",
+      "width": 192,
+      "height": 192,
+      "blob_sha256": "c4ed1bbb79c21eb94ce055656aca0ca62ecd6d1e4d8718a8df3d3f8c745155d1",
+      "source_blob_sha256": "bdc73a89206991e09251963d043097a5103c1a7053b91ca9b39743b45b5d679e",
+      "removed_chunks": [
+        "sRGB",
+        "eXIf"
+      ]
+    },
+    "apple-touch-icon.png": {
+      "source_export": "system-180.png",
+      "width": 180,
+      "height": 180,
+      "blob_sha256": "2a239e1a609e4b6d8ad21e4c9f6a77cfa5e301d4adee84d18129cbd738561501",
+      "source_blob_sha256": "a9a9210e5459a4e7d53a0b804d59aab6a68a30c8a84dc28ab0c5415019732111",
       "removed_chunks": [
         "sRGB",
         "eXIf"
