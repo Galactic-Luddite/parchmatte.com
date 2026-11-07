@@ -8,6 +8,20 @@ terms at `/terms/`, plus the single-window guide at
 
 Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
+## Private proposed 1.3 copy
+
+This candidate contains proposed 1.3 copy for owner review, with historical
+1.2.2 website images and the unchanged release declaration and media receipts.
+It is held locally for review. It does not establish 1.3 availability or qualify
+new native controls or release media. The publication validators remain unchanged.
+
+`python3 scripts/storefront_parity.py --declared-only` must currently fail:
+`FAIL: home page softwareVersion '1.3' does not match declared 1.2.2`.
+This is an expected release hold. Do not alter declarations or media receipts to
+make this private copy proposal pass. Final native qualification, source-bound
+media, wording and artwork approval, store availability and release authorization
+remain required before publication.
+
 ## Website screenshots
 
 The homepage shows eight qualified Parchmatte 1.2.2 images, each a 3:2 crop in
@@ -78,9 +92,8 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-The homepage describes Parchmatte 1.2.2, the version live on the Mac App Store.
-The home and
-comparison pages link to the listing with Apple's "Download on the Mac App
+This private candidate proposes Parchmatte 1.3 copy; the existing release
+declaration and media provenance remain at 1.2.2. The home and comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
 and FAQ structured data describe the $2.99 listing. Keep the structured data
