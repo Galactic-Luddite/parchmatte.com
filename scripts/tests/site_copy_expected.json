@@ -11,7 +11,7 @@
       "id": "H2",
       "file": "index.html",
       "paragraphs": [
-        "Give your Mac windows a paper texture, a gentle wash of light, or both. Fine-tune each window or your whole screen from the menu bar."
+        "Give your Mac windows a matte paper texture, a gentle wash of light, or both. Fine-tune each window or your whole screen from the menu bar."
       ]
     },
     {
@@ -39,7 +39,7 @@
       "id": "H6",
       "file": "index.html",
       "paragraphs": [
-        "Choose one of six single-color Page Lights or Color Phase, a still blend of multiple colors. Adjust Light Strength and choose a Diffuse, Balanced or Focused glow. Shape the light with Oval, Round, Wide or Tall, and place it in one of nine positions."
+        "Choose one of six single-color Page Lights or Color Phase, a still blend of multiple colors. Adjust Light Strength and choose a Diffuse, Balanced or Focused glow. Shape the light with Oval, Round, Wide or Tall, and place it anywhere: drag it on a small picture of your screen, or click to jump to a corner, an edge or the center."
       ]
     },
     {
@@ -60,7 +60,7 @@
       "id": "H9",
       "file": "index.html",
       "paragraphs": [
-        "Use Page Light without paper texture, or try Color Phase, a still blend of multiple colors. Glow styles are now named Diffuse, Balanced and Focused. Set Light Strength to 0% for no light while keeping your selected preset. Existing saved light keeps its appearance, although the displayed percentage may change."
+        "Use Page Light without paper texture, or try Color Phase, a still blend of multiple colors. Glow styles are now named Diffuse, Balanced and Focused. Set Light Strength to 0% for no light while keeping your selected preset. Existing saved light keeps its appearance, although the displayed percentage may change. Place Page Light anywhere by dragging it on a small picture of your screen. The redesigned controls use familiar Mac switches, menus and sliders, and list every keyboard shortcut under App & Workspace."
       ]
     },
     {
@@ -74,7 +74,7 @@
       "id": "G2",
       "file": "guides/paper-texture-on-mac/index.html",
       "paragraphs": [
-        "Adjust that window’s paper. Close and reopen Parchmatte’s controls, then select This Window — [app name]. Choose Texture, adjust Strength for the amount of texture, and adjust Softness for the grain’s softness."
+        "Adjust that window’s paper. The controls switch to This Window — [app name] as soon as you add the paper. Choose Texture, adjust Strength for the amount of texture, and adjust Softness for the grain’s softness."
       ]
     },
     {
@@ -88,7 +88,7 @@
       "id": "G4",
       "file": "guides/paper-texture-on-mac/index.html",
       "paragraphs": [
-        "Select This Window, then open Page Light. Under Color, choose one of six single-color lights or Color Phase, a still blend of multiple colors. Use Light Strength for the amount of light, Glow for how it fades toward the edges, Shape for Oval, Round, Wide or Tall, and Position for one of nine placements. Glow offers Diffuse, Balanced and Focused.",
+        "Select This Window, then open Page Light. Under Color, choose one of six single-color lights or Color Phase, a still blend of multiple colors. Use Light Strength for the amount of light, Glow for how it fades toward the edges, Shape for Oval, Round, Wide or Tall, and Position to place it anywhere: drag the dot, or click an area to jump to a corner, an edge or the center. Glow offers Diffuse, Balanced and Focused.",
         "Choose Off in Texture to use light alone; the texture and its adjustments are kept. Select the named texture again to bring it back. On a narrow layout, use Back to return to the texture controls. Set Light Strength to 0% for no light while keeping the chosen light preset, or choose Off under Color in Page Light for texture alone."
       ]
     },
@@ -111,7 +111,7 @@
     {
       "file": "index.html",
       "title_after": "Parchmatte: Paper Texture & Matte Screen Effect for Mac",
-      "description_after": "Give your Mac windows a paper texture, a gentle wash of light, or both. Style individual windows or your whole screen from the menu bar.",
+      "description_after": "Give your Mac windows a matte paper texture, a gentle wash of light, or both. Style individual windows or your whole screen from the menu bar.",
       "fields": [
         "description",
         "og:description",
@@ -158,7 +158,7 @@
     "featureList": [
       "Nine adjustable paper and cloth textures",
       "Independent texture and light for each window, including windows in the same app",
-      "Six single-color Page Lights plus Color Phase, three glow styles, four shapes and nine positions",
+      "Six single-color Page Lights plus Color Phase, three glow styles, four shapes and drag-anywhere placement",
       "Stay-open menu-bar customization",
       "Display selection and frontmost-app pause rules"
     ],
