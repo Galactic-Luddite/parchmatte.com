@@ -67,7 +67,7 @@ class SitePositioningTests(unittest.TestCase):
         for name in ("window-woven", "window-velvet", "home-plain", "home-velvet", "texture-woven", "texture-denim", "light-candlelight", "menu-textures"):
             self.assertIn('href="/images/shots/' + name + '.webp"', source)
             self.assertTrue((ROOT / "images/shots" / (name + ".webp")).is_file())
-        self.assertIn("Native Parchmatte 1.2.2 reference.", source)
+        self.assertIn("Native Parchmatte 1.3 reference.", source)
 
     def test_guide_reference_supports_existing_four_steps(self):
         source = (ROOT / "guides/paper-texture-on-mac/index.html").read_text()
@@ -78,7 +78,7 @@ class SitePositioningTests(unittest.TestCase):
         self.assertIn('This Window — [app name]', adjustment)
         self.assertIn('src="/images/shots/menu-textures.webp"', adjustment)
         self.assertIn('href="/images/shots/menu-textures.webp"', adjustment)
-        self.assertIn('Native Parchmatte 1.2.2 reference.', adjustment)
+        self.assertIn('Native Parchmatte 1.3 reference.', adjustment)
         self.assertIn('href="/#light-title">see Parchmatte’s texture and Page Light overview</a>', source)
 
     def test_metadata_and_shared_navigation(self):
