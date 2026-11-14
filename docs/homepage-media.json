@@ -178,26 +178,26 @@
       "source_sha256": "4496694a75d2e8e4a78c332097a41920e8f78a9ab922a493d853b2044ce3ab3c"
     },
     "menu-textures.webp": {
-      "build": "1.2.2 (29)",
-      "blob_sha256": "43edffa2a42dd6633c053d45b5109ba3ac9024cec3133bd5c052b00e256ee97f",
-      "bytes": 105192,
+      "build": "1.3 (31)",
+      "blob_sha256": "9716eb5e2d2c615586c83e6ae1419eac5d3272cde458a2fcd7df92b4d5eabb51",
+      "bytes": 78208,
       "width": 1602,
       "height": 1068,
       "format": "webp",
-      "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
-      "transformation": "Texture menu from the clean native 1.2.2 (29) capture group4-texture: cropped to 1602x1068 at x=2330, y=0 (no resize), then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
-      "source_sha256": "d6e51224835debde15490c55eb00866907b52d6c4f93cd49b28599fe05c1578e"
+      "description": "Texture pop-up in the 1.3 controls panel, from the native build 31 capture F7-texture-popup",
+      "transformation": "Texture pop-up from the clean native 1.3 (31) capture F7-texture-popup: cropped to 1602x1068 at x=2290, y=40 (no resize), then encoded as WebP quality 90 with cwebp (-metadata none). No retouch or text change.",
+      "source_sha256": "42a3f2ed6641a70ce7ae4df9e476091b06b54b3b14c559fe722b2f3fd8a35266"
     },
     "menu-textures-600.webp": {
-      "build": "1.2.2 (29)",
-      "blob_sha256": "3bd0e17131b80110096f1ea154bc0e5c0a208daaa03e5d6357c4b4e7660e18ab",
-      "bytes": 31828,
+      "build": "1.3 (31)",
+      "blob_sha256": "12b4eaa11c96a13505bb99d88dc49fd67c9db92a8ca80321fd1add20ea476c7a",
+      "bytes": 23160,
       "width": 600,
       "height": 400,
       "format": "webp",
-      "description": "Texture menu from the clean native 1.2.2 build 29 capture group4-texture",
-      "transformation": "Texture menu from the clean native 1.2.2 (29) capture group4-texture: cropped to 1602x1068 at x=2330, y=0, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp 1.6.0 (-metadata none). No retouch or text change.",
-      "source_sha256": "d6e51224835debde15490c55eb00866907b52d6c4f93cd49b28599fe05c1578e"
+      "description": "Texture pop-up in the 1.3 controls panel, from the native build 31 capture F7-texture-popup",
+      "transformation": "Texture pop-up from the clean native 1.3 (31) capture F7-texture-popup: cropped to 1602x1068 at x=2290, y=40, resized to 600x400 with sips, then encoded as WebP quality 90 with cwebp (-metadata none). No retouch or text change.",
+      "source_sha256": "42a3f2ed6641a70ce7ae4df9e476091b06b54b3b14c559fe722b2f3fd8a35266"
     }
   },
   "method": "Each homepage image is a crop of a genuine Parchmatte 1.2.2 (29) capture: panels cut from the uploaded App Store screenshots (headlines, labels and decoration left out), plus one native menu capture. Each ships at its original crop size (never enlarged) and a smaller copy for phones, encoded as WebP quality 90. source_sha256 is the exact source file. Nothing retouched or retyped."

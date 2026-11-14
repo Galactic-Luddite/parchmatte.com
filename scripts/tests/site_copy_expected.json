@@ -140,13 +140,13 @@
     }
   ],
   "protected": {
-    "index.html": "6ee0c4a9ddcecd635b2dda389550a1d44bb302276fe3c79d9c9188c9c757fc06",
-    "guides/paper-texture-on-mac/index.html": "7ede84bf55704efef21143e3f92b2b0dfa1a83d437ef448d178392d27f54f243",
+    "index.html": "4e71593f846a948af99d6c00965afa7df5c0e4e8f0569a811d2eaee3a04a335c",
+    "guides/paper-texture-on-mac/index.html": "51e905ec3b71b400afb5380864a32e455e547461c946902594ffaf0087d6270d",
     "compare/index.html": "fb7377cc1c27c3a71f3e9ef281c73c3a860e5584983baad9d2b9b2bd396f18d6"
   },
   "receipts": {
     "release/site-version.json": "a4e801e8a983c03e79d69bb4758bf427d2fb88eb89cab083eebb4977a3b63339",
-    "docs/homepage-media.json": "c253557215929e93528a53f02253f728f3a608a9acef1dfe3ebfc7cdd1b186e4",
+    "docs/homepage-media.json": "1a4d4e1d47573b45a0fab24f4bfe3827d7adf87a3ff751e21204a39235c3527a",
     "docs/release-media-build6.json": "51ee5b839bd65a8fe10f4105784aa24ae013a979d9c56c22dfc74a80513e52d2"
   },
   "app_schema": {
