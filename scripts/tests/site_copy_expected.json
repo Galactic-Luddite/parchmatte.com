@@ -145,8 +145,8 @@
     "compare/index.html": "fb7377cc1c27c3a71f3e9ef281c73c3a860e5584983baad9d2b9b2bd396f18d6"
   },
   "receipts": {
-    "release/site-version.json": "aaf90225dc5347373269fb8657fb2553db37e58c26bd1c4190668c9171224651",
-    "docs/homepage-media.json": "9f1a0656eb43265a42426fb220f5b1cc0396ecb40cc11e62977591789c2044fa",
+    "release/site-version.json": "a4e801e8a983c03e79d69bb4758bf427d2fb88eb89cab083eebb4977a3b63339",
+    "docs/homepage-media.json": "c253557215929e93528a53f02253f728f3a608a9acef1dfe3ebfc7cdd1b186e4",
     "docs/release-media-build6.json": "51ee5b839bd65a8fe10f4105784aa24ae013a979d9c56c22dfc74a80513e52d2"
   },
   "app_schema": {
