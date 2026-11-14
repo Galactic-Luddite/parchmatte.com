@@ -40,20 +40,46 @@ class SitePositioningTests(unittest.TestCase):
         source = (ROOT / "index.html").read_text()
         self.assertIn("<title>Parchmatte: Paper Texture &amp; Matte Screen Effect for Mac</title>", source)
         self.assertIn('<h1>A softer, matte look for your Mac screen.</h1>', source)
-        description = "Give your Mac screen a softer, matte look with paper texture and optional light. Customize individual windows or your whole screen from the menu bar."
+        description = "Give your Mac windows a matte paper texture, a gentle wash of light, or both. Style individual windows or your whole screen from the menu bar."
         for field in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
             self.assertIn(field + ' content="' + description + '"', source)
-        headings = ["One window or the whole screen", "Your windows. Your look.", "Find your texture.", "Shape your light.", "Right in your menu bar.", "Fit your workspace.", "Compare paper texture and screen tint.", "A few practical details", "Make your screen feel more like your page."]
+        headings = ["Your windows. Your look.", "One window or the whole screen", "Light, with or without paper.", "Find your texture.", "Right in your menu bar.", "Fit your workspace.", "Compare paper texture and screen tint.", "A few practical details", "Make your screen feel more like your page."]
         self.assertEqual([source.index(value) for value in headings], sorted(source.index(value) for value in headings))
         for retired in ("glare", "eye-care", "No permissions", "About 4 MB", "Nothing to give up"):
             self.assertNotIn(retired, source)
         shots = re.findall(r'<img class="shot[^"]*" src="/images/shots/([a-z-]+)\.webp" srcset="/images/shots/([a-z0-9-]+\.webp) \d+w, [^"]*" sizes="[^"]*" width="(\d+)" height="(\d+)"', source)
-        self.assertEqual(len(shots), 9)
+        self.assertEqual(len(shots), 8)
         # Every homepage picture is the same 3:2 shape, with a smaller copy for phones.
         for name, small, width, height in shots:
             self.assertEqual(int(width) * 2, int(height) * 3, name)
             self.assertTrue((ROOT / "images/shots" / small).is_file(), small)
         self.assertEqual(source.count('alt="Download on the Mac App Store"'), 2)
+
+    def test_selected_image_roles_and_full_size_access(self):
+        source = (ROOT / "index.html").read_text()
+        hero = source.split('<div class="hero">', 1)[1].split('<section id="paper-in-use"', 1)[0]
+        for name in ("window-woven", "window-velvet"):
+            self.assertIn('src="/images/shots/' + name + '.webp"', hero)
+        texture = source.split('aria-labelledby="texture-title">', 1)[1].split('</section>', 1)[0]
+        self.assertIn('id="compare"', texture)
+        self.assertIn('type="range" min="0" max="100"', texture)
+        self.assertNotIn('src="/images/shots/texture-velvet.webp"', source)
+        for name in ("window-woven", "window-velvet", "home-plain", "home-velvet", "texture-woven", "texture-denim", "light-candlelight", "menu-textures"):
+            self.assertIn('href="/images/shots/' + name + '.webp"', source)
+            self.assertTrue((ROOT / "images/shots" / (name + ".webp")).is_file())
+        self.assertIn("Native Parchmatte 1.2.2 reference.", source)
+
+    def test_guide_reference_supports_existing_four_steps(self):
+        source = (ROOT / "guides/paper-texture-on-mac/index.html").read_text()
+        steps = source.split('<ol>', 1)[1].split('</ol>', 1)[0]
+        self.assertEqual(len(re.findall(r'<li(?: |>)', steps)), 4)
+        self.assertIn('id="step4"', steps)
+        adjustment = steps.split('id="step4"', 1)[1]
+        self.assertIn('This Window — [app name]', adjustment)
+        self.assertIn('src="/images/shots/menu-textures.webp"', adjustment)
+        self.assertIn('href="/images/shots/menu-textures.webp"', adjustment)
+        self.assertIn('Native Parchmatte 1.2.2 reference.', adjustment)
+        self.assertIn('href="/#light-title">see Parchmatte’s texture and Page Light overview</a>', source)
 
     def test_metadata_and_shared_navigation(self):
         for name in PAGES:

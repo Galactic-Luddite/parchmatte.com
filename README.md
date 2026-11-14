@@ -8,16 +8,36 @@ terms at `/terms/`, plus the single-window guide at
 
 Plain HTML and CSS, with no site build step. Served by GitHub Pages from `main`.
 
+## Private proposed 1.3 copy
+
+This candidate contains proposed 1.3 copy for owner review, with historical
+1.2.2 website images and the unchanged release declaration and media receipts.
+It is held locally for review. It does not establish 1.3 availability or qualify
+new native controls or release media. The publication validators remain unchanged.
+
+`python3 scripts/storefront_parity.py --declared-only` must currently fail:
+`FAIL: home page softwareVersion '1.3' does not match declared 1.2.2`.
+This is an expected release hold. Do not alter declarations or media receipts to
+make this private copy proposal pass. Final native qualification, source-bound
+media, wording and artwork approval, store availability and release authorization
+remain required before publication.
+
 ## Website screenshots
 
-The homepage shows nine genuine Parchmatte 1.2.2 captures, each a 3:2 crop in
+The homepage shows eight qualified Parchmatte 1.2.2 images, each a 3:2 crop in
 one frame style, shipped as WebP at the original crop size plus a smaller phone copy
 (`images/shots/home-*`, `window-*`, `texture-*`, `light-candlelight*`, `menu-textures*`).
 They are crops of the uploaded App Store screenshots and one native menu capture,
 encoded as WebP quality 90 and otherwise unchanged. No headline or label text is baked
 into them. Hashes and source
 identity are in `docs/homepage-media.json`; see `docs/homepage-media.md`. These images are
-separate from the historical Build 6 App Store media receipt.
+separate from the historical Build 6 App Store media receipt. The opening uses the
+existing Woven/Velvet window pair, followed by scope information and the actual
+Candlelight scene. The original before/after slider now sits with the texture
+details; the redundant Velvet close-up is retained on disk and in its receipt
+but omitted from the layout. Each displayed image has a descriptive full-size
+link. The native Texture menu reference is explicitly labeled 1.2.2 on home
+and beside the guide's first adjustment step; it is not a final 1.3 control capture.
 
 ## Historical Build 6 release media
 
@@ -72,9 +92,8 @@ responsive JPEGs in `images/shots/` remain historical Build 6 release media
 covered by `docs/release-media-build6.json`; the homepage no longer presents
 them as current app screenshots.
 
-The homepage describes Parchmatte 1.2.2, the version live on the Mac App Store.
-The home and
-comparison pages link to the listing with Apple's "Download on the Mac App
+This private candidate proposes Parchmatte 1.3 copy; the existing release
+declaration and media provenance remain at 1.2.2. The home and comparison pages link to the listing with Apple's "Download on the Mac App
 Store" badge (`images/badges/`, black for light mode and white for dark mode,
 served unmodified per Apple's marketing guidelines), and the homepage offer
 and FAQ structured data describe the $2.99 listing. Keep the structured data

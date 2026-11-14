@@ -1,0 +1,185 @@
+{
+  "blocks": [
+    {
+      "id": "H1",
+      "file": "index.html",
+      "paragraphs": [
+        "A softer, matte look for your Mac screen."
+      ]
+    },
+    {
+      "id": "H2",
+      "file": "index.html",
+      "paragraphs": [
+        "Give your Mac windows a matte paper texture, a gentle wash of light, or both. Fine-tune each window or your whole screen from the menu bar."
+      ]
+    },
+    {
+      "id": "H3",
+      "file": "index.html",
+      "paragraphs": [
+        "Give individual windows their own texture and light, even two windows in the same app. Keep one look for your writing and another for your references. Window styles last for the current app session. Learn how to add paper texture to one Mac window."
+      ]
+    },
+    {
+      "id": "H4",
+      "file": "index.html",
+      "paragraphs": [
+        "Choose from nine textures: Parchmatte, Fine Grain, Chalkboard, Woven, Imprint, Soft Leaf, Felt, Denim and Velvet. Adjust texture strength, softness and orientation. Turn texture off to use Page Light on its own, then bring the texture back with its settings preserved."
+      ]
+    },
+    {
+      "id": "H5",
+      "file": "index.html",
+      "paragraphs": [
+        "Light, with or without paper."
+      ]
+    },
+    {
+      "id": "H6",
+      "file": "index.html",
+      "paragraphs": [
+        "Choose one of six single-color Page Lights or Color Phase, a still blend of multiple colors. Adjust Light Strength and choose a Diffuse, Balanced or Focused glow. Shape the light with Oval, Round, Wide or Tall, and place it anywhere: drag it on a small picture of your screen, or click to jump to a corner, an edge or the center."
+      ]
+    },
+    {
+      "id": "H7",
+      "file": "index.html",
+      "paragraphs": [
+        "Select This Window to edit that window’s saved style. Screen and New Windows sets the whole-screen look and the starting style for new window covers. Windows you have already styled keep their own settings. The status above the controls describes the current effect separately from your editing target. Clicks, scrolling and typing pass through to the apps underneath."
+      ]
+    },
+    {
+      "id": "H8",
+      "file": "index.html",
+      "paragraphs": [
+        "What is new in Parchmatte 1.3?"
+      ]
+    },
+    {
+      "id": "H9",
+      "file": "index.html",
+      "paragraphs": [
+        "Use Page Light without paper texture, or try Color Phase, a still blend of multiple colors. Glow styles are now named Diffuse, Balanced and Focused. Set Light Strength to 0% for no light while keeping your selected preset. Existing saved light keeps its appearance, although the displayed percentage may change. Place Page Light anywhere by dragging it on a small picture of your screen. The redesigned controls use familiar Mac switches, menus and sliders, and list every keyboard shortcut under App & Workspace."
+      ]
+    },
+    {
+      "id": "G1",
+      "file": "guides/paper-texture-on-mac/index.html",
+      "paragraphs": [
+        "Parchmatte / Guide · Parchmatte 1.3"
+      ]
+    },
+    {
+      "id": "G2",
+      "file": "guides/paper-texture-on-mac/index.html",
+      "paragraphs": [
+        "Adjust that window’s paper. The controls switch to This Window — [app name] as soon as you add the paper. Choose Texture, adjust Strength for the amount of texture, and adjust Softness for the grain’s softness."
+      ]
+    },
+    {
+      "id": "G3",
+      "file": "guides/paper-texture-on-mac/index.html",
+      "paragraphs": [
+        "Choose from nine textures in Texture, including Velvet, a fine plush texture in Wine. Use This Window for the selected window. Screen and New Windows sets the whole-screen look and the starting style for new window covers; windows you have already styled keep their own settings. Window styles last for the current app session."
+      ]
+    },
+    {
+      "id": "G4",
+      "file": "guides/paper-texture-on-mac/index.html",
+      "paragraphs": [
+        "Select This Window, then open Page Light. Under Color, choose one of six single-color lights or Color Phase, a still blend of multiple colors. Use Light Strength for the amount of light, Glow for how it fades toward the edges, Shape for Oval, Round, Wide or Tall, and Position to place it anywhere: drag the dot, or click an area to jump to a corner, an edge or the center. Glow offers Diffuse, Balanced and Focused.",
+        "Choose Off in Texture to use light alone; the texture and its adjustments are kept. Select the named texture again to bring it back. On a narrow layout, use Back to return to the texture controls. Set Light Strength to 0% for no light while keeping the chosen light preset, or choose Off under Color in Page Light for texture alone."
+      ]
+    },
+    {
+      "id": "C1",
+      "file": "compare/index.html",
+      "paragraphs": [
+        "Nine paper textures for one window or the whole screen, including Velvet in Wine, with adjustable strength and softness. Use Page Light with or without texture. Choose one of six single-color lights or Color Phase, with separate Light Strength, Glow, Shape and Position controls."
+      ]
+    },
+    {
+      "id": "C2",
+      "file": "compare/index.html",
+      "paragraphs": [
+        "Parchmatte features · Parchmatte 1.3"
+      ]
+    }
+  ],
+  "metadata": [
+    {
+      "file": "index.html",
+      "title_after": "Parchmatte: Paper Texture & Matte Screen Effect for Mac",
+      "description_after": "Give your Mac windows a matte paper texture, a gentle wash of light, or both. Style individual windows or your whole screen from the menu bar.",
+      "fields": [
+        "description",
+        "og:description",
+        "twitter:description"
+      ]
+    },
+    {
+      "file": "guides/paper-texture-on-mac/index.html",
+      "title_after": "How to Add Paper Texture to One Mac Window | Parchmatte",
+      "description_after": "Use Parchmatte to add paper texture to one Mac window. Choose the front window, adjust its texture and optional Page Light, and remove the overlay when finished.",
+      "fields": [
+        "description",
+        "og:description",
+        "twitter:description"
+      ]
+    },
+    {
+      "file": "compare/index.html",
+      "title_after": "Compare Mac Paper Screen Apps and Tints | Parchmatte",
+      "description_after": "Compare paper texture overlays and screen-tint tools for Mac. Explore Parchmatte's window controls, adjustable grain and optional Page Light.",
+      "fields": [
+        "description",
+        "og:description",
+        "twitter:description"
+      ]
+    }
+  ],
+  "protected": {
+    "index.html": "6ee0c4a9ddcecd635b2dda389550a1d44bb302276fe3c79d9c9188c9c757fc06",
+    "guides/paper-texture-on-mac/index.html": "7ede84bf55704efef21143e3f92b2b0dfa1a83d437ef448d178392d27f54f243",
+    "compare/index.html": "fb7377cc1c27c3a71f3e9ef281c73c3a860e5584983baad9d2b9b2bd396f18d6"
+  },
+  "receipts": {
+    "release/site-version.json": "a4e801e8a983c03e79d69bb4758bf427d2fb88eb89cab083eebb4977a3b63339",
+    "docs/homepage-media.json": "c253557215929e93528a53f02253f728f3a608a9acef1dfe3ebfc7cdd1b186e4",
+    "docs/release-media-build6.json": "51ee5b839bd65a8fe10f4105784aa24ae013a979d9c56c22dfc74a80513e52d2"
+  },
+  "app_schema": {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Parchmatte",
+    "url": "https://parchmatte.com/",
+    "description": "Paper texture, Page Light, or both for individual Mac windows or the whole screen.",
+    "featureList": [
+      "Nine adjustable paper and cloth textures",
+      "Independent texture and light for each window, including windows in the same app",
+      "Six single-color Page Lights plus Color Phase, three glow styles, four shapes and drag-anywhere placement",
+      "Stay-open menu-bar customization",
+      "Display selection and frontmost-app pause rules"
+    ],
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "macOS 13 or later",
+    "softwareVersion": "1.3",
+    "image": "https://parchmatte.com/icon.png",
+    "screenshot": "https://parchmatte.com/images/shots/home-velvet.webp",
+    "author": {
+      "@type": "Organization",
+      "name": "Galactic Luddite"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Mac App Store",
+        "price": "2.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://apps.apple.com/us/app/parchmatte/id6815385110?mt=12"
+      }
+    ]
+  }
+}
