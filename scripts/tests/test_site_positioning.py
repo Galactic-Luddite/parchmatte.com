@@ -6,7 +6,7 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-PAGES = ("index.html", "compare/index.html", "privacy/index.html", "terms/index.html")
+PAGES = ("index.html", "compare/index.html", "privacy/index.html", "terms/index.html", "guides/paper-texture-on-mac/index.html")
 
 
 class SitePositioningTests(unittest.TestCase):

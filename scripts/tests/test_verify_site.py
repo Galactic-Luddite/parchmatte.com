@@ -18,7 +18,7 @@ class VerifySiteTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
-        for directory in ("docs", "images/shots", "compare", "privacy", "terms"):
+        for directory in ("docs", "images/shots", "compare", "privacy", "terms", "guides/paper-texture-on-mac"):
             (self.root / directory).mkdir(parents=True)
         # Header-only fixture: this validator checks identity and IHDR, not PNG decoding.
         self.png = b"\x89PNG\r\n\x1a\n" + struct.pack(">I", 13) + b"IHDR" + struct.pack(">IIBBBBB", 700, 650, 8, 6, 0, 0, 0) + b"\0" * 4
@@ -30,6 +30,8 @@ class VerifySiteTests(unittest.TestCase):
         (self.root / "compare/index.html").write_text('<a href="../privacy/">Privacy</a>')
         (self.root / "privacy/index.html").write_text('<a href="/">Home</a>')
         (self.root / "terms/index.html").write_text('<a href="/">Home</a>')
+
+        (self.root / "guides/paper-texture-on-mac/index.html").write_text('<a href="/">Home</a>')
 
     def write_receipt(self):
         (self.root / "docs/homepage-media.json").write_text(json.dumps(self.receipt))
